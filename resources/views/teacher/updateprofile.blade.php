@@ -49,12 +49,6 @@
       
       
       </div>
-      <div class="mb-3">
-            <label for="">Pro_pic</label>
-              <input type="text" name="pro_pic" required class="form-control" >
-          
-      
-      </div>
 
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
