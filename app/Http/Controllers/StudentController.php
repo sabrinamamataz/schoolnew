@@ -26,17 +26,22 @@ class StudentController extends Controller
         $userDate = User::find(auth()->user()->id);
         $userDate->update([
             'name'=> $request->name,
-            'email'=> $request->email,
+            'email'=> $request->email,                                                                       
         ]);
         $studentData = Student::where('user_id', $userDate->id)->first();
         if ($studentData) {
             $studentData->update([
                 'gaurdian_no'=>$request->gaurdian_no
+                
             ]);
         } else {
             $newStudent = Student::create([
                 'user_id'=>$userDate->id,
                 'gaurdian_no'=>$request->gaurdian_no,
+                'class'=>$request->class,
+                'adress'=>$request->adress,
+                'gaurdian_name'=>$request->gaurdian_name,
+                'gaurdian_relation'=>$request->gaurdian_relation,
                 // 'gaurdian_name'=>$request->gaurdian_name,
             ]);
         }

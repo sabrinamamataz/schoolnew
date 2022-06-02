@@ -11,7 +11,7 @@
 
 <form action="{{ route('updateprofile_dashboard') }}" method="post" >
 @csrf
-  <!-- <div class="modal-body"> -->
+  <div class="modal-body">
       <div class="mb-3">
             <label for="">Email</label>
               <input type="email" name="email" required class="form-control" >
