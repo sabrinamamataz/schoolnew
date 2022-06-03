@@ -15,14 +15,15 @@ class CreateTeachersTable extends Migration
     {
         Schema::create('teachers', function (Blueprint $table) {
             $table->id();
-            $table->string('email')->unique();
-            $table->string('subject_id');
-            $table->string('joining');
-            $table->string('designation');
-            $table->string('date-of-birth');
-            $table->string('contact_no');
-            $table->string('address');
-            $table->string('pro_pic')->nullable();
+            $table->integer('user_id');
+            $table->string('name')->nullable();;
+            $table->string('email')->nullable();
+            $table->integer('subject_id')->nullable();
+            $table->string('date-of-birth')->nullable();
+            $table->string('contact_no')->nullable();
+            $table->string('designation')->nullable();
+            $table->string('address')->nullable();
+            $table->string('status');
             $table->timestamps();
         });
     }

@@ -51,7 +51,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/updateprofile-student-dashboard', [StudentController::class, 'updateprofileDashboard'])->name('updateprofile_student_dashboard');
     Route::post('/student-profile-update', [StudentController::class, 'updateStudentData'])->name('update_student_profile');
     Route::get('/updateprofile-teacher-dashboard', [TeacherController::class, 'updateprofileDashboard'])->name('updateprofile_teacher_dashboard');
-    Route::post('/updateprofile-dashboard/store', [TeacherController::class, 'store'])->name('updateprofile_dashboard');
+    Route::post('/teacher-profile-update', [TeacherController::class, 'updateTeacherData'])->name('update_teacher_profile');
+    
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');

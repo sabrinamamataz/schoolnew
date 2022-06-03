@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Teacher;
-
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Teacher;
 
 class TeacherController extends Controller
 {
@@ -13,37 +13,44 @@ class TeacherController extends Controller
 
         return view('teacher.dashboard');
     }
-    public function updateprofileDashboard(Request $request)
+    
+    public function updateprofileDashboard()
     {
-
-        return view('teacher.updateprofile');
+        $userDate = User::find(auth()->user()->id);
+        $teacherData = Teacher::where('user_id', $userDate->id)->first();
+        // dd($teacherData);
+        return view('teacher.updateprofile', compact('userDate', 'teacherData'));
     }
-    public function create()
+
+    public function updateTeacherData(Request $request)
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        // dd($request->all());
-        $newTeacher = Teacher::create([
-            'email' => $request->email,
-            'subject_id' => $request->subject_id,
-            'joining' => $request->joining,
-            'designation' => $request->designation,
-            'date-of-birth' => $request->date_of_birth,
-            'contact_no' => $request->contact_no,
-            'address' => $request->address,
-            'pro_pic' => $request->pro_pic,
-
-
+        $request->validate([
+            'email' => 'email|unique:users,email,' . auth()->user()->id,
         ]);
-        return redirect()->back()->with('success', 'Successfully added.');
+        $userDate = User::find(auth()->user()->id);
+        $userDate->update([
+            'name' => $request->name,
+            'email' => $request->email,
+        ]);
+        $teacherData = Teacher::where('user_id', $userDate->id)->first();
+        if ($teacherData) {
+            $teacherData->update([
+                'contact_no' => $request->contact_no,
+                'address' => $request->address,
+                'designation' => $request->designation,
+                
+            ]);
+        } else {
+            $newTeacher = Teacher::create([
+                'status'=>1,
+                'user_id' => $userDate->id,
+                'contact_no' => $request->contact_no,
+                'address' => $request->address,
+                'designation' => $request->designation,
+            ]);
+        }
+        // dd($request->all());
+        return redirect()->back()->with('success', 'Updated successfully');
     }
+   
 }

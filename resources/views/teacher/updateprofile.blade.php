@@ -1,84 +1,37 @@
 @extends('teacher.main')
 @section('content')
- <!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Add teacher Data</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-
-<form action="{{ route('updateprofile_dashboard') }}" method="post" >
-@csrf
-  <div class="modal-body">
-      <div class="mb-3">
-            <label for="">Email</label>
-              <input type="email" name="email" required class="form-control" >
-        
-  
-      </div>
-      <div class="mb-3">
-            <label for="">Subject_id</label>
-              <input type="text" name="subject_id" required class="form-control" >
-      
-      </div>
-      <div class="mb-3">
-            <label for="">Joining</label>
-              <input type="date" name="joining" required class="form-control" >
-      
-      </div>
-      <div class="mb-3">
-            <label for="">Designation</label>
-              <input type="text" name="designation" required class="form-control" >
-      
-      </div>
-      <div class="mb-3">
-            <label for="">Date_of_birth</label>
-              <input type="date" name="date_of_birth" required class="form-control" >
-      
-      </div>
-      <div class="mb-3">
-            <label for="">Contact_no</label>
-              <input type="tel" name="contact_no" required class="form-control" >
-      
-      </div>
-      <div class="mb-3">
-            <label for="">Address</label>
-              <input type="text" name="address" required class="form-control" >
-      
-      
-      </div>
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">save </button>
-      </div>
-      </form>
-    </div>
-  </div>
-</div>
-<div class="container py-5">
-    <div class="row">
-        <div class="col-md-12">
-
-          @if(session('success'))
-<div class="alter alter.success">{{ session('success') }}</div>
-          @endif
-            <div class="card">
-            <div class="card header">
-            <h4>
-                Teacher Data
-                <button type="button" class=" btn btn- primary flout- end" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add teacher</button>
+<form class="container" action="{{ route('update_teacher_profile') }}" method="post">
+        @csrf
+        <div class="form-group">
+            <div class="mb-3">
+                <label for="Name">Name</label>
+                <input type="text" name="name" required class="form-control" class="Enter Name"
+                    value="{{ $userDate->name }}">
             </div>
-            <div class="card body">
-
+            <div class="mb-3">
+                <label for="">Email</label>
+                <input type="email" name="email" required class="form-control" placeholder="Enter email"
+                    value="{{ $userDate->email }}">
+            
+            <div class="mb-3">
+                <label for="">Address</label>
+                <input type="text" name="adress" required class="form-control" placeholder="Enter address"
+                    value="{{ isset($teacherData->adress) ? $teacherData->adress : '' }}">
             </div>
+            <div class="mb-3">
+                <label for="">Designation</label>
+                <input type="text" name="designation" required class="form-control" placeholder="Enter designation"
+                    value="{{ isset($teacherData->designation) ? $teacherData->designation : '' }}">
             </div>
-            </div>
-            </div>
-            </div>
-
+            <div class="mb-3">
+                <label for="">Contact No</label>
+                <input type="number" name="contact_no" required class="form-control"
+                    placeholder="Enter  contact number"
+                    value="{{ isset($teacherData->contact_no) ? $teacherData->contact_no : '' }}">
+            
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Update</button>
+    </form>
 
 
 @endsection
