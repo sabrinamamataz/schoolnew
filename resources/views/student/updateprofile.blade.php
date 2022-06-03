@@ -3,10 +3,6 @@
     <form class="container" action="{{ route('update_student_profile') }}" method="post">
         @csrf
         <div class="form-group">
-
-            @if (session('success'))
-                <div class="alter alter.success">{{ successful('success') }}</div>
-            @endif
             <div class="mb-3">
                 <label for="Name">Name</label>
                 <input type="text" name="name" required class="form-control" class="Enter Name"

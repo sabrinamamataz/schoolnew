@@ -28,6 +28,18 @@
                         </div>
                     @endforeach
                 @endif
+                @if (session()->has('success'))
+                    <div class="alert alert-success alert-dismissible fade show m-2" role="alert">
+                        <strong>{{ session()->get('success') }}</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+                @if (session()->has('error'))
+                    <div class="alert alert-danger alert-dismissible fade show m-2" role="alert">
+                        <strong>{{ session()->get('error') }}</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
 
                 @yield('content')
             </main>
@@ -41,7 +53,7 @@
     <script src="assets/demo/chart-area-demo.js"></script>
     <script src="assets/demo/chart-bar-demo.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-    <script src="js/datatables-simple-demo.js"></script>
+    <script src="js/datatables-simple-demo.js"></script>    
 </body>
 
 </html>

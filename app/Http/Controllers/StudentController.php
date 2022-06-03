@@ -52,6 +52,6 @@ class StudentController extends Controller
             ]);
         }
         // dd($request->all());
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Updated successfully');
     }
 }

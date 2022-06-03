@@ -30,27 +30,28 @@ Route::get('/welcome', function () {
     return view('.index');
 })->name('welcome');
 Route::get('/', function () {
-    return view('main');
+    // return view('main');
+    return route('login_page');
 });
 
 
 // Route::get('/login', function () {
 //     return view('login');
 // });
-Route::get('/login',[UserAuthController::class, 'login'])->name('login_page');
-Route::get('/registion',[UserAuthController::class, 'registion'])->name('registion_page');
-Route::post('/login',[UserAuthController::class, 'loginAuth'])->name('login_auth');
-Route::post('/register',[UserAuthController::class, 'registerAuth'])->name('register_auth');
+Route::get('/login', [UserAuthController::class, 'login'])->name('login_page');
+Route::get('/registion', [UserAuthController::class, 'registion'])->name('registion_page');
+Route::post('/login', [UserAuthController::class, 'loginAuth'])->name('login_auth');
+Route::post('/register', [UserAuthController::class, 'registerAuth'])->name('register_auth');
 Route::get('/logout', [UserAuthController::class, 'logout'])->name('logout');
 
 
 Route::group(['middleware' => 'auth'], function () {
-Route::get('/student-dashboard',[StudentController::class,'studentDashboard'])->name('student_dashboard');
-Route::get('/teacher-dashboard',[TeacherController::class,'teacherDashboard'])->name('teacher_dashboard');
-Route::get('/updateprofile-student-dashboard',[StudentController::class,'updateprofileDashboard'])->name('updateprofile_student_dashboard');
-Route::post('/student-profile-update',[StudentController::class,'updateStudentData'])->name('update_student_profile');
-Route::get('/updateprofile-teacher-dashboard',[TeacherController::class,'updateprofileDashboard'])->name('updateprofile_teacher_dashboard');
-Route::post('/updateprofile-dashboard/store', [TeacherController::class,'store'])->name('updateprofile_dashboard');
+    Route::get('/student-dashboard', [StudentController::class, 'studentDashboard'])->name('student_dashboard');
+    Route::get('/teacher-dashboard', [TeacherController::class, 'teacherDashboard'])->name('teacher_dashboard');
+    Route::get('/updateprofile-student-dashboard', [StudentController::class, 'updateprofileDashboard'])->name('updateprofile_student_dashboard');
+    Route::post('/student-profile-update', [StudentController::class, 'updateStudentData'])->name('update_student_profile');
+    Route::get('/updateprofile-teacher-dashboard', [TeacherController::class, 'updateprofileDashboard'])->name('updateprofile_teacher_dashboard');
+    Route::post('/updateprofile-dashboard/store', [TeacherController::class, 'store'])->name('updateprofile_dashboard');
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
