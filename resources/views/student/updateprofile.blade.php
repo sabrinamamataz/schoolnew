@@ -1,66 +1,50 @@
 @extends('student.main')
 @section('content')
-<form class="container" action="{{ route('update_student_profile') }}" method="post">
-    @csrf
-    <div class="modal-body">
-      <div class="mb-3">
-            <label for="">Name</label>
-              <input type="text" name="name" required class="form-control" >
-      </div>
-      <div class="mb-3">
-            <label for="">Email</label>
-              <input type="email" name="email" required class="form-control" >
-      
-      </div>
-      <div class="mb-3">
-            <label for="">Class</label>
-              <input type="number" name="class" required class="form-control" >
-      
-      </div>
-      <div class="mb-3">
-            <label for="">Adress</label>
-              <input type="text" name="adress" required class="form-control" >
-      
-      </div>
-      <div class="mb-3">
-            <label for="">Guardian_name</label>
-              <input type="text" name="guardian_nmae" required class="form-control" >
-      
-      </div>
-      <div class="mb-3">
-            <label for="">Guardian_no</label>
-              <input type="number" name="guardian_no" required class="form-control" >
-      
-      </div>
-      <div class="mb-3">
-            <label for="">Guardian_relation</label>
-              <input type="text" name="guardian_relation" required class="form-control" >
-     
-      </div>
-      </form>
-    </div>
-  </div>
-</div>
-<div class="container py-5">
-    <div class="row">
-        <div class="col-md-12">
+    <form class="container" action="{{ route('update_student_profile') }}" method="post">
+        @csrf
+        <div class="form-group">
 
-          @if(session('success'))
-<div class="alter alter.success">{{ successful('success') }}</div>
-          @endif
-            <div class="card">
-            <div class="card header">
-            <h4>
-                
-                </div>
-                    <button type="submit" class="btn btn-primary">Update</button>
-            <div class="card body">
+            @if (session('success'))
+                <div class="alter alter.success">{{ successful('success') }}</div>
+            @endif
+            <div class="mb-3">
+                <label for="Name">Name</label>
+                <input type="text" name="name" required class="form-control" class="Enter Name"
+                    value="{{ $userDate->name }}">
+            </div>
+            <div class="mb-3">
+                <label for="">Email</label>
+                <input type="email" name="email" required class="form-control" placeholder="Enter email"
+                    value="{{ $userDate->email }}">
+            </div>
+            <div class="mb-3">
+                <label for="">Class</label>
+                <input type="number" name="class" required class="form-control" placeholder="Enter class"
+                    value="{{ isset($studentData->class) ? $studentData->class : '' }}">
+            </div>
+            <div class="mb-3">
+                <label for="">Address</label>
+                <input type="text" name="adress" required class="form-control" placeholder="Enter address"
+                    value="{{ isset($studentData->adress) ? $studentData->adress : '' }}">
+            </div>
+            <div class="mb-3">
+                <label for="">Guardian Name</label>
+                <input type="text" name="gaurdian_name" required class="form-control" placeholder="Enter guardian name"
+                    value="{{ isset($studentData->gaurdian_name) ? $studentData->gaurdian_name : '' }}">
+            </div>
+            <div class="mb-3">
+                <label for="">Guardian No</label>
+                <input type="number" name="gaurdian_no" required class="form-control"
+                    placeholder="Enter guardian contact number"
+                    value="{{ isset($studentData->gaurdian_no) ? $studentData->gaurdian_no : '' }}">
+            </div>
+            <div class="mb-3">
+                <label for="">Guardian Relation</label>
+                <input type="text" name="gaurdian_relation" required class="form-control" placeholder="Enter Relation"
+                    value="{{ isset($studentData->gaurdian_relation) ? $studentData->gaurdian_relation : '' }}">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Update</button>
 
-            </div>
-            </div>
-            </div>
-            </div>
-            </div>
-
-
+    </form>
 @endsection

@@ -1,21 +1,22 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Teacher;
 
 use Illuminate\Http\Request;
 
 class TeacherController extends Controller
 {
-    public function teacherDashboard()    {
-        
+    public function teacherDashboard()
+    {
+
         return view('teacher.dashboard');
     }
-    public function updateprofileDashboard(Request $request)    {
-        
-      return view('teacher.updateprofile');
-    
-      
+    public function updateprofileDashboard(Request $request)
+    {
+
+        return view('teacher.updateprofile');
     }
     public function create()
     {
@@ -40,8 +41,8 @@ class TeacherController extends Controller
             'contact_no' => $request->contact_no,
             'address' => $request->address,
             'pro_pic' => $request->pro_pic,
-            
-            
+
+
         ]);
         return redirect()->back()->with('success', 'Successfully added.');
     }
