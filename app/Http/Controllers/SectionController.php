@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Section;
 use Illuminate\Http\Request;
 
 class SectionController extends Controller
@@ -13,12 +14,8 @@ class SectionController extends Controller
     }
     public function sectionDashboard()
     {
-        return view('admin.section');
-    }
-    public function index()
-    {
         $sections = Section::all();
-        return view('section.index', compact('sections'));
+        return view('admin.section', compact('sections'));
     }
 
     /**
@@ -42,10 +39,10 @@ class SectionController extends Controller
         $newSection = Section::create([
             'class_id' => $request->class_id,
             'section' => $request->section,
-            'student_capacity' => $request->student_capacity,
+            'student_capasity' => $request->student_capacity,
             'shift' => $request->shift,
             'teacher_id' => $request->teacher_id,
-            'role' => $request->role,
+            'status'=>1
         ]);
         return redirect()->back()->with('success', 'Successfully added.');
     }
