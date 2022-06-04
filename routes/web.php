@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\controllers\UserAuthController;
 use App\Http\controllers\StudentController;
 use App\Http\controllers\TeacherController;
+use App\Http\controllers\SectionController;
 
 
 

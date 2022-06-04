@@ -9,7 +9,6 @@ class SectionController extends Controller
 
     public function adminDashboard()
     {
-
         return view('admin.dashboard');
     }
     public function sectionDashboard()
