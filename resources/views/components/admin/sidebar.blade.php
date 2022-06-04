@@ -3,8 +3,7 @@
         <div class="sb-sidenav-menu">
             <div class="nav">
                 <div class="sb-sidenav-menu-heading"></div>
-                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts"
-                    aria-expanded="false" aria-controls="collapseLayouts">
+                <a class="nav-link collapsed" href="{{ route('section_admin_dashboard') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     Section
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
@@ -21,7 +20,6 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                     Routine
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                </a>
                 </a>
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
                     aria-expanded="false" aria-controls="collapsePages">
@@ -46,7 +44,6 @@
                         </a>
                         <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordionPages">
-
                         </div>
                     </nav>
                 </div>
@@ -75,4 +72,3 @@
         </div>
     </nav>
 </div>
-
