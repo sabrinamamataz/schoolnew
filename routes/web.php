@@ -5,7 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\controllers\UserAuthController;
 use App\Http\controllers\StudentController;
 use App\Http\controllers\TeacherController;
-use App\Http\controllers\SectionController;
+use App\Http\controllers\ClassController;
+
 
 
 
@@ -51,6 +52,11 @@ Route::group(['middleware' => 'auth'], function () {
     // admin
     Route::get('/admin-dashboard', [SectionController::class, 'adminDashboard'])->name('admin_dashboard');
     Route::get('/section-admin-dashboard', [SectionController::class, 'sectionDashboard'])->name('section_admin_dashboard');
+    Route::get('/class-admin-dashboard', [ClassController::class, 'classDashboard'])->name('class_admin_dashboard');
+    Route::get('/section/list', [SectionController::class, 'index'])->name('section_list');
+    Route::post('/section/store', [SectionController::class, 'store'])->name('add_section');
+    Route::get('/section/delete', [SectionController::class, 'destroy'])->name('delete_section');
+
 
     // student
     Route::get('/student-dashboard', [StudentController::class, 'studentDashboard'])->name('student_dashboard');
