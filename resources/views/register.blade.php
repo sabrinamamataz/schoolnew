@@ -47,6 +47,7 @@
                                                 <option value="">Open this select menu</option>
                                                 <option value="student">Student</option>
                                                 <option value="teacher">Teacher</option>
+                                                <option value="admin">Admin</option>
                                                 </select>    
                                                 <label for="inputEmail">User Type</label>
                                             </div>

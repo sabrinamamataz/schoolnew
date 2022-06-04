@@ -48,9 +48,11 @@ Route::get('/logout', [UserAuthController::class, 'logout'])->name('logout');
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/student-dashboard', [StudentController::class, 'studentDashboard'])->name('student_dashboard');
     Route::get('/teacher-dashboard', [TeacherController::class, 'teacherDashboard'])->name('teacher_dashboard');
+    Route::get('/admin-dashboard', [SectionController::class, 'adminDashboard'])->name('admin_dashboard');
     Route::get('/updateprofile-student-dashboard', [StudentController::class, 'updateprofileDashboard'])->name('updateprofile_student_dashboard');
     Route::post('/student-profile-update', [StudentController::class, 'updateStudentData'])->name('update_student_profile');
     Route::get('/updateprofile-teacher-dashboard', [TeacherController::class, 'updateprofileDashboard'])->name('updateprofile_teacher_dashboard');
+    Route::get('/section-admin-dashboard', [SectionController::class, 'sectionDashboard'])->name('section_admin_dashboard');
     Route::post('/teacher-profile-update', [TeacherController::class, 'updateTeacherData'])->name('update_teacher_profile');
     
     Route::get('/dashboard', function () {
