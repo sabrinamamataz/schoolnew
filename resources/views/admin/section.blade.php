@@ -1,6 +1,45 @@
 @extends('admin.main')
 @section('content')
-    <form action="{{ route('add_section') }}" method="post">
+<div class="container">
+        <div class="col-md-12">
+            <div class="card">
+                <!-- @admin('admin.header') -->
+                @if (Session::has('success'))
+                    <div class="alert alert-success">{{ Session::get('success') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
+              
+                @if (Session::has('error'))
+                    <div class="alert alert-danger">{{ Session::get('error') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
+        </div>
+        <div class="card-header">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    <h4>All New Section</h4>
+                </button>
+            
+                <!-- Modal -->
+                
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Add New Staff</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                
+ <form action="{{ route('add_section') }}" method="post">
         @csrf
         <div class="container">
             <div class="form-group">
