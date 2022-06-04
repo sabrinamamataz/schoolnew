@@ -6,16 +6,9 @@ use Illuminate\Http\Request;
 
 class SectionController extends Controller
 {
-    
-        public function adminDashboard()
-        {
-    
-            return view('admin.dashboard');
-        }
-        public function sectionDashboard()
-        {
-    
-            return view('admin.sectiondashboard');
-        }
-    
+    public function sectiontDashboard()
+    {
+
+        return view('section.dashboard');
+    }
 }
