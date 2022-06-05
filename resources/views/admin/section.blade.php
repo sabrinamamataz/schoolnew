@@ -74,6 +74,9 @@
                             <td>
                                 <a href="{{ route('delete_section', $section->id) }}" class="btn btn-danger">Delete</a>
                             </td>
+                            
+                            <a href="{{ route('section_update', $section->id) }}" class="btn btn-danger">Update</a>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

@@ -56,6 +56,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/section/list', [SectionController::class, 'index'])->name('section_list');
     Route::post('/section/store', [SectionController::class, 'store'])->name('add_section');
     Route::get('/section/delete/{id}', [SectionController::class, 'destroy'])->name('delete_section');
+    Route::post('/section/update', [SectionController::class, 'update'])->name('section_update');
 
 
     // student

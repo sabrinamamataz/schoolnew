@@ -66,7 +66,9 @@ class SectionController extends Controller
      */
     public function edit(Section $section)
     {
-        //
+        // $section = Section($id)
+        // returen view('section.edit' ,['section'=>$section])
+        
     }
 
     /**
@@ -78,7 +80,15 @@ class SectionController extends Controller
      */
     public function update(Request $request, Section $section)
     {
-        //
+        $newSection = Section::create([
+            'class_id' => $request->class_id,
+            'section' => $request->section,
+            'student_capasity' => $request->student_capacity,
+            'shift' => $request->shift,
+            'teacher_id' => $request->teacher_id,
+            'status'=>1
+        ]);
+        return redirect()->back()->with('success', 'Successfully update.');
     }
 
     /**
@@ -92,4 +102,5 @@ class SectionController extends Controller
         Section::find($id)->delete();
         return redirect()->back()->with('success', 'Successfully deleted.');
     }
+   
 }
