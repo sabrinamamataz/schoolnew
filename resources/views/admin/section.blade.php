@@ -1,77 +1,54 @@
 @extends('admin.main')
 @section('content')
-<div class="container">
-        <div class="col-md-12">
-            <div class="card">
-                <!-- @admin('admin.header') -->
-                @if (Session::has('success'))
-                    <div class="alert alert-success">{{ Session::get('success') }}
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+    <div class="">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addNewSection">
+            Add New Section
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="addNewSection" tabindex="-1" aria-labelledby="addNewSectionLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addNewSectionLabel">Add New Section</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                @endif
-              
-                @if (Session::has('error'))
-                    <div class="alert alert-danger">{{ Session::get('error') }}
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                @endif
-        </div>
-        <div class="card-header">
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                    <h4>All New Section</h4>
-                </button>
-            
-                <!-- Modal -->
-                
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Add New Staff</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
+                    <form action="{{ route('add_section') }}" method="post">
+                        @csrf
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="form-group">
+                                    <label for="Class_id">Class_id</label>
+                                    <input type="text" name="class_id" required class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="Teacher_id">Teacher_id</label>
+                                    <input type="text" name="teacher_id" required class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="Section">Section</label>
+                                    <input type="text" name="section" required class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="Student_capacity">Student_capacity</label>
+                                    <input type="number" name="student_capacity" required class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="Shift">Shift</label>
+                                    <input type="text" name="shift" required class="form-control">
+                                </div>
                             </div>
-                
- <form action="{{ route('add_section') }}" method="post">
-        @csrf
-        <div class="container">
-            <div class="form-group">
-                <label for="Class_id">Class_id</label>
-                <input type="text" name="class_id" required class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="Teacher_id">Teacher_id</label>
-                <input type="text" name="teacher_id" required class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="Section">Section</label>
-                <input type="text" name="section" required class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="Student_capacity">Student_capacity</label>
-                <input type="number" name="student_capacity" required class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="Shift">Shift</label>
-                <input type="text" name="shift" required class="form-control">
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Add Section</button>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Add Section</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </form>
 
-
-    <div class="card-body">
         <div class="col-md-12">
             <table class="table table-bordered">
                 <thead>
