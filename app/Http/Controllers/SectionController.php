@@ -42,7 +42,7 @@ class SectionController extends Controller
             'student_capasity' => $request->student_capacity,
             'shift' => $request->shift,
             'teacher_id' => $request->teacher_id,
-            'status'=>1
+            'status' => 1
         ]);
         return redirect()->back()->with('success', 'Successfully added.');
     }
@@ -68,7 +68,7 @@ class SectionController extends Controller
     {
         // $section = Section($id)
         // returen view('section.edit' ,['section'=>$section])
-        
+
     }
 
     /**
@@ -78,17 +78,17 @@ class SectionController extends Controller
      * @param  \App\Section  $section
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Section $section)
+    public function update(Request $request)
     {
-        $newSection = Section::create([
+        $section = Section::find($request->section_id);
+        $section->update([
             'class_id' => $request->class_id,
             'section' => $request->section,
             'student_capasity' => $request->student_capacity,
             'shift' => $request->shift,
             'teacher_id' => $request->teacher_id,
-            'status'=>1
         ]);
-        return redirect()->back()->with('success', 'Successfully update.');
+        return redirect()->back()->with('success', 'Successfully updated.');
     }
 
     /**
@@ -102,5 +102,4 @@ class SectionController extends Controller
         Section::find($id)->delete();
         return redirect()->back()->with('success', 'Successfully deleted.');
     }
-   
 }
