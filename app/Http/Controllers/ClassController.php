@@ -36,7 +36,7 @@ class ClassController extends Controller
     public function store(Request $request)
     {
         $newStclass = Stclass::create([
-            'Class_name' => $request->class_name,
+            'Class_name' => $request->Class_name,
             'capacity' => $request->capacity,
             'status' => $request->status,
             'status' => 1

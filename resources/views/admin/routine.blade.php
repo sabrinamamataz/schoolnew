@@ -59,7 +59,7 @@
                         <th scope="col">SL</th>
                         <th scope="col">Section_id</th>
                         <th scope="col">Week_day</th>
-                        <th scope="col">SUbject_name</th>
+                        <th scope="col">Subject_name</th>
                         <th scope="col">Start_time</th>
                         <th scope="col">End_time</th>
                         <th scope="col">Period</th>
@@ -109,7 +109,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="Week_day">Week_day</label>
-                                                    <input type="text" name="weeek_day" class="form-control"
+                                                    <input type="text" name="week_day" class="form-control"
                                                         value="{{ $routine->week_day }}" required>
                                                 </div>
                                                 <div class="form-group">
