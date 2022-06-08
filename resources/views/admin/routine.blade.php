@@ -74,7 +74,7 @@
                             <td>{{ $routine->week_day}}</td>
                             <td>{{ $routine->subject_name }}</td>
                             <td>{{ $routine->start_time }}</td>
-                            <td>{{ $routine->end_name }}</td>
+                            <td>{{ $routine->end_time }}</td>
                             <td>{{ $routine->period }}</td>
                             <td>
                             <button type="button" class="btn btn-warning" class="btn btn-primary" data-bs-toggle="modal"
@@ -86,7 +86,7 @@
 
                         <!-- update Modal -->
                         <div class="modal fade" id="updateModat{{ $routine->id }}" tabindex="-1"
-                            aria-labelledby="updateModatLabel{{ $routine>id }}" aria-hidden="true">
+                            aria-labelledby="updateModatLabel{{ $routine->id }}" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -101,10 +101,6 @@
                                         <input type="hidden" name="routine_id" value="{{ $routine->id }}">
                                         <div class="modal-body">
                                             <div class="container">
-                                                <div class="form-group">
-                                                    <label for="Class_id">Class_id</label>
-                                                    <input type="text" name="class_id" class="form-control"
-                                                        value="{{ $routine->class_id }}" required>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="Section_id">Section_id</label>
@@ -114,27 +110,27 @@
                                                 <div class="form-group">
                                                     <label for="Week_day">Week_day</label>
                                                     <input type="text" name="weeek_day" class="form-control"
-                                                        value="{{ $routine->Week_day }}" required>
+                                                        value="{{ $routine->week_day }}" required>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="Subject_name">Subject_name</label>
                                                     <input type="text" name="subject_name" class="form-control"
-                                                        value="{{ $routine->Subject_name }}" required>
+                                                        value="{{ $routine->subject_name }}" required>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="Start_time">Start_time</label>
                                                     <input type="time" name="start_time" class="form-control"
-                                                        value="{{ $routine->Start_time }}" required>
+                                                        value="{{ $routine->start_time }}" required>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="End_time">End_time</label>
                                                     <input type="time" name="end_time" class="form-control"
-                                                        value="{{ $routine->End_time }}" required>
+                                                        value="{{ $routine->end_time }}" required>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="Period">Period</label>
                                                     <input type="text" name="period" class="form-control"
-                                                        value="{{ $routine->Period }}" required>
+                                                        value="{{ $routine->period }}" required>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
