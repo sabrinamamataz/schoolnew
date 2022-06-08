@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRoutingsTable extends Migration
+class CreateRoutinesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateRoutingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('routings', function (Blueprint $table) {
+        Schema::create('routines', function (Blueprint $table) {
             $table->id();
             $table->string('section_id');
             $table->string('week_day');
-            $table->string('subject_id');
+            $table->string('subject_name');
             $table->string('start_time');
             $table->string('end_time');
             $table->string('period');
@@ -32,6 +32,6 @@ class CreateRoutingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('routings');
+        Schema::dropIfExists('routines');
     }
 }

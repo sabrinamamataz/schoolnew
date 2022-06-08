@@ -13,7 +13,7 @@
                     Class
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
-                <a class="nav-link collapsed" href="#">
+                <a class="nav-link collapsed" href="{{ route('routine_admin_dashboard') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                     Routine
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>

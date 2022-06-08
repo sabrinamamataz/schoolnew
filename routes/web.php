@@ -6,6 +6,7 @@ use App\Http\controllers\UserAuthController;
 use App\Http\controllers\StudentController;
 use App\Http\controllers\TeacherController;
 use App\Http\controllers\ClassController;
+use App\Http\controllers\RoutineController;
 
 
 
@@ -58,6 +59,16 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/section/delete/{id}', [SectionController::class, 'destroy'])->name('delete_section');
     Route::post('/section/update', [SectionController::class, 'update'])->name('section_update');
 
+    Route::get('/class/list', [ClassController::class, 'index'])->name('class_list');
+    Route::post('/class/store', [ClassController::class, 'store'])->name('add_class');
+    Route::get('/class/delete/{id}', [ClassController::class, 'destroy'])->name('delete_class');
+    Route::post('/class/update', [ClassController::class, 'update'])->name('class_update');
+
+    //   routine
+    Route::get('/routine-admin-dashboard', [RoutineController::class, 'routineDashboard'])->name('routine_admin_dashboard');
+    Route::get('/routine/list', [RoutineController::class, 'index'])->name('routine_list');
+    Route::post('/routine/store', [RoutineController::class, 'store'])->name('add_routine');
+    Route::post('/routine/update', [RoutineController::class, 'update'])->name('routine_update');
 
     // student
     Route::get('/student-dashboard', [StudentController::class, 'studentDashboard'])->name('student_dashboard');

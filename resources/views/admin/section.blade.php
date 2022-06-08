@@ -38,6 +38,10 @@
                                     <label for="Shift">Shift</label>
                                     <input type="text" name="shift" required class="form-control">
                                 </div>
+                                <div class="form-group">
+                                    <label for="Status">Status</label>
+                                    <input type="text" name="status" required class="form-control">
+                                </div>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -59,6 +63,7 @@
                         <th scope="col">Section</th>
                         <th scope="col">Student_capacity</th>
                         <th scope="col">Shift</th>
+                        <th scope="col">Status</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -71,6 +76,7 @@
                             <td>{{ $section->section }}</td>
                             <td>{{ $section->student_capasity }}</td>
                             <td>{{ $section->shift }}</td>
+                            <td>{{ $section->status }}</td>
                             <td>
                                 <button type="button" class="btn btn-warning" class="btn btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#updateModat{{ $section->id }}">
@@ -121,6 +127,11 @@
                                                     <label for="Shift">Shift</label>
                                                     <input type="text" name="shift" class="form-control"
                                                         value="{{ $section->shift }}" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="Status">Status</label>
+                                                    <input type="text" name="status" class="form-control"
+                                                        value="{{ $section->status }}" required>
                                                 </div>
                                             </div>
                                         </div>

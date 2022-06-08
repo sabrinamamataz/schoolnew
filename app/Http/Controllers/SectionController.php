@@ -42,6 +42,7 @@ class SectionController extends Controller
             'student_capasity' => $request->student_capacity,
             'shift' => $request->shift,
             'teacher_id' => $request->teacher_id,
+            'status' => $request->status,
             'status' => 1
         ]);
         return redirect()->back()->with('success', 'Successfully added.');
@@ -87,6 +88,7 @@ class SectionController extends Controller
             'student_capasity' => $request->student_capacity,
             'shift' => $request->shift,
             'teacher_id' => $request->teacher_id,
+            'status' => $request->status,
         ]);
         return redirect()->back()->with('success', 'Successfully updated.');
     }
