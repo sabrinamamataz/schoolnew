@@ -15,11 +15,13 @@ class CreateAttendancesTable extends Migration
     {
         Schema::create('attendances', function (Blueprint $table) {
             $table->id();
-            $table->string('student_name');
-            $table->string('section_id');
-            $table->string('student_id');
+            $table->integer('student_id');
+            $table->integer('section_id');
+            $table->integer('routine_id');
+            $table->integer('attendance')->default(0);
             $table->string('date');
-            $table->string('attendance');
+            $table->string('month')->nullable();
+            $table->string('year')->nullable();
             $table->timestamps();
         });
     }

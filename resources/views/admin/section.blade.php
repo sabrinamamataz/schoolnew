@@ -19,28 +19,36 @@
                         <div class="modal-body">
                             <div class="container">
                                 <div class="form-group">
-                                    <label for="Class_id">Class_id</label>
-                                    <input type="text" name="class_id" required class="form-control">
+                                    <label for="Class_id">Class</label>
+                                    <select class="form-select" name="class_id" required>
+                                        <option value="">Select Class</option>
+                                        @foreach ($classes as $class)
+                                            <option value="{{ $class->id }}">{{ $class->class_name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="Teacher_id">Teacher_id</label>
-                                    <input type="text" name="teacher_id" required class="form-control">
+                                    <label for="teacher_id">Teacher</label>
+                                    <select class="form-select" name="teacher_id" required>
+                                        <option value="">Select Teacher</option>
+                                        @foreach ($teachers as $teacher)
+                                            <option value="{{ $teacher->id }}">{{ $teacher->name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="Section">Section</label>
-                                    <input type="text" name="section" required class="form-control">
+                                    <input type="text" name="section" required class="form-control"
+                                        placeholder="A, B, C, etc">
                                 </div>
                                 <div class="form-group">
-                                    <label for="Student_capacity">Student_capacity</label>
-                                    <input type="number" name="student_capacity" required class="form-control">
+                                    <label for="Student_capacity">Student Capacity</label>
+                                    <input type="number" name="student_capacity" required class="form-control" value="50">
                                 </div>
                                 <div class="form-group">
                                     <label for="Shift">Shift</label>
-                                    <input type="text" name="shift" required class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for="Status">Status</label>
-                                    <input type="text" name="status" required class="form-control">
+                                    <input type="text" name="shift" required class="form-control"
+                                        placeholder="Day/Evening">
                                 </div>
                             </div>
                         </div>
@@ -58,10 +66,10 @@
                 <thead>
                     <tr>
                         <th scope="col">SL</th>
-                        <th scope="col">Class_id</th>
-                        <th scope="col">Teacher_id</th>
+                        <th scope="col">Class</th>
+                        <th scope="col">Teacher Name</th>
                         <th scope="col">Section</th>
-                        <th scope="col">Student_capacity</th>
+                        <th scope="col">Student Capacity</th>
                         <th scope="col">Shift</th>
                         <th scope="col">Status</th>
                         <th scope="col">Action</th>
@@ -71,12 +79,12 @@
                     @foreach ($sections as $key => $section)
                         <tr>
                             <th scope="row">{{ $key + 1 }}</th>
-                            <td>{{ $section->class_id }}</td>
-                            <td>{{ $section->teacher_id }}</td>
+                            <td>{{ $section->sectionToClass->class_name }}</td>
+                            <td>{{ $section->sectionToUserTeacher->name }}</td>
                             <td>{{ $section->section }}</td>
-                            <td>{{ $section->student_capasity }}</td>
+                            <td>{{ $section->student_capacity }}</td>
                             <td>{{ $section->shift }}</td>
-                            <td>{{ $section->status }}</td>
+                            <td>{{ $section->status == 1 ? 'Active' : 'Inactive' }}</td>
                             <td>
                                 <button type="button" class="btn btn-warning" class="btn btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#updateModat{{ $section->id }}">
@@ -104,14 +112,28 @@
                                         <div class="modal-body">
                                             <div class="container">
                                                 <div class="form-group">
-                                                    <label for="Class_id">Class_id</label>
-                                                    <input type="text" name="class_id" class="form-control"
-                                                        value="{{ $section->class_id }}" required>
+                                                    <label for="Class_id">Class</label>
+                                                    <select class="form-select" name="class_id" required>
+                                                        <option value="">Select Class</option>
+                                                        @foreach ($classes as $class)
+                                                            <option value="{{ $class->id }}"
+                                                                {{ $section->class_id == $class->id ? 'selected' : '' }}>
+                                                                {{ $class->class_name }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="Teacher_id">Teacher_id</label>
-                                                    <input type="text" name="teacher_id" class="form-control"
-                                                        value="{{ $section->teacher_id }}" required>
+                                                    <label for="Teacher_id">Teacher</label>
+                                                    <select class="form-select" name="teacher_id" required>
+                                                        <option value="">Select Teacher</option>
+                                                        @foreach ($teachers as $teacher)
+                                                            <option value="{{ $teacher->id }}"
+                                                                {{ $section->teacher_id == $teacher->id ? 'selected' : '' }}>
+                                                                {{ $teacher->name }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="Section">Section</label>
@@ -119,19 +141,14 @@
                                                         value="{{ $section->section }}" required>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="Student_capacity">Student_capacity</label>
+                                                    <label for="Student_capacity">Student Capacity</label>
                                                     <input type="number" name="student_capacity" class="form-control"
-                                                        value="{{ $section->student_capasity }}" required>
+                                                        value="{{ $section->student_capacity }}" required>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="Shift">Shift</label>
                                                     <input type="text" name="shift" class="form-control"
                                                         value="{{ $section->shift }}" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="Status">Status</label>
-                                                    <input type="text" name="status" class="form-control"
-                                                        value="{{ $section->status }}" required>
                                                 </div>
                                             </div>
                                         </div>

@@ -7,11 +7,7 @@ use App\Http\controllers\StudentController;
 use App\Http\controllers\TeacherController;
 use App\Http\controllers\ClassController;
 use App\Http\controllers\RoutineController;
-
-
-
-
-
+use App\Http\Controllers\SubjectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,17 +48,20 @@ Route::get('/logout', [UserAuthController::class, 'logout'])->name('logout');
 Route::group(['middleware' => 'auth'], function () {
     // admin
     Route::get('/admin-dashboard', [SectionController::class, 'adminDashboard'])->name('admin_dashboard');
-    Route::get('/section-admin-dashboard', [SectionController::class, 'sectionDashboard'])->name('section_admin_dashboard');
+    // subject
+    Route::get('/subject', [SubjectController::class, 'subjectList'])->name('subject_list');
+    Route::post('/section/add', [SubjectController::class, 'addSubject'])->name('add_subject');
+    // class
     Route::get('/class-admin-dashboard', [ClassController::class, 'classDashboard'])->name('class_admin_dashboard');
-    Route::get('/section/list', [SectionController::class, 'index'])->name('section_list');
-    Route::post('/section/store', [SectionController::class, 'store'])->name('add_section');
-    Route::get('/section/delete/{id}', [SectionController::class, 'destroy'])->name('delete_section');
-    Route::post('/section/update', [SectionController::class, 'update'])->name('section_update');
-
-    Route::get('/class/list', [ClassController::class, 'index'])->name('class_list');
     Route::post('/class/store', [ClassController::class, 'store'])->name('add_class');
     Route::get('/class/delete/{id}', [ClassController::class, 'destroy'])->name('delete_class');
     Route::post('/class/update', [ClassController::class, 'update'])->name('class_update');
+    // section
+    Route::get('/section-admin-dashboard', [SectionController::class, 'sectionDashboard'])->name('section_admin_dashboard');
+    Route::post('/section/store', [SectionController::class, 'store'])->name('add_section');
+    Route::get('/section/delete/{id}', [SectionController::class, 'destroy'])->name('delete_section');
+    Route::post('/section/update', [SectionController::class, 'update'])->name('section_update');
+    
 
     //   routine
     Route::get('/routine-admin-dashboard', [RoutineController::class, 'routineDashboard'])->name('routine_admin_dashboard');

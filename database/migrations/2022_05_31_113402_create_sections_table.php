@@ -15,12 +15,12 @@ class CreateSectionsTable extends Migration
     {
         Schema::create('sections', function (Blueprint $table) {
             $table->id();
-            $table->string('class_id');
+            $table->integer('class_id');
             $table->string('section');
-            $table->string('student_capasity');
-            $table->string('shift');
-            $table->string('teacher_id');
-            $table->string('status');
+            $table->string('student_capacity')->nullable();
+            $table->string('shift')->nullable();
+            $table->integer('teacher_id');
+            $table->integer('status')->default(1);
             $table->timestamps();
         });
     }

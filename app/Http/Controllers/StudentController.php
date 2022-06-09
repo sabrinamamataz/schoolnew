@@ -34,21 +34,21 @@ class StudentController extends Controller
         $studentData = Student::where('user_id', $userDate->id)->first();
         if ($studentData) {
             $studentData->update([
-                'gaurdian_no' => $request->gaurdian_no,
+                'guardian_no' => $request->guardian_no,
                 'class' => $request->class,
-                'adress' => $request->adress,
-                'gaurdian_name' => $request->gaurdian_name,
-                'gaurdian_relation' => $request->gaurdian_relation,
+                'address' => $request->address,
+                'guardian_name' => $request->guardian_name,
+                'guardian_relation' => $request->guardian_relation,
             ]);
         } else {
             $newStudent = Student::create([
                 'status'=>1,
                 'user_id' => $userDate->id,
-                'gaurdian_no' => $request->gaurdian_no,
+                'guardian_no' => $request->guardian_no,
                 'class' => $request->class,
-                'adress' => $request->adress,
-                'gaurdian_name' => $request->gaurdian_name,
-                'gaurdian_relation' => $request->gaurdian_relation,
+                'address' => $request->address,
+                'guardian_name' => $request->guardian_name,
+                'guardian_relation' => $request->guardian_relation,
             ]);
         }
         // dd($request->all());

@@ -18,29 +18,28 @@
     <div id="layoutSidenav">
         <div id="layoutSidenav_content">
             @include('components.admin.sidebar')
-                @if ($errors->any())
-                    @foreach ($errors->all() as $error)
-                        <div class="alert alert-danger alert-dismissible fade show m-2" role="alert">
-                            {{ $error }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                aria-label="Close"></button>
-                        </div>
-                    @endforeach
-                @endif
-                @if (session()->has('success'))
-                    <div class="alert alert-success alert-dismissible fade show m-2" role="alert">
-                        <strong>{{ session()->get('success') }}</strong>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                @endif
-                @if (session()->has('error'))
+            @if ($errors->any())
+                @foreach ($errors->all() as $error)
                     <div class="alert alert-danger alert-dismissible fade show m-2" role="alert">
-                        <strong>{{ session()->get('error') }}</strong>
+                        {{ $error }}
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
-                @endif
+                @endforeach
+            @endif
+            @if (session()->has('success'))
+                <div class="alert alert-success alert-dismissible fade show m-2" role="alert">
+                    <strong>{{ session()->get('success') }}</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+            @if (session()->has('error'))
+                <div class="alert alert-danger alert-dismissible fade show m-2" role="alert">
+                    <strong>{{ session()->get('error') }}</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
 
-                @yield('content')
+            @yield('content')
             @include('components.admin.footer')
         </div>
     </div>

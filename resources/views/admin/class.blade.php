@@ -1,6 +1,6 @@
 @extends('admin.main')
 @section('content')
-<div class="">
+    <div class="">
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addNewClass">
             Add New Class
@@ -19,16 +19,13 @@
                         <div class="modal-body">
                             <div class="container">
                                 <div class="form-group">
-                                    <label for="Class_name">Class_name</label>
-                                    <input type="text" name="Class_name" required class="form-control">
+                                    <label for="Class_name">Class Name</label>
+                                    <input type="text" name="class_name" required class="form-control"
+                                        placeholder="Class 5,6,7,etc">
                                 </div>
                                 <div class="form-group">
                                     <label for="Capacity">Capacity</label>
-                                    <input type="number" name="capacity" required class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for="Status">Status</label>
-                                    <input type="text" name="status" required class="form-control">
+                                    <input type="number" name="capacity" required class="form-control" value="100">
                                 </div>
                             </div>
                         </div>
@@ -46,7 +43,7 @@
                 <thead>
                     <tr>
                         <th scope="col">SL</th>
-                        <th scope="col">Class_name</th>
+                        <th scope="col">Class Name</th>
                         <th scope="col">Capacity</th>
                         <th scope="col">Status</th>
                         <th scope="col">Action</th>
@@ -57,7 +54,7 @@
                         <tr>
                             <th scope="row">{{ $key + 1 }}</th>
                             <td>{{ $class->class_name }}</td>
-                            <td>{{ $class->capacity}}</td>
+                            <td>{{ $class->capacity }}</td>
                             <td>{{ $class->status }}</td>
                             <td>
                                 <button type="button" class="btn btn-warning" class="btn btn-primary" data-bs-toggle="modal"
@@ -75,7 +72,7 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="updateModatLabel{{ $class->id }}">
-                                            Update  {{ $class->class }}
+                                            Update {{ $class->class }}
                                         </h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
@@ -86,7 +83,7 @@
                                         <div class="modal-body">
                                             <div class="container">
                                                 <div class="form-group">
-                                                    <label for="Class_name">Class_name</label>
+                                                    <label for="Class_name">Class Name</label>
                                                     <input type="text" name="Class_name" class="form-control"
                                                         value="{{ $class->class_name }}" required>
                                                 </div>
@@ -94,11 +91,6 @@
                                                     <label for="Capacity">Capacity</label>
                                                     <input type="number" name="capacity" class="form-control"
                                                         value="{{ $class->capacity }}" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="Status">Status</label>
-                                                    <input type="text" name="status" class="form-control"
-                                                        value="{{ $class->status }}" required>
                                                 </div>
                                             </div>
                                         </div>

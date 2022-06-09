@@ -3,9 +3,9 @@
         <div class="sb-sidenav-menu">
             <div class="nav">
                 <div class="sb-sidenav-menu-heading"></div>
-                <a class="nav-link collapsed" href="{{ route('section_admin_dashboard') }}">
+                <a class="nav-link collapsed" href="{{ route('subject_list') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                    Section
+                    Subject
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
                 <a class="nav-link collapsed" href="{{ route('class_admin_dashboard') }}">
@@ -13,6 +13,11 @@
                     Class
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
+                <a class="nav-link collapsed" href="{{ route('section_admin_dashboard') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                    Section
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>                
                 <a class="nav-link collapsed" href="{{ route('routine_admin_dashboard') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                     Routine

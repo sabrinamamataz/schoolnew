@@ -19,13 +19,14 @@ class CreateStudentsTable extends Migration
             $table->integer('student_id')->nullable();
             $table->integer('age')->nullable();
             $table->string('class')->nullable();
-            $table->string('date-of-birth')->nullable();
-            $table->string('gaurdian_name')->nullable();
-            $table->string('gaurdian_no')->nullable();
-            $table->string('gaurdian_relation')->nullable();
-            $table->string('adress')->nullable();
-            $table->string('status');
+            $table->string('date_of_birth')->nullable();
+            $table->string('guardian_name')->nullable();
+            $table->string('guardian_no')->nullable();
+            $table->string('guardian_relation')->nullable();
+            $table->string('address')->nullable();
+            $table->integer('status')->default(0);
             $table->string('admit_no')->nullable();
+            $table->string('pro_pic')->nullable();
             $table->timestamps();
         });
     }

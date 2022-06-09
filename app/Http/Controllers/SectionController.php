@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Section;
+use App\Models\Stclass;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class SectionController extends Controller
@@ -15,7 +17,9 @@ class SectionController extends Controller
     public function sectionDashboard()
     {
         $sections = Section::all();
-        return view('admin.section', compact('sections'));
+        $classes = Stclass::where('status', 1)->get();
+        $teachers = User::where('role', 'teacher')->get();
+        return view('admin.section', compact('sections', 'classes', 'teachers'));
     }
 
     /**
@@ -39,10 +43,9 @@ class SectionController extends Controller
         $newSection = Section::create([
             'class_id' => $request->class_id,
             'section' => $request->section,
-            'student_capasity' => $request->student_capacity,
+            'student_capacity' => $request->student_capacity,
             'shift' => $request->shift,
             'teacher_id' => $request->teacher_id,
-            'status' => $request->status,
             'status' => 1
         ]);
         return redirect()->back()->with('success', 'Successfully added.');
@@ -85,10 +88,9 @@ class SectionController extends Controller
         $section->update([
             'class_id' => $request->class_id,
             'section' => $request->section,
-            'student_capasity' => $request->student_capacity,
+            'student_capacity' => $request->student_capacity,
             'shift' => $request->shift,
             'teacher_id' => $request->teacher_id,
-            'status' => $request->status,
         ]);
         return redirect()->back()->with('success', 'Successfully updated.');
     }

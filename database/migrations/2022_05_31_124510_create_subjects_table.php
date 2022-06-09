@@ -16,9 +16,10 @@ class CreateSubjectsTable extends Migration
         Schema::create('subjects', function (Blueprint $table) {
             $table->id();
             $table->string('subject_name');
-            $table->string('credit');
-            $table->string('passing_mark');
-            $table->string('admit_no');
+            $table->string('credit')->nullable();
+            $table->string('passing_mark')->nullable();
+            $table->string('fee')->default(0);
+            $table->integer('status')->default(1);
             $table->timestamps();
         });
     }

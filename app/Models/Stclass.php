@@ -8,6 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Stclass extends Model
 {
     use HasFactory;
-    protected $guarded=[];
-        
+    protected $guarded = [];
 }

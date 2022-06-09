@@ -15,8 +15,8 @@
             
             <div class="mb-3">
                 <label for="">Address</label>
-                <input type="text" name="adress" required class="form-control" placeholder="Enter address"
-                    value="{{ isset($teacherData->adress) ? $teacherData->adress : '' }}">
+                <input type="text" name="address" required class="form-control" placeholder="Enter address"
+                    value="{{ isset($teacherData->address) ? $teacherData->address : '' }}">
             </div>
             <div class="mb-3">
                 <label for="">Designation</label>

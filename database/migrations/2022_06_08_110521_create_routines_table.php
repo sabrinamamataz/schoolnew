@@ -15,12 +15,13 @@ class CreateRoutinesTable extends Migration
     {
         Schema::create('routines', function (Blueprint $table) {
             $table->id();
-            $table->string('section_id');
+            $table->integer('section_id');
             $table->string('week_day');
-            $table->string('subject_name');
+            $table->integer('subject_id');
             $table->string('start_time');
             $table->string('end_time');
             $table->string('period');
+            $table->integer('status')->nullable();
             $table->timestamps();
         });
     }

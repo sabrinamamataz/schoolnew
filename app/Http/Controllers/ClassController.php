@@ -25,20 +25,19 @@ class ClassController extends Controller
     public function create()
     {
         //
-    }                       
+    }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
-     */                 
+     */
     public function store(Request $request)
     {
         $newStclass = Stclass::create([
-            'Class_name' => $request->Class_name,
+            'class_name' => $request->class_name,
             'capacity' => $request->capacity,
-            'status' => $request->status,
             'status' => 1
         ]);
         return redirect()->back()->with('success', 'Successfully added.');
@@ -81,7 +80,6 @@ class ClassController extends Controller
         $stclass->update([
             'Class_name' => $request->Class_name,
             'capacity' => $request->capacity,
-            'status' => $request->status,
         ]);
         return redirect()->back()->with('success', 'Successfully updated.');
     }

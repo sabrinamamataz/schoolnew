@@ -16,8 +16,8 @@ class CreateStclassesTable extends Migration
         Schema::create('stclasses', function (Blueprint $table) {
             $table->id();
             $table->string('class_name');
-            $table->string('capacity');
-            $table->string('status');
+            $table->integer('capacity');
+            $table->integer('status')->default(1);
             $table->timestamps();
         });
     }

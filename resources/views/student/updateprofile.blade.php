@@ -20,24 +20,24 @@
             </div>
             <div class="mb-3">
                 <label for="">Address</label>
-                <input type="text" name="adress" required class="form-control" placeholder="Enter address"
-                    value="{{ isset($studentData->adress) ? $studentData->adress : '' }}">
+                <input type="text" name="address" required class="form-control" placeholder="Enter address"
+                    value="{{ isset($studentData->address) ? $studentData->address : '' }}">
             </div>
             <div class="mb-3">
                 <label for="">Guardian Name</label>
-                <input type="text" name="gaurdian_name" required class="form-control" placeholder="Enter guardian name"
-                    value="{{ isset($studentData->gaurdian_name) ? $studentData->gaurdian_name : '' }}">
+                <input type="text" name="guardian_name" required class="form-control" placeholder="Enter guardian name"
+                    value="{{ isset($studentData->guardian_name) ? $studentData->guardian_name : '' }}">
             </div>
             <div class="mb-3">
                 <label for="">Guardian No</label>
-                <input type="number" name="gaurdian_no" required class="form-control"
+                <input type="number" name="guardian_no" required class="form-control"
                     placeholder="Enter guardian contact number"
-                    value="{{ isset($studentData->gaurdian_no) ? $studentData->gaurdian_no : '' }}">
+                    value="{{ isset($studentData->guardian_no) ? $studentData->guardian_no : '' }}">
             </div>
             <div class="mb-3">
                 <label for="">Guardian Relation</label>
-                <input type="text" name="gaurdian_relation" required class="form-control" placeholder="Enter Relation"
-                    value="{{ isset($studentData->gaurdian_relation) ? $studentData->gaurdian_relation : '' }}">
+                <input type="text" name="guardian_relation" required class="form-control" placeholder="Enter Relation"
+                    value="{{ isset($studentData->guardian_relation) ? $studentData->guardian_relation : '' }}">
             </div>
         </div>
         <button type="submit" class="btn btn-primary w-100">Update</button>
