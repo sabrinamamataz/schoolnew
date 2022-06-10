@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRoutinesTable extends Migration
+class CreateClsPeriodsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,12 @@ class CreateRoutinesTable extends Migration
      */
     public function up()
     {
-        Schema::create('routines', function (Blueprint $table) {
+        Schema::create('cls_periods', function (Blueprint $table) {
             $table->id();
-            $table->integer('section_id');
-            $table->string('week_day');
-            $table->integer('subject_id');
+            $table->string('period');
             $table->string('start_time');
             $table->string('end_time');
-            $table->string('period');
-            $table->integer('status')->nullable();
+            $table->integer('status')->default(1);
             $table->timestamps();
         });
     }
@@ -33,6 +30,6 @@ class CreateRoutinesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('routines');
+        Schema::dropIfExists('cls_periods');
     }
 }

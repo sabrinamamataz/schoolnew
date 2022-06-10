@@ -17,7 +17,12 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     Section
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                </a>                
+                </a>
+                <a class="nav-link collapsed" href="{{ route('period_page') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                    Class Period
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
                 <a class="nav-link collapsed" href="{{ route('routine_admin_dashboard') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                     Routine

@@ -61,11 +61,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/section/store', [SectionController::class, 'store'])->name('add_section');
     Route::get('/section/delete/{id}', [SectionController::class, 'destroy'])->name('delete_section');
     Route::post('/section/update', [SectionController::class, 'update'])->name('section_update');
-    
+    // period
+    Route::get('/class-period', [RoutineController::class, 'periodPage'])->name('period_page');
+    Route::post('/class-period/add', [RoutineController::class, 'addPeriod'])->name('add_period');
 
     //   routine
     Route::get('/routine-admin-dashboard', [RoutineController::class, 'routineDashboard'])->name('routine_admin_dashboard');
-    Route::get('/routine/list', [RoutineController::class, 'index'])->name('routine_list');
     Route::post('/routine/store', [RoutineController::class, 'store'])->name('add_routine');
     Route::post('/routine/update', [RoutineController::class, 'update'])->name('routine_update');
 
