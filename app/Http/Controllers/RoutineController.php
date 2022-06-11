@@ -6,6 +6,8 @@ use App\Models\ClsPeriod;
 use App\Models\Routine;
 use App\Models\Section;
 use App\Models\Subject;
+use App\Models\Teacher;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class RoutineController extends Controller
@@ -19,7 +21,8 @@ class RoutineController extends Controller
         $sections = Section::all();
         $periods = ClsPeriod::all();
         $subjects = Subject::where('status', 1)->get();
-        return view('admin.routine', compact('routines', 'sections', 'subjects', 'periods'));
+        $teachers = User::where('role', 'teacher')->get();
+        return view('admin.routine', compact('routines', 'sections', 'subjects', 'periods', 'teachers'));
     }
 
     /**

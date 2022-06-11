@@ -171,111 +171,372 @@
 
             @foreach ($routines as $routine)
                 @php
-                    $routineDetails = App\Models\Routine::where('section_id', $routine)->get();
+                    $routineDetails = App\Models\Routine::where('section_id', $routine)->first();
                     // dd($routineDetails);
                 @endphp
                 <table border="5" cellspacing="0" align="center">
                     <caption>
-                        {{ $routineDetails[0]->routineToSection->sectionToClass->class_name . ' - Section: ' . $routineDetails[0]->routineToSection->section }}
+                        {{ $routineDetails->routineToSection->sectionToClass->class_name . ' - Section: ' . $routineDetails->routineToSection->section }}
                     </caption <tr class="border">
                     <td class="border" align="center" height="50" width="100"><br>
                         <b>Day/Period</b></br>
                     </td>
-                    <td class="border" align="center" height="50" width="100">
-                        <b>I<br>9:30-10:20</b>
-                    </td>
-                    <td class="border" align="center" height="50" width="100">
-                        <b>II<br>10:20-11:10</b>
-                    </td>
-                    <td class="border" align="center" height="50" width="100">
-                        <b>III<br>11:10-12:00</b>
-                    </td>
-                    <td class="border" align="center" height="50" width="100">
-                        <b>12:00-12:40</b>
-                    </td>
-                    <td class="border" align="center" height="50" width="100">
-                        <b>IV<br>12:40-1:30</b>
-                    </td>
-                    <td class="border" align="center" height="50" width="100">
-                        <b>V<br>1:30-2:20</b>
-                    </td>
-                    <td class="border" align="center" height="50" width="100">
-                        <b>VI<br>2:20-3:10</b>
-                    </td>
-                    <td class="border" align="center" height="50" width="100">
-                        <b>VII<br>3:10-4:00</b>
-                    </td>
+                    @foreach ($periods as $period)
+                        <td class="border" align="center" height="50" width="100">
+                            <b>{{ $period->period }}<br>{{ date('h:i A', strtotime($period->start_time)) }} -
+                                {{ date('h:i A', strtotime($period->end_time)) }}</b>
+                        </td>
+                    @endforeach
+
+                    <tr class="border">
+                        <td class="border" align="center" height="50">
+                            <b>Saturday</b>
+                        </td>
+                        @php
+                            $satDetails = App\Models\Routine::where('section_id', $routine)
+                                ->where('week_day', 'Saturday')
+                                ->first();
+                        @endphp
+                        <td class="border" align="center" height="50">{{ $satDetails->period_1_sub_id }}</td>
+                        <td class="border" align="center" height="50">{{ $satDetails->period_2_sub_id }}</td>
+                        <td class="border" align="center" height="50">{{ $satDetails->period_3_sub_id }}</td>
+                        <td class="border" align="center" height="50">{{ $satDetails->period_4_sub_id }}</td>
+                        <td class="border" align="center" height="50">{{ $satDetails->period_break }}</td>
+                        <td class="border" align="center" height="50">{{ $satDetails->period_5_sub_id }}</td>
+                        <td class="border" align="center" height="50">{{ $satDetails->period_6_sub_id }}</td>
+                        <td class="border" align="center" height="50">{{ $satDetails->period_7_sub_id }}</td>
+                    </tr>
+                    <tr class="border">
+                        <td class="border" align="center" height="50">
+                            <b>Sunday</b>
+                        </td>
+                        @php
+                            $sunDetails = App\Models\Routine::where('section_id', $routine)
+                                ->where('week_day', 'Sunday')
+                                ->first();
+                        @endphp
+                        <td class="border" align="center" height="50">{{ $sunDetails->period_1_sub_id }}</td>
+                        <td class="border" align="center" height="50">{{ $sunDetails->period_2_sub_id }}</td>
+                        <td class="border" align="center" height="50">{{ $sunDetails->period_3_sub_id }}</td>
+                        <td class="border" align="center" height="50">{{ $sunDetails->period_4_sub_id }}</td>
+                        <td class="border" align="center" height="50">{{ $sunDetails->period_break }}</td>
+                        <td class="border" align="center" height="50">{{ $sunDetails->period_5_sub_id }}</td>
+                        <td class="border" align="center" height="50">{{ $sunDetails->period_6_sub_id }}</td>
+                        <td class="border" align="center" height="50">{{ $sunDetails->period_7_sub_id }}</td>
                     </tr>
                     <tr class="border">
                         <td class="border" align="center" height="50">
                             <b>Monday</b>
                         </td>
-                        <td class="border" align="center" height="50">Eng</td>
-                        <td class="border" align="center" height="50">Mat</td>
-                        <td class="border" align="center" height="50">Che</td>
-                        <td rowspan="6" align="center" height="50">
-                            <h2>L<br>U<br>N<br>C<br>H</h2>
-                        </td>
-                        <td colspan="3" align="center" height="50">LAB</td>
-                        <td class="border" align="center" height="50">Phy</td>
+                        @php
+                            $monDetails = App\Models\Routine::where('section_id', $routine)
+                                ->where('week_day', 'Monday')
+                                ->first();
+                        @endphp
+                        <td class="border" align="center" height="50">{{ $monDetails->period_1_sub_id }}</td>
+                        <td class="border" align="center" height="50">{{ $monDetails->period_2_sub_id }}</td>
+                        <td class="border" align="center" height="50">{{ $monDetails->period_3_sub_id }}</td>
+                        <td class="border" align="center" height="50">{{ $monDetails->period_4_sub_id }}</td>
+                        <td class="border" align="center" height="50">{{ $monDetails->period_break }}</td>
+                        <td class="border" align="center" height="50">{{ $monDetails->period_5_sub_id }}</td>
+                        <td class="border" align="center" height="50">{{ $monDetails->period_6_sub_id }}</td>
+                        <td class="border" align="center" height="50">{{ $monDetails->period_7_sub_id }}</td>
                     </tr>
                     <tr class="border">
                         <td class="border" align="center" height="50">
                             <b>Tuesday</b>
                         </td>
-                        <td colspan="3" align="center" height="50">LAB
-                        </td>
-                        <td class="border" align="center" height="50">Eng</td>
-                        <td class="border" align="center" height="50">Che</td>
-                        <td class="border" align="center" height="50">Mat</td>
-                        <td class="border" align="center" height="50">SPORTS</td>
+                        @php
+                            $tusDetails = App\Models\Routine::where('section_id', $routine)
+                                ->where('week_day', 'Tuesday')
+                                ->first();
+                        @endphp
+                        <td class="border" align="center" height="50">{{ $tusDetails->period_1_sub_id }}</td>
+                        <td class="border" align="center" height="50">{{ $tusDetails->period_2_sub_id }}</td>
+                        <td class="border" align="center" height="50">{{ $tusDetails->period_3_sub_id }}</td>
+                        <td class="border" align="center" height="50">{{ $tusDetails->period_4_sub_id }}</td>
+                        <td class="border" align="center" height="50">{{ $tusDetails->period_break }}</td>
+                        <td class="border" align="center" height="50">{{ $tusDetails->period_5_sub_id }}</td>
+                        <td class="border" align="center" height="50">{{ $tusDetails->period_6_sub_id }}</td>
+                        <td class="border" align="center" height="50">{{ $tusDetails->period_7_sub_id }}</td>
                     </tr>
                     <tr class="border">
                         <td class="border" align="center" height="50">
                             <b>Wednesday</b>
                         </td>
-                        <td class="border" align="center" height="50">Mat</td>
-                        <td class="border" align="center" height="50">phy</td>
-                        <td class="border" align="center" height="50">Eng</td>
-                        <td class="border" align="center" height="50">Che</td>
-                        <td colspan="3" align="center" height="50">LIBRARY
-                        </td>
+                        @php
+                            $wedDetails = App\Models\Routine::where('section_id', $routine)
+                                ->where('week_day', 'Wednesday')
+                                ->first();
+                        @endphp
+                        <td class="border" align="center" height="50">{{ $wedDetails->period_1_sub_id }}</td>
+                        <td class="border" align="center" height="50">{{ $wedDetails->period_2_sub_id }}</td>
+                        <td class="border" align="center" height="50">{{ $wedDetails->period_3_sub_id }}</td>
+                        <td class="border" align="center" height="50">{{ $wedDetails->period_4_sub_id }}</td>
+                        <td class="border" align="center" height="50">{{ $wedDetails->period_break }}</td>
+                        <td class="border" align="center" height="50">{{ $wedDetails->period_5_sub_id }}</td>
+                        <td class="border" align="center" height="50">{{ $wedDetails->period_6_sub_id }}</td>
+                        <td class="border" align="center" height="50">{{ $wedDetails->period_7_sub_id }}</td>
                     </tr>
                     <tr class="border">
                         <td class="border" align="center" height="50">
                             <b>Thursday</b>
                         </td>
-                        <td class="border" align="center" height="50">Phy</td>
-                        <td class="border" align="center" height="50">Eng</td>
-                        <td class="border" align="center" height="50">Che</td>
-                        <td colspan="3" align="center" height="50">LAB
-                        </td>
-                        <td class="border" align="center" height="50">Mat</td>
-                    </tr>
-                    <tr class="border">
-                        <td class="border" align="center" height="50">
-                            <b>Friday</b>
-                        </td>
-                        <td colspan="3" align="center" height="50">LAB
-                        </td>
-                        <td class="border" align="center" height="50">Mat</td>
-                        <td class="border" align="center" height="50">Che</td>
-                        <td class="border" align="center" height="50">Eng</td>
-                        <td class="border" align="center" height="50">Phy</td>
-                    </tr>
-                    <tr class="border">
-                        <td class="border" align="center" height="50">
-                            <b>Saturday</b>
-                        </td>
-                        <td class="border" align="center" height="50">Eng</td>
-                        <td class="border" align="center" height="50">Che</td>
-                        <td class="border" align="center" height="50">Mat</td>
-                        <td colspan="3" align="center" height="50">SEMINAR
-                        </td>
-                        <td class="border" align="center" height="50">SPORTS</td>
+                        @php
+                            $thuDetails = App\Models\Routine::where('section_id', $routine)
+                                ->where('week_day', 'Thursday')
+                                ->first();
+                        @endphp
+                        <td class="border" align="center" height="50">{{ $thuDetails->period_1_sub_id }}</td>
+                        <td class="border" align="center" height="50">{{ $thuDetails->period_2_sub_id }}</td>
+                        <td class="border" align="center" height="50">{{ $thuDetails->period_3_sub_id }}</td>
+                        <td class="border" align="center" height="50">{{ $thuDetails->period_4_sub_id }}</td>
+                        <td class="border" align="center" height="50">{{ $thuDetails->period_break }}</td>
+                        <td class="border" align="center" height="50">{{ $thuDetails->period_5_sub_id }}</td>
+                        <td class="border" align="center" height="50">{{ $thuDetails->period_6_sub_id }}</td>
+                        <td class="border" align="center" height="50">{{ $thuDetails->period_7_sub_id }}</td>
                     </tr>
                 </table>
                 <br>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                    data-bs-target="#thursday{{ $thuDetails->id }}">
+                    Thursday
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="thursday{{ $thuDetails->id }}" tabindex="-1"
+                    aria-labelledby="thursday{{ $thuDetails->id }}Label" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="thursday{{ $thuDetails->id }}Label">
+                                    Thursday 
+                                    ({{ $routineDetails->routineToSection->sectionToClass->class_name . ' - Section: ' . $routineDetails->routineToSection->section }})
+                                </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <form>
+                                @csrf
+                                <div class="modal-body">
+                                    {{-- 1st --}}
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">1st Period</label>
+                                        <div class="row">
+                                            <div class="col">
+                                                <select class="form-select" name="subject_id" required>
+                                                    <option value="">Select Subject</option>
+                                                    @foreach ($subjects as $subject)
+                                                        <option value="{{ $subject->id }}">
+                                                            {{ $subject->subject_name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col">
+                                                <select class="form-select" name="teacher_id" required>
+                                                    <option value="">Select Teacher</option>
+                                                    @foreach ($teachers as $teacher)
+                                                        <option value="{{ $teacher->id }}">
+                                                            {{ $teacher->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{-- 2nd --}}
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">2nd Period</label>
+                                        <div class="row">
+                                            <div class="col">
+                                                <select class="form-select" name="subject_id" required>
+                                                    <option value="">Select Subject</option>
+                                                    @foreach ($subjects as $subject)
+                                                        <option value="{{ $subject->id }}">
+                                                            {{ $subject->subject_name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col">
+                                                <select class="form-select" name="teacher_id" required>
+                                                    <option value="">Select Teacher</option>
+                                                    @foreach ($teachers as $teacher)
+                                                        <option value="{{ $teacher->id }}">
+                                                            {{ $teacher->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{-- 3rd --}}
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">3rd Period</label>
+                                        <div class="row">
+                                            <div class="col">
+                                                <select class="form-select" name="subject_id" required>
+                                                    <option value="">Select Subject</option>
+                                                    @foreach ($subjects as $subject)
+                                                        <option value="{{ $subject->id }}">
+                                                            {{ $subject->subject_name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col">
+                                                <select class="form-select" name="teacher_id" required>
+                                                    <option value="">Select Teacher</option>
+                                                    @foreach ($teachers as $teacher)
+                                                        <option value="{{ $teacher->id }}">
+                                                            {{ $teacher->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{-- 4th --}}
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">4th Period</label>
+                                        <div class="row">
+                                            <div class="col">
+                                                <select class="form-select" name="subject_id" required>
+                                                    <option value="">Select Subject</option>
+                                                    @foreach ($subjects as $subject)
+                                                        <option value="{{ $subject->id }}">
+                                                            {{ $subject->subject_name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col">
+                                                <select class="form-select" name="teacher_id" required>
+                                                    <option value="">Select Teacher</option>
+                                                    @foreach ($teachers as $teacher)
+                                                        <option value="{{ $teacher->id }}">
+                                                            {{ $teacher->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{-- 5th --}}
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">5th Period</label>
+                                        <div class="row">
+                                            <div class="col">
+                                                <select class="form-select" name="subject_id" required>
+                                                    <option value="">Select Subject</option>
+                                                    @foreach ($subjects as $subject)
+                                                        <option value="{{ $subject->id }}">
+                                                            {{ $subject->subject_name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col">
+                                                <select class="form-select" name="teacher_id" required>
+                                                    <option value="">Select Teacher</option>
+                                                    @foreach ($teachers as $teacher)
+                                                        <option value="{{ $teacher->id }}">
+                                                            {{ $teacher->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{-- 6th --}}
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">6th Period</label>
+                                        <div class="row">
+                                            <div class="col">
+                                                <select class="form-select" name="subject_id" required>
+                                                    <option value="">Select Subject</option>
+                                                    @foreach ($subjects as $subject)
+                                                        <option value="{{ $subject->id }}">
+                                                            {{ $subject->subject_name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col">
+                                                <select class="form-select" name="teacher_id" required>
+                                                    <option value="">Select Teacher</option>
+                                                    @foreach ($teachers as $teacher)
+                                                        <option value="{{ $teacher->id }}">
+                                                            {{ $teacher->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{-- 7th --}}
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">7th Period</label>
+                                        <div class="row">
+                                            <div class="col">
+                                                <select class="form-select" name="subject_id" required>
+                                                    <option value="">Select Subject</option>
+                                                    @foreach ($subjects as $subject)
+                                                        <option value="{{ $subject->id }}">
+                                                            {{ $subject->subject_name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col">
+                                                <select class="form-select" name="teacher_id" required>
+                                                    <option value="">Select Teacher</option>
+                                                    @foreach ($teachers as $teacher)
+                                                        <option value="{{ $teacher->id }}">
+                                                            {{ $teacher->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{-- 8th --}}
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">8th Period</label>
+                                        <div class="row">
+                                            <div class="col">
+                                                <select class="form-select" name="subject_id" required>
+                                                    <option value="">Select Subject</option>
+                                                    @foreach ($subjects as $subject)
+                                                        <option value="{{ $subject->id }}">
+                                                            {{ $subject->subject_name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col">
+                                                <select class="form-select" name="teacher_id" required>
+                                                    <option value="">Select Teacher</option>
+                                                    @foreach ($teachers as $teacher)
+                                                        <option value="{{ $teacher->id }}">
+                                                            {{ $teacher->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Update</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             @endforeach
         </div>
     </div>
