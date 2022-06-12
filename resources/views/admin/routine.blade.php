@@ -177,16 +177,18 @@
                 <table border="5" cellspacing="0" align="center">
                     <caption>
                         {{ $routineDetails->routineToSection->sectionToClass->class_name . ' - Section: ' . $routineDetails->routineToSection->section }}
-                    </caption <tr class="border">
-                    <td class="border" align="center" height="50" width="100"><br>
-                        <b>Day/Period</b></br>
-                    </td>
-                    @foreach ($periods as $period)
-                        <td class="border" align="center" height="50" width="100">
-                            <b>{{ $period->period }}<br>{{ date('h:i A', strtotime($period->start_time)) }} -
-                                {{ date('h:i A', strtotime($period->end_time)) }}</b>
+                    </caption>
+                    <tr class="border">
+                        <td class="border" align="center" height="50" width="100"><br>
+                            <b>Day/Period</b></br>
                         </td>
-                    @endforeach
+                        @foreach ($periods as $period)
+                            <td class="border" align="center" height="50" width="100">
+                                <b>{{ $period->period }}<br>{{ date('h:i A', strtotime($period->start_time)) }} -
+                                    {{ date('h:i A', strtotime($period->end_time)) }}</b>
+                            </td>
+                        @endforeach
+                    </tr>
 
                     <tr class="border">
                         <td class="border" align="center" height="50">
@@ -279,14 +281,18 @@
                         <td class="border" align="center" height="50">{{ $wedDetails->period_7_sub_id }}</td>
                     </tr>
                     <tr class="border">
-                        <td class="border" align="center" height="50">
-                            <b>Thursday</b>
-                        </td>
+
                         @php
                             $thuDetails = App\Models\Routine::where('section_id', $routine)
                                 ->where('week_day', 'Thursday')
                                 ->first();
                         @endphp
+                        <td class="border" align="center" height="50">
+                            <button type="button" class="btn" data-bs-toggle="modal"
+                                data-bs-target="#thursday{{ $thuDetails->id }}">
+                                <b>Thursday</b>
+                            </button>
+                        </td>
                         <td class="border" align="center" height="50">{{ $thuDetails->period_1_sub_id }}</td>
                         <td class="border" align="center" height="50">{{ $thuDetails->period_2_sub_id }}</td>
                         <td class="border" align="center" height="50">{{ $thuDetails->period_3_sub_id }}</td>
@@ -298,11 +304,6 @@
                     </tr>
                 </table>
                 <br>
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                    data-bs-target="#thursday{{ $thuDetails->id }}">
-                    Thursday
-                </button>
 
                 <!-- Modal -->
                 <div class="modal fade" id="thursday{{ $thuDetails->id }}" tabindex="-1"
@@ -311,7 +312,7 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="thursday{{ $thuDetails->id }}Label">
-                                    Thursday 
+                                    Thursday
                                     ({{ $routineDetails->routineToSection->sectionToClass->class_name . ' - Section: ' . $routineDetails->routineToSection->section }})
                                 </h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
