@@ -13,6 +13,11 @@ class TeacherController extends Controller
 
         return view('teacher.dashboard');
     }
+    public function routineDashboard()
+    {
+
+        return view('teacher.routine');
+    }
     
     public function updateprofileDashboard()
     {
