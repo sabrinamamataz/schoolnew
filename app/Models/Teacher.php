@@ -9,4 +9,14 @@ class Teacher extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    static function getTeacherName($user_id)
+    {
+        $user = User::find($user_id);
+        $name = '--';
+        if (isset($user->name)) {
+            $name = $user->name;
+        }
+        return $name;
+    }
 };

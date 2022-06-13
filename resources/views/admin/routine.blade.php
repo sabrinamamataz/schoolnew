@@ -1,5 +1,9 @@
 @extends('admin.main')
 @section('content')
+    @php
+    use App\Models\Subject;
+    use App\Models\Teacher;
+    @endphp
     <div class="">
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addNewClass">
@@ -29,41 +33,6 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                {{-- <div class="form-group">
-                                    <label for="Week_day">Week Day</label>
-                                    <select class="form-select" name="week_day" required>
-                                        <option value="">Select Week</option>
-                                        <option value="Saturday">Saturday</option>
-                                        <option value="Sunday">Sunday</option>
-                                        <option value="Monday">Monday</option>
-                                        <option value="Tuesday">Tuesday</option>
-                                        <option value="Wednesday">Wednesday</option>
-                                        <option value="Thursday">Thursday</option>
-                                        <option value="Friday">Friday</option>
-                                    </select>
-                                </div> --}}
-                                {{-- <div class="form-group">
-                                    <label for="Subject_name">Subject</label>
-                                    <select class="form-select" name="subject_id" required>
-                                        <option value="">Select Subject</option>
-                                        @foreach ($subjects as $subject)
-                                            <option value="{{ $subject->id }}">
-                                                {{ $subject->subject_name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div> --}}
-                                {{-- <div class="form-group">
-                                    <label for="Period">Period</label>
-                                    <select class="form-select" name="period_id" required>
-                                        <option value="">Select Period</option>
-                                        @foreach ($periods as $period)
-                                            <option value="{{ $period->id }}">
-                                                {{ $period->period . ' - ' . $period->start_time . ' to ' . $period->start_time }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div> --}}
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -76,103 +45,9 @@
         </div>
 
         <div class="col-md-12">
-            {{-- <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th scope="col">SL</th>
-                        <th scope="col">Section_id</th>
-                        <th scope="col">Week_day</th>
-                        <th scope="col">Subject_name</th>
-                        <th scope="col">Start_time</th>
-                        <th scope="col">End_time</th>
-                        <th scope="col">Period</th>
-
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($routines as $key => $routine)
-                        <tr>
-                            <th scope="row">{{ $key + 1 }}</th>
-                            <td>{{ $routine->section_id }}</td>
-                            <td>{{ $routine->week_day }}</td>
-                            <td>{{ $routine->subject_name }}</td>
-                            <td>{{ $routine->start_time }}</td>
-                            <td>{{ $routine->end_time }}</td>
-                            <td>{{ $routine->period }}</td>
-                            <td>
-                                <button type="button" class="btn btn-warning" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#updateModat{{ $routine->id }}">
-                                    Update
-
-                            </td>
-                        </tr>
-
-                        <!-- update Modal -->
-                        <div class="modal fade" id="updateModat{{ $routine->id }}" tabindex="-1"
-                            aria-labelledby="updateModatLabel{{ $routine->id }}" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="updateModatLabel{{ $routine->id }}">
-                                            Update {{ $routine->routine }}
-                                        </h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <form action="{{ route('routine_update', $routine->id) }}" method="post">
-                                        @csrf
-                                        <input type="hidden" name="routine_id" value="{{ $routine->id }}">
-                                        <div class="modal-body">
-                                            <div class="container">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="Section_id">Section_id</label>
-                                                <input type="text" name="section_id" class="form-control"
-                                                    value="{{ $routine->section_id }}" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="Week_day">Week_day</label>
-                                                <input type="text" name="week_day" class="form-control"
-                                                    value="{{ $routine->week_day }}" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="Subject_name">Subject_name</label>
-                                                <input type="text" name="subject_name" class="form-control"
-                                                    value="{{ $routine->subject_name }}" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="Start_time">Start_time</label>
-                                                <input type="time" name="start_time" class="form-control"
-                                                    value="{{ $routine->start_time }}" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="End_time">End_time</label>
-                                                <input type="time" name="end_time" class="form-control"
-                                                    value="{{ $routine->end_time }}" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="Period">Period</label>
-                                                <input type="text" name="period" class="form-control"
-                                                    value="{{ $routine->period }}" required>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-bs-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-primary">Save changes</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </tbody>
-            </table> --}}
-
             @foreach ($routines as $routine)
                 @php
                     $routineDetails = App\Models\Routine::where('section_id', $routine)->first();
-                    // dd($routineDetails);
                 @endphp
                 <table border="5" cellspacing="0" align="center">
                     <caption>
@@ -293,14 +168,49 @@
                                 <b>Thursday</b>
                             </button>
                         </td>
-                        <td class="border" align="center" height="50">{{ $thuDetails->period_1_sub_id }}</td>
-                        <td class="border" align="center" height="50">{{ $thuDetails->period_2_sub_id }}</td>
-                        <td class="border" align="center" height="50">{{ $thuDetails->period_3_sub_id }}</td>
-                        <td class="border" align="center" height="50">{{ $thuDetails->period_4_sub_id }}</td>
-                        <td class="border" align="center" height="50">{{ $thuDetails->period_break }}</td>
-                        <td class="border" align="center" height="50">{{ $thuDetails->period_5_sub_id }}</td>
-                        <td class="border" align="center" height="50">{{ $thuDetails->period_6_sub_id }}</td>
-                        <td class="border" align="center" height="50">{{ $thuDetails->period_7_sub_id }}</td>
+                        <td class="border" align="center" height="50">
+                            {{ Subject::getSubjectName($thuDetails->period_1_sub_id) }}
+                            <br>
+                            {{ Teacher::getTeacherName($thuDetails->period_1_t_id) }}
+                        </td>
+                        <td class="border" align="center" height="50">
+                            {{ Subject::getSubjectName($thuDetails->period_2_sub_id) }}
+                            <br>
+                            {{ Teacher::getTeacherName($thuDetails->period_2_t_id) }}
+                        </td>
+                        <td class="border" align="center" height="50">
+                            {{ Subject::getSubjectName($thuDetails->period_3_sub_id) }}
+                            <br>
+                            {{ Teacher::getTeacherName($thuDetails->period_3_t_id) }}
+                        </td>
+                        <td class="border" align="center" height="50">
+                            {{ Subject::getSubjectName($thuDetails->period_4_sub_id) }}
+                            <br>
+                            {{ Teacher::getTeacherName($thuDetails->period_4_t_id) }}
+                        </td>
+                        <td class="border" align="center" height="50">
+                            <span class="text-success">Lunch</span>
+                        </td>
+                        <td class="border" align="center" height="50">
+                            {{ Subject::getSubjectName($thuDetails->period_5_sub_id) }}
+                            <br>
+                            {{ Teacher::getTeacherName($thuDetails->period_5_t_id) }}
+                        </td>
+                        <td class="border" align="center" height="50">
+                            {{ Subject::getSubjectName($thuDetails->period_6_sub_id) }}
+                            <br>
+                            {{ Teacher::getTeacherName($thuDetails->period_6_t_id) }}
+                        </td>
+                        <td class="border" align="center" height="50">
+                            {{ Subject::getSubjectName($thuDetails->period_7_sub_id) }}
+                            <br>
+                            {{ Teacher::getTeacherName($thuDetails->period_7_t_id) }}
+                        </td>
+                        <td class="border" align="center" height="50">
+                            {{ Subject::getSubjectName($thuDetails->period_8_sub_id) }}
+                            <br>
+                            {{ Teacher::getTeacherName($thuDetails->period_8_t_id) }}
+                        </td>
                     </tr>
                 </table>
                 <br>
@@ -318,28 +228,31 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
-                            <form>
+                            <form action="{{ route('routine_update_week_day') }}" method="post">
                                 @csrf
+                                <input type="hidden" name="routine_id" value="{{ $thuDetails->id }}">
                                 <div class="modal-body">
                                     {{-- 1st --}}
                                     <div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">1st Period</label>
                                         <div class="row">
                                             <div class="col">
-                                                <select class="form-select" name="subject_id" required>
+                                                <select class="form-select" name="period_1_sub_id" required>
                                                     <option value="">Select Subject</option>
                                                     @foreach ($subjects as $subject)
-                                                        <option value="{{ $subject->id }}">
+                                                        <option value="{{ $subject->id }}"
+                                                            {{ $thuDetails->period_1_sub_id == $subject->id ? 'selected' : '' }}>
                                                             {{ $subject->subject_name }}
                                                         </option>
                                                     @endforeach
                                                 </select>
                                             </div>
                                             <div class="col">
-                                                <select class="form-select" name="teacher_id" required>
+                                                <select class="form-select" name="period_1_t_id" required>
                                                     <option value="">Select Teacher</option>
                                                     @foreach ($teachers as $teacher)
-                                                        <option value="{{ $teacher->id }}">
+                                                        <option value="{{ $teacher->id }}"
+                                                            {{ $thuDetails->period_1_t_id == $teacher->id ? 'selected' : '' }}>
                                                             {{ $teacher->name }}
                                                         </option>
                                                     @endforeach
@@ -352,20 +265,22 @@
                                         <label for="exampleInputEmail1" class="form-label">2nd Period</label>
                                         <div class="row">
                                             <div class="col">
-                                                <select class="form-select" name="subject_id" required>
+                                                <select class="form-select" name="period_2_sub_id" required>
                                                     <option value="">Select Subject</option>
                                                     @foreach ($subjects as $subject)
-                                                        <option value="{{ $subject->id }}">
+                                                        <option value="{{ $subject->id }}"
+                                                            {{ $thuDetails->period_2_sub_id == $subject->id ? 'selected' : '' }}>
                                                             {{ $subject->subject_name }}
                                                         </option>
                                                     @endforeach
                                                 </select>
                                             </div>
                                             <div class="col">
-                                                <select class="form-select" name="teacher_id" required>
+                                                <select class="form-select" name="period_2_t_id" required>
                                                     <option value="">Select Teacher</option>
                                                     @foreach ($teachers as $teacher)
-                                                        <option value="{{ $teacher->id }}">
+                                                        <option value="{{ $teacher->id }}"
+                                                            {{ $thuDetails->period_2_t_id == $teacher->id ? 'selected' : '' }}>
                                                             {{ $teacher->name }}
                                                         </option>
                                                     @endforeach
@@ -378,20 +293,22 @@
                                         <label for="exampleInputEmail1" class="form-label">3rd Period</label>
                                         <div class="row">
                                             <div class="col">
-                                                <select class="form-select" name="subject_id" required>
+                                                <select class="form-select" name="period_3_sub_id" required>
                                                     <option value="">Select Subject</option>
                                                     @foreach ($subjects as $subject)
-                                                        <option value="{{ $subject->id }}">
+                                                        <option value="{{ $subject->id }}"
+                                                            {{ $thuDetails->period_3_sub_id == $subject->id ? 'selected' : '' }}>
                                                             {{ $subject->subject_name }}
                                                         </option>
                                                     @endforeach
                                                 </select>
                                             </div>
                                             <div class="col">
-                                                <select class="form-select" name="teacher_id" required>
+                                                <select class="form-select" name="period_3_t_id" required>
                                                     <option value="">Select Teacher</option>
                                                     @foreach ($teachers as $teacher)
-                                                        <option value="{{ $teacher->id }}">
+                                                        <option value="{{ $teacher->id }}"
+                                                            {{ $thuDetails->period_3_t_id == $teacher->id ? 'selected' : '' }}>
                                                             {{ $teacher->name }}
                                                         </option>
                                                     @endforeach
@@ -404,20 +321,22 @@
                                         <label for="exampleInputEmail1" class="form-label">4th Period</label>
                                         <div class="row">
                                             <div class="col">
-                                                <select class="form-select" name="subject_id" required>
+                                                <select class="form-select" name="period_4_sub_id" required>
                                                     <option value="">Select Subject</option>
                                                     @foreach ($subjects as $subject)
-                                                        <option value="{{ $subject->id }}">
+                                                        <option value="{{ $subject->id }}"
+                                                            {{ $thuDetails->period_4_sub_id == $subject->id ? 'selected' : '' }}>
                                                             {{ $subject->subject_name }}
                                                         </option>
                                                     @endforeach
                                                 </select>
                                             </div>
                                             <div class="col">
-                                                <select class="form-select" name="teacher_id" required>
+                                                <select class="form-select" name="period_4_t_id" required>
                                                     <option value="">Select Teacher</option>
                                                     @foreach ($teachers as $teacher)
-                                                        <option value="{{ $teacher->id }}">
+                                                        <option value="{{ $teacher->id }}"
+                                                            {{ $thuDetails->period_4_t_id == $teacher->id ? 'selected' : '' }}>
                                                             {{ $teacher->name }}
                                                         </option>
                                                     @endforeach
@@ -430,20 +349,22 @@
                                         <label for="exampleInputEmail1" class="form-label">5th Period</label>
                                         <div class="row">
                                             <div class="col">
-                                                <select class="form-select" name="subject_id" required>
+                                                <select class="form-select" name="period_5_sub_id" required>
                                                     <option value="">Select Subject</option>
                                                     @foreach ($subjects as $subject)
-                                                        <option value="{{ $subject->id }}">
+                                                        <option value="{{ $subject->id }}"
+                                                            {{ $thuDetails->period_5_sub_id == $subject->id ? 'selected' : '' }}>
                                                             {{ $subject->subject_name }}
                                                         </option>
                                                     @endforeach
                                                 </select>
                                             </div>
                                             <div class="col">
-                                                <select class="form-select" name="teacher_id" required>
+                                                <select class="form-select" name="period_5_t_id" required>
                                                     <option value="">Select Teacher</option>
                                                     @foreach ($teachers as $teacher)
-                                                        <option value="{{ $teacher->id }}">
+                                                        <option value="{{ $teacher->id }}"
+                                                            {{ $thuDetails->period_5_t_id == $teacher->id ? 'selected' : '' }}>
                                                             {{ $teacher->name }}
                                                         </option>
                                                     @endforeach
@@ -456,20 +377,22 @@
                                         <label for="exampleInputEmail1" class="form-label">6th Period</label>
                                         <div class="row">
                                             <div class="col">
-                                                <select class="form-select" name="subject_id" required>
+                                                <select class="form-select" name="period_6_sub_id" required>
                                                     <option value="">Select Subject</option>
                                                     @foreach ($subjects as $subject)
-                                                        <option value="{{ $subject->id }}">
+                                                        <option value="{{ $subject->id }}"
+                                                            {{ $thuDetails->period_6_sub_id == $subject->id ? 'selected' : '' }}>
                                                             {{ $subject->subject_name }}
                                                         </option>
                                                     @endforeach
                                                 </select>
                                             </div>
                                             <div class="col">
-                                                <select class="form-select" name="teacher_id" required>
+                                                <select class="form-select" name="period_6_t_id" required>
                                                     <option value="">Select Teacher</option>
                                                     @foreach ($teachers as $teacher)
-                                                        <option value="{{ $teacher->id }}">
+                                                        <option value="{{ $teacher->id }}"
+                                                            {{ $thuDetails->period_6_t_id == $teacher->id ? 'selected' : '' }}>
                                                             {{ $teacher->name }}
                                                         </option>
                                                     @endforeach
@@ -482,20 +405,22 @@
                                         <label for="exampleInputEmail1" class="form-label">7th Period</label>
                                         <div class="row">
                                             <div class="col">
-                                                <select class="form-select" name="subject_id" required>
+                                                <select class="form-select" name="period_7_sub_id" required>
                                                     <option value="">Select Subject</option>
                                                     @foreach ($subjects as $subject)
-                                                        <option value="{{ $subject->id }}">
+                                                        <option value="{{ $subject->id }}"
+                                                            {{ $thuDetails->period_7_sub_id == $subject->id ? 'selected' : '' }}>
                                                             {{ $subject->subject_name }}
                                                         </option>
                                                     @endforeach
                                                 </select>
                                             </div>
                                             <div class="col">
-                                                <select class="form-select" name="teacher_id" required>
+                                                <select class="form-select" name="period_7_t_id" required>
                                                     <option value="">Select Teacher</option>
                                                     @foreach ($teachers as $teacher)
-                                                        <option value="{{ $teacher->id }}">
+                                                        <option value="{{ $teacher->id }}"
+                                                            {{ $thuDetails->period_7_t_id == $teacher->id ? 'selected' : '' }}>
                                                             {{ $teacher->name }}
                                                         </option>
                                                     @endforeach
@@ -508,20 +433,22 @@
                                         <label for="exampleInputEmail1" class="form-label">8th Period</label>
                                         <div class="row">
                                             <div class="col">
-                                                <select class="form-select" name="subject_id" required>
+                                                <select class="form-select" name="period_8_sub_id" required>
                                                     <option value="">Select Subject</option>
                                                     @foreach ($subjects as $subject)
-                                                        <option value="{{ $subject->id }}">
+                                                        <option value="{{ $subject->id }}"
+                                                            {{ $thuDetails->period_8_sub_id == $subject->id ? 'selected' : '' }}>
                                                             {{ $subject->subject_name }}
                                                         </option>
                                                     @endforeach
                                                 </select>
                                             </div>
                                             <div class="col">
-                                                <select class="form-select" name="teacher_id" required>
+                                                <select class="form-select" name="period_8_t_id" required>
                                                     <option value="">Select Teacher</option>
                                                     @foreach ($teachers as $teacher)
-                                                        <option value="{{ $teacher->id }}">
+                                                        <option value="{{ $teacher->id }}"
+                                                            {{ $thuDetails->period_8_t_id == $teacher->id ? 'selected' : '' }}>
                                                             {{ $teacher->name }}
                                                         </option>
                                                     @endforeach

@@ -129,4 +129,38 @@ class RoutineController extends Controller
         ]);
         return redirect()->back()->with('success', 'Successfully added.');
     }
+
+    public function updateWeekDay(Request $request)
+    {
+        $routine = Routine::find($request->routine_id);
+        if (!$routine) {
+            return redirect()->back()->with('error', 'Invalid request.');
+        }
+        $routine->update([
+            "period_1_sub_id" => $request->period_1_sub_id,
+            "period_1_t_id" => $request->period_1_t_id,
+
+            "period_2_sub_id" => $request->period_2_sub_id,
+            "period_2_t_id" => $request->period_2_t_id,
+
+            "period_3_sub_id" => $request->period_3_sub_id,
+            "period_3_t_id" => $request->period_3_t_id,
+
+            "period_4_sub_id" => $request->period_4_sub_id,
+            "period_4_t_id" => $request->period_4_t_id,
+
+            "period_5_sub_id" => $request->period_5_sub_id,
+            "period_5_t_id" => $request->period_5_t_id,
+
+            "period_6_sub_id" => $request->period_6_sub_id,
+            "period_6_t_id" => $request->period_6_t_id,
+
+            "period_7_sub_id" => $request->period_7_sub_id,
+            "period_7_t_id" => $request->period_7_t_id,
+
+            "period_8_sub_id" => $request->period_8_sub_id,
+            "period_8_t_id" => $request->period_8_t_id
+        ]);
+        return redirect()->back()->with('success', 'Successfully added.');
+    }
 }

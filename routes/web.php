@@ -69,6 +69,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/routine-admin-dashboard', [RoutineController::class, 'routineDashboard'])->name('routine_admin_dashboard');
     Route::post('/routine/store', [RoutineController::class, 'store'])->name('add_routine');
     Route::post('/routine/update', [RoutineController::class, 'update'])->name('routine_update');
+    Route::post('/routine/update-week-day', [RoutineController::class, 'updateWeekDay'])->name('routine_update_week_day');
 
     // student
     Route::get('/student-dashboard', [StudentController::class, 'studentDashboard'])->name('student_dashboard');

@@ -9,4 +9,14 @@ class Subject extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    static function getSubjectName($subject_id)
+    {
+        $subject = Subject::find($subject_id);
+        $name = '--';
+        if (isset($subject->subject_name)) {
+            $name = $subject->subject_name;
+        }
+        return $name;
+    }
 }
