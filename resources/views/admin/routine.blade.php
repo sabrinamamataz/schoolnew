@@ -66,63 +66,174 @@
                     </tr>
 
                     <tr class="border">
-                        <td class="border" align="center" height="50">
-                            <b>Saturday</b>
-                        </td>
                         @php
                             $satDetails = App\Models\Routine::where('section_id', $routine)
                                 ->where('week_day', 'Saturday')
                                 ->first();
                         @endphp
-                        <td class="border" align="center" height="50">{{ $satDetails->period_1_sub_id }}</td>
-                        <td class="border" align="center" height="50">{{ $satDetails->period_2_sub_id }}</td>
-                        <td class="border" align="center" height="50">{{ $satDetails->period_3_sub_id }}</td>
-                        <td class="border" align="center" height="50">{{ $satDetails->period_4_sub_id }}</td>
-                        <td class="border" align="center" height="50">{{ $satDetails->period_break }}</td>
-                        <td class="border" align="center" height="50">{{ $satDetails->period_5_sub_id }}</td>
-                        <td class="border" align="center" height="50">{{ $satDetails->period_6_sub_id }}</td>
-                        <td class="border" align="center" height="50">{{ $satDetails->period_7_sub_id }}</td>
+                        <td class="border" align="center" height="50">
+                            <button type="button" class="btn" data-bs-toggle="modal"
+                                data-bs-target="#saturday{{ $satDetails->id }}">
+                                <b>Saturday</b>
+                            </button>
+                        </td>
+                        <td class="border" align="center" height="50">
+                            {{ Subject::getSubjectName($satDetails->period_1_sub_id) }}
+                            <br>
+                            {{ Teacher::getTeacherName($satDetails->period_1_t_id) }}
+                        </td>
+                        <td class="border" align="center" height="50">
+                            {{ Subject::getSubjectName($satDetails->period_2_sub_id) }}
+                            <br>
+                            {{ Teacher::getTeacherName($satDetails->period_2_t_id) }}
+                        </td>
+                        <td class="border" align="center" height="50">
+                            {{ Subject::getSubjectName($satDetails->period_3_sub_id) }}
+                            <br>
+                            {{ Teacher::getTeacherName($satDetails->period_3_t_id) }}
+                        </td>
+                        <td class="border" align="center" height="50">
+                            {{ Subject::getSubjectName($satDetails->period_4_sub_id) }}
+                            <br>
+                            {{ Teacher::getTeacherName($satDetails->period_4_t_id) }}
+                        </td>
+                        <td class="border" align="center" height="50">
+                            <span class="text-success">Lunch</span>
+                        </td>
+                        <td class="border" align="center" height="50">
+                            {{ Subject::getSubjectName($satDetails->period_5_sub_id) }}
+                            <br>
+                            {{ Teacher::getTeacherName($satDetails->period_5_t_id) }}
+                        </td>
+                        <td class="border" align="center" height="50">
+                            {{ Subject::getSubjectName($satDetails->period_6_sub_id) }}
+                            <br>
+                            {{ Teacher::getTeacherName($satDetails->period_6_t_id) }}
+                        </td>
+                        <td class="border" align="center" height="50">
+                            {{ Subject::getSubjectName($satDetails->period_7_sub_id) }}
+                            <br>
+                            {{ Teacher::getTeacherName($satDetails->period_7_t_id) }}
+                        </td>
+                        <td class="border" align="center" height="50">
+                            {{ Subject::getSubjectName($satDetails->period_8_sub_id) }}
+                            <br>
+                            {{ Teacher::getTeacherName($satDetails->period_8_t_id) }}
+                        </td>
                     </tr>
                     <tr class="border">
-                        <td class="border" align="center" height="50">
-                            <b>Sunday</b>
-                        </td>
                         @php
                             $sunDetails = App\Models\Routine::where('section_id', $routine)
                                 ->where('week_day', 'Sunday')
                                 ->first();
                         @endphp
-                        <td class="border" align="center" height="50">{{ $sunDetails->period_1_sub_id }}</td>
-                        <td class="border" align="center" height="50">{{ $sunDetails->period_2_sub_id }}</td>
-                        <td class="border" align="center" height="50">{{ $sunDetails->period_3_sub_id }}</td>
-                        <td class="border" align="center" height="50">{{ $sunDetails->period_4_sub_id }}</td>
-                        <td class="border" align="center" height="50">{{ $sunDetails->period_break }}</td>
-                        <td class="border" align="center" height="50">{{ $sunDetails->period_5_sub_id }}</td>
-                        <td class="border" align="center" height="50">{{ $sunDetails->period_6_sub_id }}</td>
-                        <td class="border" align="center" height="50">{{ $sunDetails->period_7_sub_id }}</td>
+                        <td class="border" align="center" height="50">
+                            <button type="button" class="btn" data-bs-toggle="modal"
+                                data-bs-target="#sunday{{ $sunDetails->id }}">
+                                <b>Sunday</b>
+                            </button>
+                        </td>
+                        <td class="border" align="center" height="50">
+                            {{ Subject::getSubjectName($sunDetails->period_1_sub_id) }}
+                            <br>
+                            {{ Teacher::getTeacherName($sunDetails->period_1_t_id) }}
+                        </td>
+                        <td class="border" align="center" height="50">
+                            {{ Subject::getSubjectName($sunDetails->period_2_sub_id) }}
+                            <br>
+                            {{ Teacher::getTeacherName($sunDetails->period_2_t_id) }}
+                        </td>
+                        <td class="border" align="center" height="50">
+                            {{ Subject::getSubjectName($sunDetails->period_3_sub_id) }}
+                            <br>
+                            {{ Teacher::getTeacherName($sunDetails->period_3_t_id) }}
+                        </td>
+                        <td class="border" align="center" height="50">
+                            {{ Subject::getSubjectName($sunDetails->period_4_sub_id) }}
+                            <br>
+                            {{ Teacher::getTeacherName($sunDetails->period_4_t_id) }}
+                        </td>
+                        <td class="border" align="center" height="50">
+                            <span class="text-success">Lunch</span>
+                        </td>
+                        <td class="border" align="center" height="50">
+                            {{ Subject::getSubjectName($sunDetails->period_5_sub_id) }}
+                            <br>
+                            {{ Teacher::getTeacherName($sunDetails->period_5_t_id) }}
+                        </td>
+                        <td class="border" align="center" height="50">
+                            {{ Subject::getSubjectName($sunDetails->period_6_sub_id) }}
+                            <br>
+                            {{ Teacher::getTeacherName($sunDetails->period_6_t_id) }}
+                        </td>
+                        <td class="border" align="center" height="50">
+                            {{ Subject::getSubjectName($sunDetails->period_7_sub_id) }}
+                            <br>
+                            {{ Teacher::getTeacherName($sunDetails->period_7_t_id) }}
+                        </td>
+                        <td class="border" align="center" height="50">
+                            {{ Subject::getSubjectName($sunDetails->period_8_sub_id) }}
+                            <br>
+                            {{ Teacher::getTeacherName($sunDetails->period_8_t_id) }}
+                        </td>
                     </tr>
                     <tr class="border">
-                        <td class="border" align="center" height="50">
-                            <b>Monday</b>
-                        </td>
                         @php
                             $monDetails = App\Models\Routine::where('section_id', $routine)
                                 ->where('week_day', 'Monday')
                                 ->first();
                         @endphp
-                        <td class="border" align="center" height="50">{{ $monDetails->period_1_sub_id }}</td>
-                        <td class="border" align="center" height="50">{{ $monDetails->period_2_sub_id }}</td>
-                        <td class="border" align="center" height="50">{{ $monDetails->period_3_sub_id }}</td>
-                        <td class="border" align="center" height="50">{{ $monDetails->period_4_sub_id }}</td>
-                        <td class="border" align="center" height="50">{{ $monDetails->period_break }}</td>
-                        <td class="border" align="center" height="50">{{ $monDetails->period_5_sub_id }}</td>
-                        <td class="border" align="center" height="50">{{ $monDetails->period_6_sub_id }}</td>
-                        <td class="border" align="center" height="50">{{ $monDetails->period_7_sub_id }}</td>
+                        <td class="border" align="center" height="50">
+                            <button type="button" class="btn" data-bs-toggle="modal"
+                                data-bs-target="#monday{{ $monDetails->id }}">
+                                <b>Monday</b>
+                            </button>
+                        </td>
+                        <td class="border" align="center" height="50">
+                            {{ Subject::getSubjectName($monDetails->period_1_sub_id) }}
+                            <br>
+                            {{ Teacher::getTeacherName($monDetails->period_1_t_id) }}
+                        </td>
+                        <td class="border" align="center" height="50">
+                            {{ Subject::getSubjectName($monDetails->period_2_sub_id) }}
+                            <br>
+                            {{ Teacher::getTeacherName($monDetails->period_2_t_id) }}
+                        </td>
+                        <td class="border" align="center" height="50">
+                            {{ Subject::getSubjectName($monDetails->period_3_sub_id) }}
+                            <br>
+                            {{ Teacher::getTeacherName($monDetails->period_3_t_id) }}
+                        </td>
+                        <td class="border" align="center" height="50">
+                            {{ Subject::getSubjectName($monDetails->period_4_sub_id) }}
+                            <br>
+                            {{ Teacher::getTeacherName($monDetails->period_4_t_id) }}
+                        </td>
+                        <td class="border" align="center" height="50">
+                            <span class="text-success">Lunch</span>
+                        </td>
+                        <td class="border" align="center" height="50">
+                            {{ Subject::getSubjectName($monDetails->period_5_sub_id) }}
+                            <br>
+                            {{ Teacher::getTeacherName($monDetails->period_5_t_id) }}
+                        </td>
+                        <td class="border" align="center" height="50">
+                            {{ Subject::getSubjectName($monDetails->period_6_sub_id) }}
+                            <br>
+                            {{ Teacher::getTeacherName($monDetails->period_6_t_id) }}
+                        </td>
+                        <td class="border" align="center" height="50">
+                            {{ Subject::getSubjectName($monDetails->period_7_sub_id) }}
+                            <br>
+                            {{ Teacher::getTeacherName($monDetails->period_7_t_id) }}
+                        </td>
+                        <td class="border" align="center" height="50">
+                            {{ Subject::getSubjectName($monDetails->period_8_sub_id) }}
+                            <br>
+                            {{ Teacher::getTeacherName($monDetails->period_8_t_id) }}
+                        </td>
                     </tr>
                     <tr class="border">
-                        <td class="border" align="center" height="50">
-                            <b>Tuesday</b>
-                        </td>
                         @php
                             $tusDetails = App\Models\Routine::where('section_id', $routine)
                                 ->where('week_day', 'Tuesday')
@@ -178,10 +289,876 @@
                             {{ Teacher::getTeacherName($tusDetails->period_8_t_id) }}
                         </td>
                     </tr>
+                    <tr class="border">
+                        @php
+                            $wedDetails = App\Models\Routine::where('section_id', $routine)
+                                ->where('week_day', 'Wednesday')
+                                ->first();
+                        @endphp
+                        <td class="border" align="center" height="50">
+                            <button type="button" class="btn" data-bs-toggle="modal"
+                                data-bs-target="#wednesday{{ $wedDetails->id }}">
+                                <b>Wednesday</b>
+                            </button>
+                        </td>
+                        <td class="border" align="center" height="50">
+                            {{ Subject::getSubjectName($wedDetails->period_1_sub_id) }}
+                            <br>
+                            {{ Teacher::getTeacherName($wedDetails->period_1_t_id) }}
+                        </td>
+                        <td class="border" align="center" height="50">
+                            {{ Subject::getSubjectName($wedDetails->period_2_sub_id) }}
+                            <br>
+                            {{ Teacher::getTeacherName($wedDetails->period_2_t_id) }}
+                        </td>
+                        <td class="border" align="center" height="50">
+                            {{ Subject::getSubjectName($wedDetails->period_3_sub_id) }}
+                            <br>
+                            {{ Teacher::getTeacherName($wedDetails->period_3_t_id) }}
+                        </td>
+                        <td class="border" align="center" height="50">
+                            {{ Subject::getSubjectName($wedDetails->period_4_sub_id) }}
+                            <br>
+                            {{ Teacher::getTeacherName($wedDetails->period_4_t_id) }}
+                        </td>
+                        <td class="border" align="center" height="50">
+                            <span class="text-success">Lunch</span>
+                        </td>
+                        <td class="border" align="center" height="50">
+                            {{ Subject::getSubjectName($wedDetails->period_5_sub_id) }}
+                            <br>
+                            {{ Teacher::getTeacherName($wedDetails->period_5_t_id) }}
+                        </td>
+                        <td class="border" align="center" height="50">
+                            {{ Subject::getSubjectName($wedDetails->period_6_sub_id) }}
+                            <br>
+                            {{ Teacher::getTeacherName($wedDetails->period_6_t_id) }}
+                        </td>
+                        <td class="border" align="center" height="50">
+                            {{ Subject::getSubjectName($wedDetails->period_7_sub_id) }}
+                            <br>
+                            {{ Teacher::getTeacherName($wedDetails->period_7_t_id) }}
+                        </td>
+                        <td class="border" align="center" height="50">
+                            {{ Subject::getSubjectName($wedDetails->period_8_sub_id) }}
+                            <br>
+                            {{ Teacher::getTeacherName($wedDetails->period_8_t_id) }}
+                        </td>
+                    </tr>
+                    <tr class="border">
+                        @php
+                            $thuDetails = App\Models\Routine::where('section_id', $routine)
+                                ->where('week_day', 'Thursday')
+                                ->first();
+                        @endphp
+                        <td class="border" align="center" height="50">
+                            <button type="button" class="btn" data-bs-toggle="modal"
+                                data-bs-target="#thursday{{ $thuDetails->id }}">
+                                <b>Thursday</b>
+                            </button>
+                        </td>
+                        <td class="border" align="center" height="50">
+                            {{ Subject::getSubjectName($thuDetails->period_1_sub_id) }}
+                            <br>
+                            {{ Teacher::getTeacherName($thuDetails->period_1_t_id) }}
+                        </td>
+                        <td class="border" align="center" height="50">
+                            {{ Subject::getSubjectName($thuDetails->period_2_sub_id) }}
+                            <br>
+                            {{ Teacher::getTeacherName($thuDetails->period_2_t_id) }}
+                        </td>
+                        <td class="border" align="center" height="50">
+                            {{ Subject::getSubjectName($thuDetails->period_3_sub_id) }}
+                            <br>
+                            {{ Teacher::getTeacherName($thuDetails->period_3_t_id) }}
+                        </td>
+                        <td class="border" align="center" height="50">
+                            {{ Subject::getSubjectName($thuDetails->period_4_sub_id) }}
+                            <br>
+                            {{ Teacher::getTeacherName($thuDetails->period_4_t_id) }}
+                        </td>
+                        <td class="border" align="center" height="50">
+                            <span class="text-success">Lunch</span>
+                        </td>
+                        <td class="border" align="center" height="50">
+                            {{ Subject::getSubjectName($thuDetails->period_5_sub_id) }}
+                            <br>
+                            {{ Teacher::getTeacherName($thuDetails->period_5_t_id) }}
+                        </td>
+                        <td class="border" align="center" height="50">
+                            {{ Subject::getSubjectName($thuDetails->period_6_sub_id) }}
+                            <br>
+                            {{ Teacher::getTeacherName($thuDetails->period_6_t_id) }}
+                        </td>
+                        <td class="border" align="center" height="50">
+                            {{ Subject::getSubjectName($thuDetails->period_7_sub_id) }}
+                            <br>
+                            {{ Teacher::getTeacherName($thuDetails->period_7_t_id) }}
+                        </td>
+                        <td class="border" align="center" height="50">
+                            {{ Subject::getSubjectName($thuDetails->period_8_sub_id) }}
+                            <br>
+                            {{ Teacher::getTeacherName($thuDetails->period_8_t_id) }}
+                        </td>
+                    </tr>
                 </table>
                 <br>
 
-                <!-- Modal -->
+
+                <!-- saturday Modal -->
+                <div class="modal fade" id="saturday{{ $satDetails->id }}" tabindex="-1"
+                    aria-labelledby="saturday{{ $satDetails->id }}Label" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="saturday{{ $satDetails->id }}Label">
+                                    Saturday
+                                    ({{ $routineDetails->routineToSection->sectionToClass->class_name . ' - Section: ' . $routineDetails->routineToSection->section }})
+                                </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <form action="{{ route('routine_update_week_day') }}" method="post">
+                                @csrf
+                                <input type="hidden" name="routine_id" value="{{ $satDetails->id }}">
+                                <div class="modal-body">
+                                    {{-- 1st --}}
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">1st Period</label>
+                                        <div class="row">
+                                            <div class="col">
+                                                <select class="form-select" name="period_1_sub_id" required>
+                                                    <option value="">Select Subject</option>
+                                                    @foreach ($subjects as $subject)
+                                                        <option value="{{ $subject->id }}"
+                                                            {{ $satDetails->period_1_sub_id == $subject->id ? 'selected' : '' }}>
+                                                            {{ $subject->subject_name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col">
+                                                <select class="form-select" name="period_1_t_id" required>
+                                                    <option value="">Select Teacher</option>
+                                                    @foreach ($teachers as $teacher)
+                                                        <option value="{{ $teacher->id }}"
+                                                            {{ $satDetails->period_1_t_id == $teacher->id ? 'selected' : '' }}>
+                                                            {{ $teacher->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{-- 2nd --}}
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">2nd Period</label>
+                                        <div class="row">
+                                            <div class="col">
+                                                <select class="form-select" name="period_2_sub_id" required>
+                                                    <option value="">Select Subject</option>
+                                                    @foreach ($subjects as $subject)
+                                                        <option value="{{ $subject->id }}"
+                                                            {{ $satDetails->period_2_sub_id == $subject->id ? 'selected' : '' }}>
+                                                            {{ $subject->subject_name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col">
+                                                <select class="form-select" name="period_2_t_id" required>
+                                                    <option value="">Select Teacher</option>
+                                                    @foreach ($teachers as $teacher)
+                                                        <option value="{{ $teacher->id }}"
+                                                            {{ $satDetails->period_2_t_id == $teacher->id ? 'selected' : '' }}>
+                                                            {{ $teacher->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{-- 3rd --}}
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">3rd Period</label>
+                                        <div class="row">
+                                            <div class="col">
+                                                <select class="form-select" name="period_3_sub_id" required>
+                                                    <option value="">Select Subject</option>
+                                                    @foreach ($subjects as $subject)
+                                                        <option value="{{ $subject->id }}"
+                                                            {{ $satDetails->period_3_sub_id == $subject->id ? 'selected' : '' }}>
+                                                            {{ $subject->subject_name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col">
+                                                <select class="form-select" name="period_3_t_id" required>
+                                                    <option value="">Select Teacher</option>
+                                                    @foreach ($teachers as $teacher)
+                                                        <option value="{{ $teacher->id }}"
+                                                            {{ $satDetails->period_3_t_id == $teacher->id ? 'selected' : '' }}>
+                                                            {{ $teacher->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{-- 4th --}}
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">4th Period</label>
+                                        <div class="row">
+                                            <div class="col">
+                                                <select class="form-select" name="period_4_sub_id" required>
+                                                    <option value="">Select Subject</option>
+                                                    @foreach ($subjects as $subject)
+                                                        <option value="{{ $subject->id }}"
+                                                            {{ $satDetails->period_4_sub_id == $subject->id ? 'selected' : '' }}>
+                                                            {{ $subject->subject_name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col">
+                                                <select class="form-select" name="period_4_t_id" required>
+                                                    <option value="">Select Teacher</option>
+                                                    @foreach ($teachers as $teacher)
+                                                        <option value="{{ $teacher->id }}"
+                                                            {{ $satDetails->period_4_t_id == $teacher->id ? 'selected' : '' }}>
+                                                            {{ $teacher->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{-- 5th --}}
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">5th Period</label>
+                                        <div class="row">
+                                            <div class="col">
+                                                <select class="form-select" name="period_5_sub_id" required>
+                                                    <option value="">Select Subject</option>
+                                                    @foreach ($subjects as $subject)
+                                                        <option value="{{ $subject->id }}"
+                                                            {{ $satDetails->period_5_sub_id == $subject->id ? 'selected' : '' }}>
+                                                            {{ $subject->subject_name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col">
+                                                <select class="form-select" name="period_5_t_id" required>
+                                                    <option value="">Select Teacher</option>
+                                                    @foreach ($teachers as $teacher)
+                                                        <option value="{{ $teacher->id }}"
+                                                            {{ $satDetails->period_5_t_id == $teacher->id ? 'selected' : '' }}>
+                                                            {{ $teacher->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{-- 6th --}}
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">6th Period</label>
+                                        <div class="row">
+                                            <div class="col">
+                                                <select class="form-select" name="period_6_sub_id" required>
+                                                    <option value="">Select Subject</option>
+                                                    @foreach ($subjects as $subject)
+                                                        <option value="{{ $subject->id }}"
+                                                            {{ $satDetails->period_6_sub_id == $subject->id ? 'selected' : '' }}>
+                                                            {{ $subject->subject_name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col">
+                                                <select class="form-select" name="period_6_t_id" required>
+                                                    <option value="">Select Teacher</option>
+                                                    @foreach ($teachers as $teacher)
+                                                        <option value="{{ $teacher->id }}"
+                                                            {{ $satDetails->period_6_t_id == $teacher->id ? 'selected' : '' }}>
+                                                            {{ $teacher->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{-- 7th --}}
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">7th Period</label>
+                                        <div class="row">
+                                            <div class="col">
+                                                <select class="form-select" name="period_7_sub_id" required>
+                                                    <option value="">Select Subject</option>
+                                                    @foreach ($subjects as $subject)
+                                                        <option value="{{ $subject->id }}"
+                                                            {{ $satDetails->period_7_sub_id == $subject->id ? 'selected' : '' }}>
+                                                            {{ $subject->subject_name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col">
+                                                <select class="form-select" name="period_7_t_id" required>
+                                                    <option value="">Select Teacher</option>
+                                                    @foreach ($teachers as $teacher)
+                                                        <option value="{{ $teacher->id }}"
+                                                            {{ $satDetails->period_7_t_id == $teacher->id ? 'selected' : '' }}>
+                                                            {{ $teacher->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{-- 8th --}}
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">8th Period</label>
+                                        <div class="row">
+                                            <div class="col">
+                                                <select class="form-select" name="period_8_sub_id" required>
+                                                    <option value="">Select Subject</option>
+                                                    @foreach ($subjects as $subject)
+                                                        <option value="{{ $subject->id }}"
+                                                            {{ $satDetails->period_8_sub_id == $subject->id ? 'selected' : '' }}>
+                                                            {{ $subject->subject_name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col">
+                                                <select class="form-select" name="period_8_t_id" required>
+                                                    <option value="">Select Teacher</option>
+                                                    @foreach ($teachers as $teacher)
+                                                        <option value="{{ $teacher->id }}"
+                                                            {{ $satDetails->period_8_t_id == $teacher->id ? 'selected' : '' }}>
+                                                            {{ $teacher->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Update</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- sunday Modal -->
+                <div class="modal fade" id="sunday{{ $sunDetails->id }}" tabindex="-1"
+                    aria-labelledby="sunday{{ $sunDetails->id }}Label" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="sunday{{ $sunDetails->id }}Label">
+                                    Sunday
+                                    ({{ $routineDetails->routineToSection->sectionToClass->class_name . ' - Section: ' . $routineDetails->routineToSection->section }})
+                                </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <form action="{{ route('routine_update_week_day') }}" method="post">
+                                @csrf
+                                <input type="hidden" name="routine_id" value="{{ $sunDetails->id }}">
+                                <div class="modal-body">
+                                    {{-- 1st --}}
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">1st Period</label>
+                                        <div class="row">
+                                            <div class="col">
+                                                <select class="form-select" name="period_1_sub_id" required>
+                                                    <option value="">Select Subject</option>
+                                                    @foreach ($subjects as $subject)
+                                                        <option value="{{ $subject->id }}"
+                                                            {{ $sunDetails->period_1_sub_id == $subject->id ? 'selected' : '' }}>
+                                                            {{ $subject->subject_name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col">
+                                                <select class="form-select" name="period_1_t_id" required>
+                                                    <option value="">Select Teacher</option>
+                                                    @foreach ($teachers as $teacher)
+                                                        <option value="{{ $teacher->id }}"
+                                                            {{ $sunDetails->period_1_t_id == $teacher->id ? 'selected' : '' }}>
+                                                            {{ $teacher->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{-- 2nd --}}
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">2nd Period</label>
+                                        <div class="row">
+                                            <div class="col">
+                                                <select class="form-select" name="period_2_sub_id" required>
+                                                    <option value="">Select Subject</option>
+                                                    @foreach ($subjects as $subject)
+                                                        <option value="{{ $subject->id }}"
+                                                            {{ $sunDetails->period_2_sub_id == $subject->id ? 'selected' : '' }}>
+                                                            {{ $subject->subject_name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col">
+                                                <select class="form-select" name="period_2_t_id" required>
+                                                    <option value="">Select Teacher</option>
+                                                    @foreach ($teachers as $teacher)
+                                                        <option value="{{ $teacher->id }}"
+                                                            {{ $sunDetails->period_2_t_id == $teacher->id ? 'selected' : '' }}>
+                                                            {{ $teacher->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{-- 3rd --}}
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">3rd Period</label>
+                                        <div class="row">
+                                            <div class="col">
+                                                <select class="form-select" name="period_3_sub_id" required>
+                                                    <option value="">Select Subject</option>
+                                                    @foreach ($subjects as $subject)
+                                                        <option value="{{ $subject->id }}"
+                                                            {{ $sunDetails->period_3_sub_id == $subject->id ? 'selected' : '' }}>
+                                                            {{ $subject->subject_name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col">
+                                                <select class="form-select" name="period_3_t_id" required>
+                                                    <option value="">Select Teacher</option>
+                                                    @foreach ($teachers as $teacher)
+                                                        <option value="{{ $teacher->id }}"
+                                                            {{ $sunDetails->period_3_t_id == $teacher->id ? 'selected' : '' }}>
+                                                            {{ $teacher->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{-- 4th --}}
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">4th Period</label>
+                                        <div class="row">
+                                            <div class="col">
+                                                <select class="form-select" name="period_4_sub_id" required>
+                                                    <option value="">Select Subject</option>
+                                                    @foreach ($subjects as $subject)
+                                                        <option value="{{ $subject->id }}"
+                                                            {{ $sunDetails->period_4_sub_id == $subject->id ? 'selected' : '' }}>
+                                                            {{ $subject->subject_name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col">
+                                                <select class="form-select" name="period_4_t_id" required>
+                                                    <option value="">Select Teacher</option>
+                                                    @foreach ($teachers as $teacher)
+                                                        <option value="{{ $teacher->id }}"
+                                                            {{ $sunDetails->period_4_t_id == $teacher->id ? 'selected' : '' }}>
+                                                            {{ $teacher->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{-- 5th --}}
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">5th Period</label>
+                                        <div class="row">
+                                            <div class="col">
+                                                <select class="form-select" name="period_5_sub_id" required>
+                                                    <option value="">Select Subject</option>
+                                                    @foreach ($subjects as $subject)
+                                                        <option value="{{ $subject->id }}"
+                                                            {{ $sunDetails->period_5_sub_id == $subject->id ? 'selected' : '' }}>
+                                                            {{ $subject->subject_name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col">
+                                                <select class="form-select" name="period_5_t_id" required>
+                                                    <option value="">Select Teacher</option>
+                                                    @foreach ($teachers as $teacher)
+                                                        <option value="{{ $teacher->id }}"
+                                                            {{ $sunDetails->period_5_t_id == $teacher->id ? 'selected' : '' }}>
+                                                            {{ $teacher->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{-- 6th --}}
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">6th Period</label>
+                                        <div class="row">
+                                            <div class="col">
+                                                <select class="form-select" name="period_6_sub_id" required>
+                                                    <option value="">Select Subject</option>
+                                                    @foreach ($subjects as $subject)
+                                                        <option value="{{ $subject->id }}"
+                                                            {{ $sunDetails->period_6_sub_id == $subject->id ? 'selected' : '' }}>
+                                                            {{ $subject->subject_name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col">
+                                                <select class="form-select" name="period_6_t_id" required>
+                                                    <option value="">Select Teacher</option>
+                                                    @foreach ($teachers as $teacher)
+                                                        <option value="{{ $teacher->id }}"
+                                                            {{ $sunDetails->period_6_t_id == $teacher->id ? 'selected' : '' }}>
+                                                            {{ $teacher->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{-- 7th --}}
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">7th Period</label>
+                                        <div class="row">
+                                            <div class="col">
+                                                <select class="form-select" name="period_7_sub_id" required>
+                                                    <option value="">Select Subject</option>
+                                                    @foreach ($subjects as $subject)
+                                                        <option value="{{ $subject->id }}"
+                                                            {{ $sunDetails->period_7_sub_id == $subject->id ? 'selected' : '' }}>
+                                                            {{ $subject->subject_name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col">
+                                                <select class="form-select" name="period_7_t_id" required>
+                                                    <option value="">Select Teacher</option>
+                                                    @foreach ($teachers as $teacher)
+                                                        <option value="{{ $teacher->id }}"
+                                                            {{ $sunDetails->period_7_t_id == $teacher->id ? 'selected' : '' }}>
+                                                            {{ $teacher->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{-- 8th --}}
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">8th Period</label>
+                                        <div class="row">
+                                            <div class="col">
+                                                <select class="form-select" name="period_8_sub_id" required>
+                                                    <option value="">Select Subject</option>
+                                                    @foreach ($subjects as $subject)
+                                                        <option value="{{ $subject->id }}"
+                                                            {{ $sunDetails->period_8_sub_id == $subject->id ? 'selected' : '' }}>
+                                                            {{ $subject->subject_name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col">
+                                                <select class="form-select" name="period_8_t_id" required>
+                                                    <option value="">Select Teacher</option>
+                                                    @foreach ($teachers as $teacher)
+                                                        <option value="{{ $teacher->id }}"
+                                                            {{ $sunDetails->period_8_t_id == $teacher->id ? 'selected' : '' }}>
+                                                            {{ $teacher->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Update</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- monday Modal -->
+                <div class="modal fade" id="monday{{ $monDetails->id }}" tabindex="-1"
+                    aria-labelledby="monday{{ $monDetails->id }}Label" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="monday{{ $monDetails->id }}Label">
+                                    Monday
+                                    ({{ $routineDetails->routineToSection->sectionToClass->class_name . ' - Section: ' . $routineDetails->routineToSection->section }})
+                                </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <form action="{{ route('routine_update_week_day') }}" method="post">
+                                @csrf
+                                <input type="hidden" name="routine_id" value="{{ $monDetails->id }}">
+                                <div class="modal-body">
+                                    {{-- 1st --}}
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">1st Period</label>
+                                        <div class="row">
+                                            <div class="col">
+                                                <select class="form-select" name="period_1_sub_id" required>
+                                                    <option value="">Select Subject</option>
+                                                    @foreach ($subjects as $subject)
+                                                        <option value="{{ $subject->id }}"
+                                                            {{ $monDetails->period_1_sub_id == $subject->id ? 'selected' : '' }}>
+                                                            {{ $subject->subject_name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col">
+                                                <select class="form-select" name="period_1_t_id" required>
+                                                    <option value="">Select Teacher</option>
+                                                    @foreach ($teachers as $teacher)
+                                                        <option value="{{ $teacher->id }}"
+                                                            {{ $monDetails->period_1_t_id == $teacher->id ? 'selected' : '' }}>
+                                                            {{ $teacher->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{-- 2nd --}}
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">2nd Period</label>
+                                        <div class="row">
+                                            <div class="col">
+                                                <select class="form-select" name="period_2_sub_id" required>
+                                                    <option value="">Select Subject</option>
+                                                    @foreach ($subjects as $subject)
+                                                        <option value="{{ $subject->id }}"
+                                                            {{ $monDetails->period_2_sub_id == $subject->id ? 'selected' : '' }}>
+                                                            {{ $subject->subject_name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col">
+                                                <select class="form-select" name="period_2_t_id" required>
+                                                    <option value="">Select Teacher</option>
+                                                    @foreach ($teachers as $teacher)
+                                                        <option value="{{ $teacher->id }}"
+                                                            {{ $monDetails->period_2_t_id == $teacher->id ? 'selected' : '' }}>
+                                                            {{ $teacher->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{-- 3rd --}}
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">3rd Period</label>
+                                        <div class="row">
+                                            <div class="col">
+                                                <select class="form-select" name="period_3_sub_id" required>
+                                                    <option value="">Select Subject</option>
+                                                    @foreach ($subjects as $subject)
+                                                        <option value="{{ $subject->id }}"
+                                                            {{ $monDetails->period_3_sub_id == $subject->id ? 'selected' : '' }}>
+                                                            {{ $subject->subject_name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col">
+                                                <select class="form-select" name="period_3_t_id" required>
+                                                    <option value="">Select Teacher</option>
+                                                    @foreach ($teachers as $teacher)
+                                                        <option value="{{ $teacher->id }}"
+                                                            {{ $monDetails->period_3_t_id == $teacher->id ? 'selected' : '' }}>
+                                                            {{ $teacher->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{-- 4th --}}
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">4th Period</label>
+                                        <div class="row">
+                                            <div class="col">
+                                                <select class="form-select" name="period_4_sub_id" required>
+                                                    <option value="">Select Subject</option>
+                                                    @foreach ($subjects as $subject)
+                                                        <option value="{{ $subject->id }}"
+                                                            {{ $monDetails->period_4_sub_id == $subject->id ? 'selected' : '' }}>
+                                                            {{ $subject->subject_name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col">
+                                                <select class="form-select" name="period_4_t_id" required>
+                                                    <option value="">Select Teacher</option>
+                                                    @foreach ($teachers as $teacher)
+                                                        <option value="{{ $teacher->id }}"
+                                                            {{ $monDetails->period_4_t_id == $teacher->id ? 'selected' : '' }}>
+                                                            {{ $teacher->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{-- 5th --}}
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">5th Period</label>
+                                        <div class="row">
+                                            <div class="col">
+                                                <select class="form-select" name="period_5_sub_id" required>
+                                                    <option value="">Select Subject</option>
+                                                    @foreach ($subjects as $subject)
+                                                        <option value="{{ $subject->id }}"
+                                                            {{ $monDetails->period_5_sub_id == $subject->id ? 'selected' : '' }}>
+                                                            {{ $subject->subject_name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col">
+                                                <select class="form-select" name="period_5_t_id" required>
+                                                    <option value="">Select Teacher</option>
+                                                    @foreach ($teachers as $teacher)
+                                                        <option value="{{ $teacher->id }}"
+                                                            {{ $monDetails->period_5_t_id == $teacher->id ? 'selected' : '' }}>
+                                                            {{ $teacher->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{-- 6th --}}
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">6th Period</label>
+                                        <div class="row">
+                                            <div class="col">
+                                                <select class="form-select" name="period_6_sub_id" required>
+                                                    <option value="">Select Subject</option>
+                                                    @foreach ($subjects as $subject)
+                                                        <option value="{{ $subject->id }}"
+                                                            {{ $monDetails->period_6_sub_id == $subject->id ? 'selected' : '' }}>
+                                                            {{ $subject->subject_name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col">
+                                                <select class="form-select" name="period_6_t_id" required>
+                                                    <option value="">Select Teacher</option>
+                                                    @foreach ($teachers as $teacher)
+                                                        <option value="{{ $teacher->id }}"
+                                                            {{ $monDetails->period_6_t_id == $teacher->id ? 'selected' : '' }}>
+                                                            {{ $teacher->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{-- 7th --}}
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">7th Period</label>
+                                        <div class="row">
+                                            <div class="col">
+                                                <select class="form-select" name="period_7_sub_id" required>
+                                                    <option value="">Select Subject</option>
+                                                    @foreach ($subjects as $subject)
+                                                        <option value="{{ $subject->id }}"
+                                                            {{ $monDetails->period_7_sub_id == $subject->id ? 'selected' : '' }}>
+                                                            {{ $subject->subject_name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col">
+                                                <select class="form-select" name="period_7_t_id" required>
+                                                    <option value="">Select Teacher</option>
+                                                    @foreach ($teachers as $teacher)
+                                                        <option value="{{ $teacher->id }}"
+                                                            {{ $monDetails->period_7_t_id == $teacher->id ? 'selected' : '' }}>
+                                                            {{ $teacher->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{-- 8th --}}
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">8th Period</label>
+                                        <div class="row">
+                                            <div class="col">
+                                                <select class="form-select" name="period_8_sub_id" required>
+                                                    <option value="">Select Subject</option>
+                                                    @foreach ($subjects as $subject)
+                                                        <option value="{{ $subject->id }}"
+                                                            {{ $monDetails->period_8_sub_id == $subject->id ? 'selected' : '' }}>
+                                                            {{ $subject->subject_name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col">
+                                                <select class="form-select" name="period_8_t_id" required>
+                                                    <option value="">Select Teacher</option>
+                                                    @foreach ($teachers as $teacher)
+                                                        <option value="{{ $teacher->id }}"
+                                                            {{ $monDetails->period_8_t_id == $teacher->id ? 'selected' : '' }}>
+                                                            {{ $teacher->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Update</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- tuesday Modal -->
                 <div class="modal fade" id="tuesday{{ $tusDetails->id }}" tabindex="-1"
                     aria-labelledby="tuesday{{ $tusDetails->id }}Label" aria-hidden="true">
                     <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -191,7 +1168,7 @@
                                     Tuesday
                                     ({{ $routineDetails->routineToSection->sectionToClass->class_name . ' - Section: ' . $routineDetails->routineToSection->section }})
                                 </h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"routineDetails
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
                             <form action="{{ route('routine_update_week_day') }}" method="post">
@@ -431,78 +1408,8 @@
                         </div>
                     </div>
                 </div>
-                        <td class="border" align="center" height="50">{{ $tusDetails->period_1_sub_id }}</td>
-                        <td class="border" align="center" height="50">{{ $tusDetails->period_2_sub_id }}</td>
-                        <td class="border" align="center" height="50">{{ $tusDetails->period_3_sub_id }}</td>
-                        <td class="border" align="center" height="50">{{ $tusDetails->period_4_sub_id }}</td>
-                        <td class="border" align="center" height="50">{{ $tusDetails->period_break }}</td>
-                        <td class="border" align="center" height="50">{{ $tusDetails->period_5_sub_id }}</td>
-                        <td class="border" align="center" height="50">{{ $tusDetails->period_6_sub_id }}</td>
-                        <td class="border" align="center" height="50">{{ $tusDetails->period_7_sub_id }}</td>
-                    </tr>
-                    <tr class="border">
-                        <td class="border" align="center" height="50">
-                            <b>Wednesday</b>
-                        </td>
-                        @php
-                            $wedDetails = App\Models\Routine::where('section_id', $routine)
-                                ->where('week_day', 'Wednesday')
-                                ->first();
-                        @endphp
-                        <td class="border" align="center" height="50">
-                            <button type="button" class="btn" data-bs-toggle="modal"
-                                data-bs-target="#wednesday{{ $wedDetails->id }}">
-                                <b>Wednesday</b>
-                            </button>
-                        </td>
-                        <td class="border" align="center" height="50">
-                            {{ Subject::getSubjectName($wedDetails->period_1_sub_id) }}
-                            <br>
-                            {{ Teacher::getTeacherName($wedDetails->period_1_t_id) }}
-                        </td>
-                        <td class="border" align="center" height="50">
-                            {{ Subject::getSubjectName($wedDetails->period_2_sub_id) }}
-                            <br>
-                            {{ Teacher::getTeacherName($wedDetails->period_2_t_id) }}
-                        </td>
-                        <td class="border" align="center" height="50">
-                            {{ Subject::getSubjectName($wedDetails->period_3_sub_id) }}
-                            <br>
-                            {{ Teacher::getTeacherName($wedDetails->period_3_t_id) }}
-                        </td>
-                        <td class="border" align="center" height="50">
-                            {{ Subject::getSubjectName($wedDetails->period_4_sub_id) }}
-                            <br>
-                            {{ Teacher::getTeacherName($wedDetails->period_4_t_id) }}
-                        </td>
-                        <td class="border" align="center" height="50">
-                            <span class="text-success">Lunch</span>
-                        </td>
-                        <td class="border" align="center" height="50">
-                            {{ Subject::getSubjectName($wedDetails->period_5_sub_id) }}
-                            <br>
-                            {{ Teacher::getTeacherName($wedDetails->period_5_t_id) }}
-                        </td>
-                        <td class="border" align="center" height="50">
-                            {{ Subject::getSubjectName($wedDetails->period_6_sub_id) }}
-                            <br>
-                            {{ Teacher::getTeacherName($wedDetails->period_6_t_id) }}
-                        </td>
-                        <td class="border" align="center" height="50">
-                            {{ Subject::getSubjectName($wedDetails->period_7_sub_id) }}
-                            <br>
-                            {{ Teacher::getTeacherName($wedDetails->period_7_t_id) }}
-                        </td>
-                        <td class="border" align="center" height="50">
-                            {{ Subject::getSubjectName($wedDetails->period_8_sub_id) }}
-                            <br>
-                            {{ Teacher::getTeacherName($wedDetails->period_8_t_id) }}
-                        </td>
-                    </tr>
-                </table>
-                <br>
 
-                <!-- Modal -->
+                <!-- wednesday Modal -->
                 <div class="modal fade" id="wednesday{{ $wedDetails->id }}" tabindex="-1"
                     aria-labelledby="wednesday{{ $wedDetails->id }}Label" aria-hidden="true">
                     <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -512,7 +1419,7 @@
                                     Wednesday
                                     ({{ $routineDetails->routineToSection->sectionToClass->class_name . ' - Section: ' . $routineDetails->routineToSection->section }})
                                 </h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"routineDetails
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
                             <form action="{{ route('routine_update_week_day') }}" method="post">
@@ -752,76 +1659,8 @@
                         </div>
                     </div>
                 </div>
-                        <td class="border" align="center" height="50">{{ $wedDetails->period_1_sub_id }}</td>
-                        <td class="border" align="center" height="50">{{ $wedDetails->period_2_sub_id }}</td>
-                        <td class="border" align="center" height="50">{{ $wedDetails->period_3_sub_id }}</td>
-                        <td class="border" align="center" height="50">{{ $wedDetails->period_4_sub_id }}</td>
-                        <td class="border" align="center" height="50">{{ $wedDetails->period_break }}</td>
-                        <td class="border" align="center" height="50">{{ $wedDetails->period_5_sub_id }}</td>
-                        <td class="border" align="center" height="50">{{ $wedDetails->period_6_sub_id }}</td>
-                        <td class="border" align="center" height="50">{{ $wedDetails->period_7_sub_id }}</td>
-                    </tr>
-                    <tr class="border">
 
-                        @php
-                            $thuDetails = App\Models\Routine::where('section_id', $routine)
-                                ->where('week_day', 'Thursday')
-                                ->first();
-                        @endphp
-                        <td class="border" align="center" height="50">
-                            <button type="button" class="btn" data-bs-toggle="modal"
-                                data-bs-target="#thursday{{ $thuDetails->id }}">
-                                <b>Thursday</b>
-                            </button>
-                        </td>
-                        <td class="border" align="center" height="50">
-                            {{ Subject::getSubjectName($thuDetails->period_1_sub_id) }}
-                            <br>
-                            {{ Teacher::getTeacherName($thuDetails->period_1_t_id) }}
-                        </td>
-                        <td class="border" align="center" height="50">
-                            {{ Subject::getSubjectName($thuDetails->period_2_sub_id) }}
-                            <br>
-                            {{ Teacher::getTeacherName($thuDetails->period_2_t_id) }}
-                        </td>
-                        <td class="border" align="center" height="50">
-                            {{ Subject::getSubjectName($thuDetails->period_3_sub_id) }}
-                            <br>
-                            {{ Teacher::getTeacherName($thuDetails->period_3_t_id) }}
-                        </td>
-                        <td class="border" align="center" height="50">
-                            {{ Subject::getSubjectName($thuDetails->period_4_sub_id) }}
-                            <br>
-                            {{ Teacher::getTeacherName($thuDetails->period_4_t_id) }}
-                        </td>
-                        <td class="border" align="center" height="50">
-                            <span class="text-success">Lunch</span>
-                        </td>
-                        <td class="border" align="center" height="50">
-                            {{ Subject::getSubjectName($thuDetails->period_5_sub_id) }}
-                            <br>
-                            {{ Teacher::getTeacherName($thuDetails->period_5_t_id) }}
-                        </td>
-                        <td class="border" align="center" height="50">
-                            {{ Subject::getSubjectName($thuDetails->period_6_sub_id) }}
-                            <br>
-                            {{ Teacher::getTeacherName($thuDetails->period_6_t_id) }}
-                        </td>
-                        <td class="border" align="center" height="50">
-                            {{ Subject::getSubjectName($thuDetails->period_7_sub_id) }}
-                            <br>
-                            {{ Teacher::getTeacherName($thuDetails->period_7_t_id) }}
-                        </td>
-                        <td class="border" align="center" height="50">
-                            {{ Subject::getSubjectName($thuDetails->period_8_sub_id) }}
-                            <br>
-                            {{ Teacher::getTeacherName($thuDetails->period_8_t_id) }}
-                        </td>
-                    </tr>
-                </table>
-                <br>
-
-                <!-- Modal -->
+                <!-- thursday Modal -->
                 <div class="modal fade" id="thursday{{ $thuDetails->id }}" tabindex="-1"
                     aria-labelledby="thursday{{ $thuDetails->id }}Label" aria-hidden="true">
                     <div class="modal-dialog modal-lg modal-dialog-centered">
