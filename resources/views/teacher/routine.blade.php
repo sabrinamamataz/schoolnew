@@ -1,5 +1,6 @@
-@extends('student.main')
+@extends('teacher.main')
 @section('content')
+
 
 
 @endsection
