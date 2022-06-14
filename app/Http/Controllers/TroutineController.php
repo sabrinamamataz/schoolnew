@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Routine;
+use App\Models\Teacher;
 
 use Illuminate\Http\Request;
 
@@ -10,9 +11,9 @@ class TroutineController extends Controller
 {
     public function routineDashboard()
     {
-        $troutines = Routine::groupBy('teacher_id')->pluck('teacher_id', 'teacher_id');
+        $routines = Routine::groupBy('teacher_id')->pluck('teacher_id', 'teacher_id');
 
-        // dd($troutines);
+        // dd($routines);
 
         
         $sections = Section::all();
