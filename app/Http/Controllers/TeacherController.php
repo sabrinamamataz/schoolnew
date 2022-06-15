@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Teacher;
+use App\Models\Section;
+use App\Models\ClsPeriod;
+use App\Models\Subject;
 
 class TeacherController extends Controller
 {
@@ -15,8 +18,17 @@ class TeacherController extends Controller
     }  
     public function routineDashboard()
     {
+        $teachers = Teacher::groupBy('user_id')->pluck('user_id', 'user_id');
 
-        return view('teacher.routine');
+        // dd($teachers);
+
+        
+        $sections = Section::all();
+        $periods = ClsPeriod::all();
+        $subjects = Subject::where('status', 1)->get();
+        $teachers = User::where('role', 'teacher')->get();
+        return view('teacher.routine', compact( 'sections', 'subjects', 'periods', 'teachers'));
+
     }
     public function updateprofileDashboard()
     {

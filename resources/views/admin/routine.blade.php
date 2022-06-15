@@ -44,7 +44,7 @@
             </div>
         </div>
 
-        <div class="col-md-12">
+        <div class="col-md-12">                                      
             @foreach ($routines as $routine)
                 @php
                     $routineDetails = App\Models\Routine::where('section_id', $routine)->first();
