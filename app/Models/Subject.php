@@ -10,7 +10,7 @@ class Subject extends Model
     use HasFactory;
     protected $guarded = [];
 
-    static function getSubjectName($subject_id)
+    public static function getSubjectName($subject_id)
     {
         $subject = Subject::find($subject_id);
         $name = '--';

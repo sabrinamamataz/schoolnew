@@ -1,40 +1,31 @@
 @extends('teacher.main')
 @section('content')
-
-@php
-    use App\Models\Routine;
-    use App\Models\Teacher;
-    @endphp
-    
-    <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Day</th>
-      <th scope="col">Period</th>
-      <th scope="col">Subject Name</th>
-      <th scope="col">Time</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">saturday</th>
-      <td>1st</td>
-      <td>Bangla</td>
-      <td>8:30 AM</td>
-    </tr>
-    <tr>
-      <th scope="row">Sunday</th>
-      <td>1st</td>
-      <td>English</td>
-      <td>9:30am</td>
-    </tr>
-    <tr>
-      <th scope="row">Mondday</th>
-      <td >1st</td>
-      <td>Math</td>
-      <td>9:30am</td>
-    </tr>
-  </tbody>
-</table>
-
+    <div class="container">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Day</th>
+                        <th scope="col">Period</th>
+                        <th scope="col">Class/Sec</th>
+                        <th scope="col">Subject</th>
+                        <th scope="col">Start</th>
+                        <th scope="col">End</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($arr as $data)
+                        <tr>
+                            <th scope="row">{{ $data['week_day'] }}</th>
+                            <td>{{ $data['period'] }}</td>
+                            <td>{{ $data['cls_sec'] }}</td>
+                            <td>{{ $data['subject'] }}</td>
+                            <td>{{ $data['start_time'] }}</td>
+                            <td>{{ $data['end_time'] }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
 @endsection

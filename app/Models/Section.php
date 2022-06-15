@@ -9,7 +9,7 @@ class Section extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    
+
     // function to create relationship with the section and class table
     public function sectionToClass()
     {
@@ -19,5 +19,13 @@ class Section extends Model
     public function sectionToUserTeacher()
     {
         return $this->belongsTo(User::class, 'teacher_id', 'id');
+    }
+
+    public static function getSectionAndCls($section_id)
+    {
+
+        $data = Section::find($section_id);
+
+        return $data->sectionToClass->class_name . ' - Section: ' . $data->section;
     }
 }
