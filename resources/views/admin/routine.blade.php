@@ -86,9 +86,9 @@
                             {{ Subject::getSubjectName($satDetails->period_2_sub_id) }}
                             <br>
                             {{ Teacher::getTeacherName($satDetails->period_2_t_id) }}
-                        </td>
-                        <td class="border" align="center" height="50">
-                            {{ Subject::getSubjectName($satDetails->period_3_sub_id) }}
+                          </td> 
+                          <td class="border" align="center" height="50">     
+                           {{ Subject::getSubjectName($satDetails->period_3_sub_id) }}
                             <br>
                             {{ Teacher::getTeacherName($satDetails->period_3_t_id) }}
                         </td>
@@ -98,6 +98,7 @@
                             {{ Teacher::getTeacherName($satDetails->period_4_t_id) }}
                         </td>
                         <td class="border" align="center" height="50">
+                           
                             <span class="text-success">Lunch</span>
                         </td>
                         <td class="border" align="center" height="50">
