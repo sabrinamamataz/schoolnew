@@ -6,7 +6,7 @@
     use App\Models\Teacher;                                                                          
     @endphp
                                        
-            @foreach ($routines as $routine)
+                @if($routine != 0)
                 @php
                     $routineDetails = App\Models\Routine::where('section_id', $routine)->first();
                 @endphp
@@ -20,7 +20,7 @@
                         </td>
                         @foreach ($periods as $period)
                             <td class="border" align="center" height="50" width="100">
-                                <b>{{ $period->period }}<br>{{ date('h:i A', strtotime($period->start_time)) }} -routineToSection
+                                <b>{{ $period->period }}<br>{{ date('h:i A', strtotime($period->start_time)) }} -
                                     {{ date('h:i A', strtotime($period->end_time)) }}</b>
                             </td>
                         @endforeach
@@ -348,7 +348,9 @@
                 <br>
                 <td>
                  <a class="btn btn-info" href="{{ route('routine_invoice') }}">Printe</a>
+                @else
+                <h4>Routine not found</h4>
+                @endif
 
-                @endforeach
                
 @endsection

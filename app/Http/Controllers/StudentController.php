@@ -20,15 +20,16 @@ class StudentController extends Controller
     }
     public function routineDashboard()
     {
-        $routines = Routine::groupBy('section_id')->pluck('section_id', 'section_id');
+        $studentClsSection = Student::where('user_id', auth()->user()-id)->first();
+        if (isset($studentClsSection)) {
+            $routine = $studentClsSection->class;
+        } else {
+            $routine = 0;
 
-        // dd($routines);
+        }
 
-        $sections = Section::all();
-        $periods = ClsPeriod::all();
-        $subjects = Subject::where('status', 1)->get();
-        $teachers = User::where('role', 'teacher')->get();
-        return view('student.routine', compact('routines', 'sections', 'subjects', 'periods', 'teachers'));
+
+        return view('student.routine', compact('routine'));
     }
 
     /**
