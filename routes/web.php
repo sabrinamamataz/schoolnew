@@ -8,7 +8,7 @@ use App\Http\controllers\TeacherController;
 use App\Http\controllers\ClassController;
 use App\Http\controllers\RoutineController;
 use App\Http\Controllers\SubjectController;
-
+use App\Http\Controllers\AttendanceController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -48,6 +48,7 @@ Route::get('/logout', [UserAuthController::class, 'logout'])->name('logout');
 Route::group(['middleware' => 'auth'], function () {
     // admin
     Route::get('/admin-dashboard', [SectionController::class, 'adminDashboard'])->name('admin_dashboard');
+    
     // subject
     Route::get('/subject', [SubjectController::class, 'subjectList'])->name('subject_list');
     Route::post('/section/add', [SubjectController::class, 'addSubject'])->name('add_subject');
@@ -86,6 +87,10 @@ Route::group(['middleware' => 'auth'], function () {
 
     //teacher routine
     Route::get('/routine-dashboard', [TeacherController::class,  'routineDashboard'])->name('routine_dashboard');
+
+    //attendance
+    Route::get('/attendance-admin-dashboard', [AttendanceController::class, 'attendanceDashboard'])->name('attendance_admin_dashboard');
+    Route::post('/attendance/store', [AttendanceController::class, 'store'])->name('add_attendance');
 
 
     // Route::get('/dashboard', function () {
