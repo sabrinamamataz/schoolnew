@@ -44,7 +44,7 @@
             </div>
         </div>
 
-        <div class="col-md-12">                                      
+        <div class="col-md-12">
             @foreach ($routines as $routine)
                 @php
                     $routineDetails = App\Models\Routine::where('section_id', $routine)->first();
@@ -86,9 +86,9 @@
                             {{ Subject::getSubjectName($satDetails->period_2_sub_id) }}
                             <br>
                             {{ Teacher::getTeacherName($satDetails->period_2_t_id) }}
-                          </td> 
-                          <td class="border" align="center" height="50">     
-                           {{ Subject::getSubjectName($satDetails->period_3_sub_id) }}
+                        </td>
+                        <td class="border" align="center" height="50">
+                            {{ Subject::getSubjectName($satDetails->period_3_sub_id) }}
                             <br>
                             {{ Teacher::getTeacherName($satDetails->period_3_t_id) }}
                         </td>
@@ -98,7 +98,7 @@
                             {{ Teacher::getTeacherName($satDetails->period_4_t_id) }}
                         </td>
                         <td class="border" align="center" height="50">
-                           
+
                             <span class="text-success">Lunch</span>
                         </td>
                         <td class="border" align="center" height="50">
@@ -649,7 +649,8 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
                                     <button type="submit" class="btn btn-primary">Update</button>
                                 </div>
                             </form>
@@ -900,7 +901,8 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
                                     <button type="submit" class="btn btn-primary">Update</button>
                                 </div>
                             </form>
@@ -1151,7 +1153,8 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
                                     <button type="submit" class="btn btn-primary">Update</button>
                                 </div>
                             </form>
@@ -1402,7 +1405,8 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
                                     <button type="submit" class="btn btn-primary">Update</button>
                                 </div>
                             </form>
@@ -1653,7 +1657,8 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
                                     <button type="submit" class="btn btn-primary">Update</button>
                                 </div>
                             </form>
@@ -1904,7 +1909,8 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
                                     <button type="submit" class="btn btn-primary">Update</button>
                                 </div>
                             </form>

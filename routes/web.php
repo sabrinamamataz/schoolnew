@@ -48,7 +48,7 @@ Route::get('/logout', [UserAuthController::class, 'logout'])->name('logout');
 Route::group(['middleware' => 'auth'], function () {
     // admin
     Route::get('/admin-dashboard', [SectionController::class, 'adminDashboard'])->name('admin_dashboard');
-    
+
     // subject
     Route::get('/subject', [SubjectController::class, 'subjectList'])->name('subject_list');
     Route::post('/section/add', [SubjectController::class, 'addSubject'])->name('add_subject');
@@ -77,8 +77,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/updateprofile-student-dashboard', [StudentController::class, 'updateprofileDashboard'])->name('updateprofile_student_dashboard');
     Route::post('/student-profile-update', [StudentController::class, 'updateStudentData'])->name('update_student_profile');
     Route::get('/routine-student-dashboard', [StudentController::class,  'routineDashboard'])->name('routine_student_dashboard');
-    Route::get('/routine/invoice', [StudentController::class, 'routineList'])->name('routine_invoice');
-    
+
 
     // teacher
     Route::get('/teacher-dashboard', [TeacherController::class, 'teacherDashboard'])->name('teacher_dashboard');

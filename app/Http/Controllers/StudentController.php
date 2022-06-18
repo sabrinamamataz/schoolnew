@@ -20,16 +20,16 @@ class StudentController extends Controller
     }
     public function routineDashboard()
     {
-        $studentClsSection = Student::where('user_id', auth()->user()-id)->first();
+        $studentClsSection = Student::where('user_id', auth()->user()->id)->first();
+        $periods = ClsPeriod::all();
         if (isset($studentClsSection)) {
             $routine = $studentClsSection->class;
         } else {
             $routine = 0;
-
         }
-
-
-        return view('student.routine', compact('routine'));
+        $routine = 1;
+        // dd($routine);
+        return view('student.routine', compact('routine', 'periods'));
     }
 
     /**
@@ -169,14 +169,10 @@ class StudentController extends Controller
             "period_8_t_id" => $request->period_8_t_id
         ]);
         return redirect()->back()->with('success', 'Successfully added.');
+
+
+    }
     
-        
-    }
-    public function routineList()
-    {
-        $routineDetails = Routine::find($id);
-        return view('routine.invoice', compact('routineDetails'));
-    }
     public function updateprofileDashboard()
     {
         $userDate = User::find(auth()->user()->id);
