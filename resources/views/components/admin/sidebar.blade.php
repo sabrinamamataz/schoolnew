@@ -47,7 +47,7 @@
                 </a>
 
 
-                <a class="nav-link collapsed" href="{{ route('attendance_admin_dashboard') }}">
+                <a class="nav-link collapsed" href="#">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     Attendence
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>

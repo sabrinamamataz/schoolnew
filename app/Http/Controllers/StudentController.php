@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\ClsPeriod;
+use App\Models\Stclass;
 use App\Models\Routine;
 use App\Models\Section;
 use App\Models\Subject;
@@ -22,14 +23,16 @@ class StudentController extends Controller
     {
         $studentClsSection = Student::where('user_id', auth()->user()->id)->first();
         $periods = ClsPeriod::all();
+        $classes = Student::all();
+
         if (isset($studentClsSection)) {
-            $routine = $studentClsSection->class;
+            $routine = $studentClsSection->class;                                                
         } else {
             $routine = 0;
         }
         $routine = 1;
         // dd($routine);
-        return view('student.routine', compact('routine', 'periods'));
+        return view('student.routine', compact('routine', 'periods','classes'));
     }
 
     /**
@@ -113,6 +116,7 @@ class StudentController extends Controller
             'start_time' => $request->start_time,
             'end_time' => $request->end_time,
             'period' => $request->period,
+            'class' => $request->class,
         ]);
         return redirect()->back()->with('success', 'Successfully updated.');
     }
@@ -121,6 +125,11 @@ class StudentController extends Controller
     {
         $periods = ClsPeriod::all();
         return view('student.period', compact('periods'));
+    }
+    public function classPage()
+    {
+        $classes = Student::all();
+        return view('student.class', compact('classes'));
     }
 
     public function addPeriod(Request $request)
@@ -133,6 +142,18 @@ class StudentController extends Controller
             'period' => $request->period,
             'start_time' => $request->start_time,
             'end_time' => $request->end_time,
+        ]);
+        return redirect()->back()->with('success', 'Successfully added.');
+    }
+    public function addClass(Request $request)
+    {
+        $check = Student::where('class', $request->class)->first();
+        if ($check) {
+            return redirect()->back()->with('error', 'Already exists.');
+        }
+        $newRoutine = Student::create([
+            'class' => $request->class,
+           
         ]);
         return redirect()->back()->with('success', 'Successfully added.');
     }

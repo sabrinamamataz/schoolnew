@@ -8,7 +8,7 @@ use App\Http\controllers\TeacherController;
 use App\Http\controllers\ClassController;
 use App\Http\controllers\RoutineController;
 use App\Http\Controllers\SubjectController;
-use App\Http\Controllers\AttendanceController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -87,10 +87,7 @@ Route::group(['middleware' => 'auth'], function () {
     //teacher routine
     Route::get('/routine-dashboard', [TeacherController::class,  'routineDashboard'])->name('routine_dashboard');
 
-    //attendance
-    Route::get('/attendance-admin-dashboard', [AttendanceController::class, 'attendanceDashboard'])->name('attendance_admin_dashboard');
-    Route::post('/attendance/store', [AttendanceController::class, 'store'])->name('add_attendance');
-
+   
 
     // Route::get('/dashboard', function () {
     //     return view('dashboard');
