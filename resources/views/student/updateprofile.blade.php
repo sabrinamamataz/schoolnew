@@ -14,9 +14,27 @@
                     value="{{ $userDate->email }}">
             </div>
             <div class="mb-3">
-                <label for="">Class</label>
-                <input type="number" name="class" required class="form-control" placeholder="Enter class"
-                    value="{{ isset($studentData->class) ? $studentData->class : '' }}">
+                <div class="form-group">
+                    <label for="Class_id">Class</label>
+                    <select class="form-select" name="class" {{ isset($studentData->class) ? 'disabled' : '' }}>
+                        <option value="">Select Class</option>
+                        @foreach ($classes as $class)
+                            <option {{ $studentData->class == $class->id ? 'selected' : '' }} value="{{ $class->id }}">
+                                {{ $class->class_name }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="">Date of birth</label>
+                <input type="date" name="date_of_birth" required class="form-control" placeholder="Enter date of birth"
+                    value="{{ isset($studentData->date_of_birth) ? $studentData->date_of_birth : '' }}">
+            </div>
+            <div class="mb-3">
+                <label for="">Age</label>
+                <input type="number" name="age" required class="form-control" placeholder="Enter age"
+                    value="{{ isset($studentData->age) ? $studentData->age : '' }}">
             </div>
             <div class="mb-3">
                 <label for="">Address</label>

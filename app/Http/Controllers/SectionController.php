@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Section;
 use App\Models\Stclass;
+use App\Models\Student;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -105,5 +106,13 @@ class SectionController extends Controller
     {
         Section::find($id)->delete();
         return redirect()->back()->with('success', 'Successfully deleted.');
+    }
+
+    public function addStudentToSection()
+    {
+        $sections = Section::all();
+        $classes = Stclass::all();
+        $students = Student::all();
+        return view('admin.std-to-section', compact('sections', 'classes', 'students'));
     }
 }

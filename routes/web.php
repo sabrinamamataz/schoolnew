@@ -62,6 +62,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/section/store', [SectionController::class, 'store'])->name('add_section');
     Route::get('/section/delete/{id}', [SectionController::class, 'destroy'])->name('delete_section');
     Route::post('/section/update', [SectionController::class, 'update'])->name('section_update');
+    Route::post('/add-student-section', [SectionController::class, 'addStudentToSection'])->name('add_student_to_section');
+
+
     // period
     Route::get('/class-period', [RoutineController::class, 'periodPage'])->name('period_page');
     Route::post('/class-period/add', [RoutineController::class, 'addPeriod'])->name('add_period');
@@ -87,7 +90,7 @@ Route::group(['middleware' => 'auth'], function () {
     //teacher routine
     Route::get('/routine-dashboard', [TeacherController::class,  'routineDashboard'])->name('routine_dashboard');
 
-   
+
 
     // Route::get('/dashboard', function () {
     //     return view('dashboard');

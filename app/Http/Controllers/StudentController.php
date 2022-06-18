@@ -26,13 +26,13 @@ class StudentController extends Controller
         $classes = Student::all();
 
         if (isset($studentClsSection)) {
-            $routine = $studentClsSection->class;                                                
+            $routine = $studentClsSection->class;
         } else {
             $routine = 0;
         }
         $routine = 1;
         // dd($routine);
-        return view('student.routine', compact('routine', 'periods','classes'));
+        return view('student.routine', compact('routine', 'periods', 'classes'));
     }
 
     /**
@@ -153,7 +153,7 @@ class StudentController extends Controller
         }
         $newRoutine = Student::create([
             'class' => $request->class,
-           
+
         ]);
         return redirect()->back()->with('success', 'Successfully added.');
     }
@@ -190,16 +190,15 @@ class StudentController extends Controller
             "period_8_t_id" => $request->period_8_t_id
         ]);
         return redirect()->back()->with('success', 'Successfully added.');
-
-
     }
-    
+
     public function updateprofileDashboard()
     {
         $userDate = User::find(auth()->user()->id);
         $studentData = Student::where('user_id', $userDate->id)->first();
+        $classes = Stclass::all();
         // dd($studentData);
-        return view('student.updateprofile', compact('userDate', 'studentData'));
+        return view('student.updateprofile', compact('userDate', 'studentData', 'classes'));
     }
 
     public function updateStudentData(Request $request)
@@ -218,12 +217,14 @@ class StudentController extends Controller
                 'guardian_no' => $request->guardian_no,
                 'class' => $request->class,
                 'address' => $request->address,
+                'date_of_birth' => $request->date_of_birth,
+                'age' => $request->age,
                 'guardian_name' => $request->guardian_name,
                 'guardian_relation' => $request->guardian_relation,
             ]);
         } else {
             $newStudent = Student::create([
-                'status'=>1,
+                'status' => 1,
                 'user_id' => $userDate->id,
                 'guardian_no' => $request->guardian_no,
                 'class' => $request->class,
