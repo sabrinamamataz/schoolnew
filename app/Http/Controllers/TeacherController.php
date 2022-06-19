@@ -182,4 +182,11 @@ class TeacherController extends Controller
         // dd($request->all());
         return redirect()->back()->with('success', 'Updated successfully');
     }
+
+    public function attendancePage()
+    {
+        
+        $periods = ClsPeriod::all();
+        return view('teacher.attendance', compact('periods'));
+    }
 }

@@ -4,9 +4,9 @@
     use App\Models\Subject;
     use App\Models\Teacher;
     @endphp
-    <div class="">
+    <div class="container">
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addNewClass">
+        <button type="button" class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#addNewClass">
             Add Routine
         </button>
 

@@ -1,9 +1,11 @@
 @extends('admin.main')
+@section('style')
+@endsection
 @section('content')
     <div class="">
         <h3>Student List</h3>
         <div class="col-md-12">
-            <table class="table table-bordered">
+            <table class="table table-bordered" id="myTable">
                 <thead>
                     <tr>
                         <th scope="col">SL</th>
@@ -106,4 +108,11 @@
             </table>
         </div>
     </div>
+@endsection
+@section('script')
+    <script>
+        $(document).ready(function() {
+            $('#myTable').DataTable();
+        });
+    </script>
 @endsection

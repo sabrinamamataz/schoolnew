@@ -33,29 +33,29 @@
                     Routine
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
-                <a class="nav-link collapsed" href="#">
+                {{-- <a class="nav-link collapsed" href="#">
                     <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                     Fee
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                </a>
+                </a> --}}
 
-                <a class="nav-link collapsed" href="#">
+                {{-- <a class="nav-link collapsed" href="#">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     Result
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                </a>
+                </a> --}}
 
-                <a class="nav-link collapsed" href="#">
+                {{-- <a class="nav-link collapsed" href="#">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     Notice Board
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                </a>
+                </a> --}}
 
-
-                <a class="nav-link collapsed" href="#">
+                {{-- <a class="nav-link collapsed" href="#">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     Attendence
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a> --}}
             </div>
         </div>
     </nav>
