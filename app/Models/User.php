@@ -43,4 +43,17 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    // function to create relationship with user and class table
+    public function userToClass()
+    {
+        return $this->belongsTo(Stclass::class, 'class', 'id');
+    }
+
+    // function to create relationship with user and class table
+    public function userToSecAssign()
+    {
+        return $this->hasOne(StudentAssignSection::class, 'user_id', 'id');
+    }
 }

@@ -10,7 +10,7 @@
             </div>
             <div class="mb-3">
                 <label for="">Email</label>
-                <input type="email" name="email" required class="form-control" placeholder="Enter email"
+                <input type="email" name="" readonly class="form-control" placeholder="Enter email"
                     value="{{ $userDate->email }}">
             </div>
             <div class="mb-3">
@@ -26,6 +26,13 @@
                     </select>
                 </div>
             </div>
+            @if (auth()->user()->userToSecAssign)
+                <div class="mb-3">
+                    <label for="">Section</label>
+                    <input type="text" name="" class="form-control" readonly
+                        value="{{ auth()->user()->userToSecAssign->assignSectionToSection->section }}">
+                </div>
+            @endif
             <div class="mb-3">
                 <label for="">Date of birth</label>
                 <input type="date" name="date_of_birth" required class="form-control" placeholder="Enter date of birth"

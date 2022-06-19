@@ -10,6 +10,7 @@ use App\Models\Routine;
 use App\Models\Section;
 use App\Models\Subject;
 use App\Models\Student;
+use App\Models\StudentAssignSection;
 use App\Models\Teacher;
 
 class StudentController extends Controller
@@ -21,18 +22,19 @@ class StudentController extends Controller
     }
     public function routineDashboard()
     {
-        $studentClsSection = Student::where('user_id', auth()->user()->id)->first();
         $periods = ClsPeriod::all();
-        $classes = Student::all();
 
-        if (isset($studentClsSection)) {
-            $routine = $studentClsSection->class;
+        $clsSec = StudentAssignSection::where('user_id', auth()->user()->id)->first();
+        $section = Section::find($clsSec->section_id);
+
+        if (isset($section->class_id)) {
+            $routine = $section->class_id;
         } else {
             $routine = 0;
         }
         $routine = 1;
         // dd($routine);
-        return view('student.routine', compact('routine', 'periods', 'classes'));
+        return view('student.routine', compact('routine', 'periods', 'section'));
     }
 
     /**

@@ -43,7 +43,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="Student_capacity">Student Capacity</label>
-                                    <input type="number" name="student_capacity" required class="form-control" value="50">
+                                    <input type="number" name="student_capacity" required class="form-control"
+                                        value="50">
                                 </div>
                                 <div class="form-group">
                                     <label for="Shift">Shift</label>
@@ -71,6 +72,7 @@
                         <th scope="col">Section</th>
                         <th scope="col">Student Capacity</th>
                         <th scope="col">Shift</th>
+                        <th scope="col">Student list</th>
                         <th scope="col">Status</th>
                         <th scope="col">Action</th>
                     </tr>
@@ -84,10 +86,13 @@
                             <td>{{ $section->section }}</td>
                             <td>{{ $section->student_capacity }}</td>
                             <td>{{ $section->shift }}</td>
+                            <td>
+                                <a href="{{ route('section_student_list', $section->id) }}" class="btn btn-success">view list</a>
+                            </td>
                             <td>{{ $section->status == 1 ? 'Active' : 'Inactive' }}</td>
                             <td>
-                                <button type="button" class="btn btn-warning" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#updateModat{{ $section->id }}">
+                                <button type="button" class="btn btn-warning" class="btn btn-primary"
+                                    data-bs-toggle="modal" data-bs-target="#updateModat{{ $section->id }}">
                                     Update
                                 </button>
                                 <a href="{{ route('delete_section', $section->id) }}" class="btn btn-danger">Delete</a>

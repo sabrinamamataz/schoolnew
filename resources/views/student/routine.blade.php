@@ -7,14 +7,16 @@ $routineDetails = App\Models\Routine::where('section_id', $routine)->first();
 @extends('student.main')
 @section('content')
     <div class="container">
-        <div class="col-12 text-end m-2">
+        <div class="col-12 d-flex justify-content-between m-2">
+            <h4>
+                Routine of: {{ $section->sectionToClass->class_name . ' - Section: ' . $section->section }}
+                ||
+                Student Name: {{ auth()->user()->name }}
+            </h4>
             <button class="btn btn-info" onclick="window.print()">Print</button>
         </div>
         @if ($routine != 0 && isset($routineDetails))
             <table border="5" cellspacing="0" align="center">
-                <caption>
-                    {{-- {{ $routineDetails->routineToSection->sectionToClass->class_name . ' - Section: ' . $routineDetails->routineToSection->section }} --}}
-                </caption>
                 <tr class="border">
                     <td class="border" align="center" height="50" width="100"><br>
                         <b>Day/Period</b></br>

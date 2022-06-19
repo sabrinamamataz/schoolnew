@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SectionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\controllers\UserAuthController;
@@ -48,6 +49,7 @@ Route::get('/logout', [UserAuthController::class, 'logout'])->name('logout');
 Route::group(['middleware' => 'auth'], function () {
     // admin
     Route::get('/admin-dashboard', [SectionController::class, 'adminDashboard'])->name('admin_dashboard');
+    Route::get('/student-list', [AdminController::class, 'studentList'])->name('student_list');
 
     // subject
     Route::get('/subject', [SubjectController::class, 'subjectList'])->name('subject_list');
@@ -62,7 +64,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/section/store', [SectionController::class, 'store'])->name('add_section');
     Route::get('/section/delete/{id}', [SectionController::class, 'destroy'])->name('delete_section');
     Route::post('/section/update', [SectionController::class, 'update'])->name('section_update');
-    Route::post('/add-student-section', [SectionController::class, 'addStudentToSection'])->name('add_student_to_section');
+    Route::get('/section-admin-dashboard/{section_id}', [SectionController::class, 'sectionStudentList'])->name('section_student_list');
+    Route::get('/add-student-section/{std_ids}/{section_id}', [SectionController::class, 'addStudentToSection'])->name('add_student_to_section');
 
 
     // period

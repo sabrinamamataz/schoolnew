@@ -18,7 +18,7 @@
                     Section
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
-                <a class="nav-link collapsed" href="{{ route('section_admin_dashboard') }}">
+                <a class="nav-link collapsed" href="{{ route('student_list') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     Student list
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>

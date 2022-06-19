@@ -9,10 +9,10 @@ class Student extends Model
 {
     use HasFactory;
     protected $guarded = [];
-  
-    // function to create relationship with routine and section table
-    public function routineToSection()
+
+    // function to create relationship with student and class table
+    public function studentToClass()
     {
-        return $this->belongsTo(Section::class, 'section_id', 'id');
+        return $this->belongsTo(Stclass::class, 'class', 'id');
     }
 }
