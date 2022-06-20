@@ -4,7 +4,7 @@
 @section('content')
     <div class="container">
         <button type="button" class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#addNewClass">
-            Take Attendance
+            Create Attendance
         </button>
 
         <!-- Modal -->
@@ -15,12 +15,12 @@
                         <h5 class="modal-title" id="addNewClassLabel">Attendance</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form>
+                    <form action="{{ route('create_attendance') }}" method="post">
                         @csrf
                         <div class="modal-body">
                             <div class="container">
                                 <div class="mb-3">
-                                    <label for="exampleInputEmail1" class="form-label">Date</label>
+                                    <label for="date" class="form-label">Date</label>
                                     <input type="date" class="form-control" name="date" required>
                                 </div>
                                 <div class="mb-3">
@@ -41,7 +41,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Add Routine</button>
+                            <button type="submit" class="btn btn-primary">Add Attendance</button>
                         </div>
                     </form>
                 </div>
@@ -55,32 +55,38 @@
             <thead>
                 <tr>
                     <th scope="col">SL</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Email</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Week Day</th>
                     <th scope="col">Class</th>
-                    <th scope="col">Guardian</th>
-                    <th scope="col">Contact</th>
-                    <th scope="col">Status</th>
+                    <th scope="col">Section</th>
+                    <th scope="col">Period</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
-                {{-- @foreach ($students as $key => $student)
-                        <tr>
-                            <th scope="row">{{ $key + 1 }}</th>
-                            <td>{{ $student->name }}</td>
-                            <td>{{ $student->email }}</td>
-                            <td>{{ isset($student->userToClass) ? $student->userToClass->class_name : '--' }}</td>
-                            <td>{{ $student->guardian_name }}</td>
-                            <td>{{ $student->guardian_contact }}</td>
-                            <td>{{ $student->status == 1 ? 'Active' : 'Inactive' }}</td>
-                            <td>
-                                <button type="button" >
-                                    Update
-                                </button>
-                            </td>
-                        </tr>
-                    @endforeach --}}
+                @foreach ($attendances as $key => $data)
+                    <tr>
+                        <th scope="row">{{ $key + 1 }}</th>
+                        <td>{{ $data->date }}</td>
+                        <td>{{ $data->week_day }}</td>
+                        <td>
+                            {{ isset($data->attendanceToSection->sectionToClass) ? $data->attendanceToSection->sectionToClass->class_name : '--' }}
+                        </td>
+                        <td>{{ isset($data->attendanceToSection) ? $data->attendanceToSection->section : '--' }}</td>
+                        <td>{{ isset($data->attendanceToPeriod) ? $data->attendanceToPeriod->period : '--' }}</td>
+                        <td>
+                            @if ($data->status == 1)
+                                <a href="" class="btn btn-info">
+                                    Inspect
+                                </a>
+                            @else
+                                <a href="{{ route('take_attendance', $data->id) }}" class="btn btn-success">
+                                    Take Attendance
+                                </a>
+                            @endif
+                        </td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

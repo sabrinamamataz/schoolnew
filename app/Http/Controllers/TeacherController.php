@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Attendance;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Teacher;
@@ -185,8 +186,9 @@ class TeacherController extends Controller
 
     public function attendancePage()
     {
-        
+
         $periods = ClsPeriod::all();
-        return view('teacher.attendance', compact('periods'));
+        $attendances = Attendance::where('teacher_id', auth()->user()->id)->get();
+        return view('teacher.attendance', compact('periods', 'attendances'));
     }
 }

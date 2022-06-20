@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\SectionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\controllers\UserAuthController;
@@ -89,10 +90,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/teacher-dashboard', [TeacherController::class, 'teacherDashboard'])->name('teacher_dashboard');
     Route::get('/updateprofile-teacher-dashboard', [TeacherController::class, 'updateprofileDashboard'])->name('updateprofile_teacher_dashboard');
     Route::post('/teacher-profile-update', [TeacherController::class, 'updateTeacherData'])->name('update_teacher_profile');
-    Route::get('/teacher-attendance', [TeacherController::class, 'attendancePage'])->name('attendance_page');
-
+    
     //teacher routine
     Route::get('/routine-dashboard', [TeacherController::class,  'routineDashboard'])->name('routine_dashboard');
+    //teacher attendance
+    Route::get('/teacher-attendance', [TeacherController::class, 'attendancePage'])->name('attendance_page');
+    Route::post('/create-attendance', [AttendanceController::class,  'createAttendance'])->name('create_attendance');
+    Route::get('/take-attendance/{attendance_id}', [AttendanceController::class,  'takeAttendance'])->name('take_attendance');
+    Route::post('/update-attendance', [AttendanceController::class,  'updateAttendance'])->name('update_attendance');
 
 
 
