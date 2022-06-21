@@ -25,22 +25,38 @@ class AttendanceController extends Controller
             $routine = Routine::where('period_1_t_id', auth()->user()->id)
                 ->where('week_day', $week)
                 ->first();
-            $subject_id = $routine->period_1_sub_id;
+            if (!$routine) {
+                return redirect()->back()->with('error', 'You do not have class on this period');
+            } else {
+                $subject_id = $routine->period_1_sub_id;
+            }
         } elseif ($request->period_id == 2) {
             $routine = Routine::where('period_2_t_id', auth()->user()->id)
                 ->where('week_day', $week)
                 ->first();
-            $subject_id = $routine->period_2_sub_id;
+            if (!$routine) {
+                return redirect()->back()->with('error', 'You do not have class on this period');
+            } else {
+                $subject_id = $routine->period_2_sub_id;
+            }
         } elseif ($request->period_id == 3) {
             $routine = Routine::where('period_3_t_id', auth()->user()->id)
                 ->where('week_day', $week)
                 ->first();
-            $subject_id = $routine->period_3_sub_id;
+            if (!$routine) {
+                return redirect()->back()->with('error', 'You do not have class on this period');
+            } else {
+                $subject_id = $routine->period_3_sub_id;
+            }
         } elseif ($request->period_id == 4) {
             $routine = Routine::where('period_4_t_id', auth()->user()->id)
                 ->where('week_day', $week)
                 ->first();
-            $subject_id = $routine->period_4_sub_id;
+            if (!$routine) {
+                return redirect()->back()->with('error', 'You do not have class on this period');
+            } else {
+                $subject_id = $routine->period_4_sub_id;
+            }
         } elseif ($request->period_id == 5) {
             // break time
             return redirect()->back()->with('error', 'You do not have class on this period');
@@ -48,22 +64,38 @@ class AttendanceController extends Controller
             $routine = Routine::where('period_5_t_id', auth()->user()->id)
                 ->where('week_day', $week)
                 ->first();
-            $subject_id = $routine->period_5_sub_id;
+            if (!$routine) {
+                return redirect()->back()->with('error', 'You do not have class on this period');
+            } else {
+                $subject_id = $routine->period_5_sub_id;
+            }
         } elseif ($request->period_id == 7) {
             $routine = Routine::where('period_6_t_id', auth()->user()->id)
                 ->where('week_day', $week)
                 ->first();
-            $subject_id = $routine->period_6_sub_id;
+            if (!$routine) {
+                return redirect()->back()->with('error', 'You do not have class on this period');
+            } else {
+                $subject_id = $routine->period_6_sub_id;
+            }
         } elseif ($request->period_id == 8) {
             $routine = Routine::where('period_7_t_id', auth()->user()->id)
                 ->where('week_day', $week)
                 ->first();
-            $subject_id = $routine->period_7_sub_id;
+            if (!$routine) {
+                return redirect()->back()->with('error', 'You do not have class on this period');
+            } else {
+                $subject_id = $routine->period_7_sub_id;
+            }
         } elseif ($request->period_id == 9) {
             $routine = Routine::where('period_8_t_id', auth()->user()->id)
                 ->where('week_day', $week)
                 ->first();
-            $subject_id = $routine->period_8_sub_id;
+            if (!$routine) {
+                return redirect()->back()->with('error', 'You do not have class on this period');
+            } else {
+                $subject_id = $routine->period_8_sub_id;
+            }
         } else {
             return redirect()->back()->with('error', 'You do not have class on this period');
         }
@@ -92,14 +124,14 @@ class AttendanceController extends Controller
 
     public function takeAttendance($id)
     {
-        $attendance =Attendance::find($id);
+        $attendance = Attendance::find($id);
         $attendanceDetails = AttendanceDetails::where('attendance_id', $id)->get();
 
         return view('teacher.take-attendance', compact('attendanceDetails', 'attendance'));
     }
     public function checkAttendance($id)
     {
-        $attendance =Attendance::find($id);
+        $attendance = Attendance::find($id);
         $attendanceDetails = AttendanceDetails::where('attendance_id', $id)->get();
 
         return view('teacher.check-attendance', compact('attendanceDetails', 'attendance'));
