@@ -10,7 +10,7 @@
             </div>
             <div class="mb-3">
                 <label for="">Email</label>
-                <input type="email" name="" readonly class="form-control" placeholder="Enter email"
+                <input type="email" name="email" readonly class="form-control" placeholder="Enter email"
                     value="{{ $userDate->email }}">
             </div>
             <div class="mb-3">
