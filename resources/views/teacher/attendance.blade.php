@@ -76,7 +76,7 @@
                         <td>{{ isset($data->attendanceToPeriod) ? $data->attendanceToPeriod->period : '--' }}</td>
                         <td>
                             @if ($data->status == 1)
-                                <a href="" class="btn btn-info">
+                                <a href="{{ route('check_attendance', $data->id) }}" class="btn btn-info">
                                     Inspect
                                 </a>
                             @else

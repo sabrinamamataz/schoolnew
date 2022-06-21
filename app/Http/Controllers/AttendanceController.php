@@ -92,16 +92,42 @@ class AttendanceController extends Controller
 
     public function takeAttendance($id)
     {
+        $attendance =Attendance::find($id);
         $attendanceDetails = AttendanceDetails::where('attendance_id', $id)->get();
 
-        return view('teacher.take-attendance', compact('attendanceDetails'));
+        return view('teacher.take-attendance', compact('attendanceDetails', 'attendance'));
+    }
+    public function checkAttendance($id)
+    {
+        $attendance =Attendance::find($id);
+        $attendanceDetails = AttendanceDetails::where('attendance_id', $id)->get();
+
+        return view('teacher.check-attendance', compact('attendanceDetails', 'attendance'));
     }
 
     public function updateAttendance(Request $request)
     {
-        for ($i = 0; $i < $request->count; $i++) {
-            # code...
+        for ($i = 0; $i <= $request->count; $i++) {
+            $id = 'id' . $i;
+            $user_id = 'user_id' . $i;
+            $present = 'present' . $i;
+
+            $check = AttendanceDetails::find($request->$id);
+            $attendanceCheck = Attendance::find($check->attendance_id);
+            if ($attendanceCheck->status == 1) {
+                return redirect()->route('attendance_page')->with('error', 'Already taken attendance..');
+            }
+            if ($check) {
+                $check->update([
+                    'present' => $request->$present,
+                ]);
+            }
         }
-        dd($request->all());
+
+        $attendanceCheck->update([
+            'status' => 1
+        ]);
+
+        return redirect()->route('attendance_page')->with('success', 'Successfully taken...');
     }
 }
