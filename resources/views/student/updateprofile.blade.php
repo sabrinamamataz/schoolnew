@@ -19,7 +19,7 @@
                     <select class="form-select" name="class" {{ isset($studentData->class) ? 'disabled' : '' }}>
                         <option value="">Select Class</option>
                         @foreach ($classes as $class)
-                            <option {{ $studentData->class == $class->id ? 'selected' : '' }} value="{{ $class->id }}">
+                            <option {{ isset($studentData->class) && $studentData->class == $class->id ? 'selected' : '' }} value="{{ $class->id }}">
                                 {{ $class->class_name }}
                             </option>
                         @endforeach
