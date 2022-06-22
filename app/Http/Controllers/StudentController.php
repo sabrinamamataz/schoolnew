@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AttendanceDetails;
+use App\Models\AttendanceRecord;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\ClsPeriod;
@@ -12,6 +14,7 @@ use App\Models\Subject;
 use App\Models\Student;
 use App\Models\StudentAssignSection;
 use App\Models\Teacher;
+use Carbon\Carbon;
 
 class StudentController extends Controller
 {
@@ -237,5 +240,45 @@ class StudentController extends Controller
         }
         // dd($request->all());
         return redirect()->back()->with('success', 'Updated successfully');
+    }
+
+    public function studentAttendance()
+    {
+        $attendances = AttendanceDetails::where('s_user_id', auth()->user()->id)
+            ->whereMonth('created_at', date('m'))
+            ->get();
+        $total = $attendances->count();
+        $present = $attendances->where('present', 1)->count();
+        $absent = $total - $present;
+
+        $attendanceRecord = AttendanceRecord::where('s_user_id', auth()->user()->id)
+            ->where('month', date('m'))
+            ->where('year', date('Y'))
+            ->first();
+
+        if ($attendanceRecord) {
+            $attendanceRecord->update([
+                'total_class' => $total,
+                'present' => $present,
+                'absent' => $absent
+            ]);
+        } else {
+            $newAttendanceRecord = AttendanceRecord::create([
+                's_user_id' => auth()->user()->id,
+                'class_id' => auth()->user()->userToSecAssign->assignSectionToSection->class_id,
+                'section_id' => auth()->user()->userToSecAssign->section_id,
+                'month' => date('m'),
+                'year' => date('Y'),
+                'first_class' => Carbon::now()->startOfMonth(),
+                'last_class' => Carbon::now()->endOfMonth(),
+                'total_class' => $total,
+                'present' => $present,
+                'absent' => $absent
+            ]);
+        }
+
+        $getRecord = AttendanceRecord::where('s_user_id', auth()->user()->id)->get();
+
+        return view('student.attendance', compact('getRecord'));
     }
 }
