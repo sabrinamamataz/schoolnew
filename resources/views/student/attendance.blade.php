@@ -36,7 +36,7 @@
                         <td>{{ $data->total_class }}</td>
                         <td>{{ $data->present }}</td>
                         <td>{{ $data->absent }}</td>
-                        <td>{{ round(($data->absent / $data->total_class) * 100, 2) }}</td>
+                        <td>{{ $data->total_class !=0 ? round(($data->absent / $data->total_class) * 100, 2) : 0}}</td>
                     </tr>
                 @endforeach
             </tbody>
