@@ -100,6 +100,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/check-attendance/{attendance_id}', [AttendanceController::class,  'checkAttendance'])->name('check_attendance');
     Route::post('/update-attendance', [AttendanceController::class,  'updateAttendance'])->name('update_attendance');
 
+    //admin attendance
+    Route::get('/admin-attendance', [AdminController::class, 'attendancePage'])->name('attendance_admin');
+    Route::post('/admin-create-attendance', [AdminController::class,  'createAttendance'])->name('admin_create_attendance');
+    Route::get('/admin-check-attendance/{attendance_id}', [AdminController::class,  'checkAttendance'])->name('admin_check_attendance');
+    
 
 
     // Route::get('/dashboard', function () {

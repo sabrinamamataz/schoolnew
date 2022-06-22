@@ -51,11 +51,11 @@
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a> --}}
 
-                {{-- <a class="nav-link collapsed" href="#">
+                 <a class="nav-link collapsed" href="{{ route('attendance_admin') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     Attendence
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                </a> --}}
+                </a> 
             </div>
         </div>
     </nav>
