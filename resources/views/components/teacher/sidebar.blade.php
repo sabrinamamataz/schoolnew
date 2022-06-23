@@ -48,21 +48,17 @@
                     Result Submission
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a> --}}
-
-                {{-- <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts"
-                    aria-expanded="false" aria-controls="collapseLayouts">
-                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                    Notice Board
-                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                </a> --}}
-
-
                 <a class="nav-link collapsed" href="{{ route('attendance_page') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     Attendence
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
-                <a class="nav-link collapsed" href='{{ route('updateprofile_teacher_dashboard') }}'>
+                <a class="nav-link collapsed" href="{{ route('teacher_study_material') }}" >
+                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                    Study Material
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a> 
+                <a class="nav-link collapsed" href="{{ route('updateprofile_teacher_dashboard') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     Update profile
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>

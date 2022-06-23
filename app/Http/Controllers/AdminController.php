@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Attendance;
 use App\Models\AttendanceDetails;
 use App\Models\StudentAssignSection;
+use App\Models\ClsPeriod;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -24,7 +25,9 @@ class AdminController extends Controller
     public function attendancePage()
 {
 
-    return view('admin.attendance');
+    $periods = ClsPeriod::all();
+        $attendances = Attendance::where('teacher_id', auth()->user()->id)->get();
+        return view('admin.attendance', compact('periods', 'attendances'));
 }
 
 
@@ -145,32 +148,6 @@ class AdminController extends Controller
         $attendanceDetails = AttendanceDetails::where('attendance_id', $id)->get();
 
         return view('teacher.check-attendance', compact('attendanceDetails', 'attendance'));
-    }
-
-    public function updateAttendance(Request $request)
-    {
-        for ($i = 0; $i <= $request->count; $i++) {
-            $id = 'id' . $i;
-            $user_id = 'user_id' . $i;
-            $present = 'present' . $i;
-
-            $check = AttendanceDetails::find($request->$id);
-            $attendanceCheck = Attendance::find($check->attendance_id);
-            if ($attendanceCheck->status == 1) {
-                return redirect()->route('attendance_page')->with('error', 'Already taken attendance..');
-            }
-            if ($check) {
-                $check->update([
-                    'present' => $request->$present,
-                ]);
-            }
-        }
-
-        $attendanceCheck->update([
-            'status' => 1
-        ]);
-
-        return redirect()->route('attendance_page')->with('success', 'Successfully taken...');
     }
     
 

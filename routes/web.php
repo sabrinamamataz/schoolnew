@@ -103,10 +103,11 @@ Route::group(['middleware' => 'auth'], function () {
 
     //admin attendance
     Route::get('/admin-attendance', [AdminController::class, 'attendancePage'])->name('attendance_admin');
-    Route::post('/admin-create-attendance', [AdminController::class,  'createAttendance'])->name('admin_create_attendance');
     Route::get('/admin-check-attendance/{attendance_id}', [AdminController::class,  'checkAttendance'])->name('admin_check_attendance');
     
-
+    //teacher study material
+    Route::get('/teacher-study-material', [TeacherController::class, 'studymaterialPage'])->name('teacher_study_material');
+ 
 
     // Route::get('/dashboard', function () {
     //     return view('dashboard');

@@ -9,6 +9,7 @@ use App\Models\Teacher;
 use App\Models\Section;
 use App\Models\ClsPeriod;
 use App\Models\Routine;
+use App\Models\StudyMaterial;
 use App\Models\Subject;
 
 class TeacherController extends Controller
@@ -191,4 +192,14 @@ class TeacherController extends Controller
         $attendances = Attendance::where('teacher_id', auth()->user()->id)->get();
         return view('teacher.attendance', compact('periods', 'attendances'));
     }
+
+    public function studymaterialPage()
+
+{
+    $subjects = StudyMaterial::all();
+    $studymaterials = StudyMaterial::where('teacher_id', auth()->user()->id)->get();
+    return view('teacher.study-material', compact('studymaterials'));
+    
+}
+
 }
