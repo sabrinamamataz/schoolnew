@@ -15,7 +15,7 @@
                         <h5 class="modal-title" id="addNewClassLabel">Material</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form action="" method="post">
+                    <form action="{{ route('create_study_material') }}" method="post">
                         @csrf
                         <div class="modal-body">
                             <div class="container">

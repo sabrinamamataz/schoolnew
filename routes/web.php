@@ -107,6 +107,7 @@ Route::group(['middleware' => 'auth'], function () {
     
     //teacher study material
     Route::get('/teacher-study-material', [TeacherController::class, 'studymaterialPage'])->name('teacher_study_material');
+    Route::post('/create-study-material', [StudymaterialController::class,  'createStudymaterial'])->name('create_study_material');
  
 
     // Route::get('/dashboard', function () {
