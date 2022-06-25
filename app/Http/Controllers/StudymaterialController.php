@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Studymateriale;
+use App\Models\StudyMaterial;
 
 use Illuminate\Http\Request;
 
@@ -25,7 +25,7 @@ class StudymaterialController extends Controller
      */
     public function store(Request $request)
     {
-        $newStudyMaterial = Studymaterial::create([
+        $newStudymaterial = StudyMaterial::create([
             'teacher_id' => $request->teacher_id,
             'class_id' => $request->class_id,
             'section_id' => $request->section_id,

@@ -68,7 +68,12 @@
                             <td>{{ $studymaterial->section_id }}</td>
                             <td>{{ $studymaterial->doc }}</td>
                             <td>{{ $studymaterial->status }}</td>
-                            <td>
+                        
+                            {{ isset($data->studymaterialToSection->sectionToClass) ? $data->studymaterialToSection->sectionToClass->class_name : '--' }}
+    
+                           {{ isset($data->studymaterialToSection->sectionToSection) ? $data->studymaterialToSection->sectionToSection->section_name : '--' }}</td>
+                        {{isset($data->studymaterialToSection->sectionToTeacher) ? $data->studymaterialToSection->sectionToTeacher->teacher_name : '--' }}</td>
+                        <td>
                                 <button type="button" class="btn btn-warning" class="btn btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#updateModat{{ $studymaterial->id }}">
                                     Update
@@ -84,34 +89,35 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="updateModatLabel{{ $studymaterial->id }}">
-                                            Update {{ $studymaterial->studymaterial }}
+                                            Update {{ $studymaterial->name }}
                                         </h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                     </div>
-                                    <form action="{{ route('study_material_update', $studymaterial->id) }}" method="post">
+                                   <form action="{{ route('study_material_update', $studymaterial->id) }}" method="post">
                                         @csrf
-                                        <input type="hidden" name="studymaterial_id" value="{{ $studymmaterial->id }}">
+                                        <input type="hidden" name="section_id" value="{{ $studymaterial->id }}">
                                         <div class="modal-body">
                                             <div class="container">
-                                                <div class="form-group">
-                                                    <label for="Teacher_id">Teacher Id</label>
+                                            <div class="form-group">
+                                                    <label for="Teacher_id">Teacher </label>
                                                     <input type="text" name="teacher_id" class="form-control"
                                                         value="{{ $studymaterial->teacher_id }}" required>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="Class_id">Class Id </label>
+                                                    <label for="Class_id">Class </label>
                                                     <input type="text" name="class_id" class="form-control"
                                                         value="{{ $studymaterial->class_id }}" required>
                                                 </div>
-                                                div class="form-group">
-                                                    <label for="Section_id">Section Id </label>
+                                                <div class="form-group">
+                                                    <label for="Section_id">Section </label>
                                                     <input type="text" name="section_id" class="form-control"
                                                         value="{{ $studymaterial->section_id }}" required>
                                                 </div>
-                                                div class="form-group">
+                                                
+                                                <div class="form-group">
                                                     <label for="Doc">Doc </label>
-                                                    <input type="text" name="doc" class="form-control"
+                                                    <input type="file" name="doc" class="form-control"
                                                         value="{{ $studymaterial->doc }}" required>
                                                 </div>
                                             </div>
@@ -121,9 +127,7 @@
                                                 data-bs-dismiss="modal">Close</button>
                                             <button type="submit" class="btn btn-primary">Save changes</button>
                                         </div>
-                                    </form>
-                                </div>
-                            </div>
+                                    </form>                              
                         </div>
                     @endforeach
                 </tbody>
