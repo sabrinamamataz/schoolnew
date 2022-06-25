@@ -196,8 +196,7 @@ class TeacherController extends Controller
     public function studymaterialPage()
 
 {
-    $subjects = StudyMaterial::all();
-    $studymaterials = StudyMaterial::where('teacher_id', auth()->user()->id)->get();
+    $studymaterials = Studymaterial::all();
     return view('teacher.study-material', compact('studymaterials'));
     
 }

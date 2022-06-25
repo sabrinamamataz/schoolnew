@@ -1,92 +1,133 @@
 @extends('teacher.main')
-@section('style')
-@endsection
 @section('content')
-    <div class="container">
-        <button type="button" class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#addNewClass">
-            Add Materials
+    <div class="">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addNewStudymaterial">
+            Add New Study Material
         </button>
 
         <!-- Modal -->
-        <div class="modal fade" id="addNewClass" tabindex="-1" aria-labelledby="addNewClassLabel" aria-hidden="true">
+        <div class="modal fade" id="addNewStudymaterial" tabindex="-1" aria-labelledby="addNewStudymaterialLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="addNewClassLabel">Material</h5>
+                        <h5 class="modal-title" id="addNewStudymaterialLabel">Add New Study Material</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form action="{{ route('create_study_material') }}" method="post">
+                    <form action="{{ route('add_study_material') }}" method="post">
                         @csrf
                         <div class="modal-body">
                             <div class="container">
-                                <div class="mb-3">
-                                    <label for="name" class="form-label">Name</label>
-                                    <input type="name" class="form-control" name="name" required>
+                                <div class="form-group">
+                                    <label for="Teacher_id">Teacher Id</label>
+                                    <input type="text" name="teacher_id" required class="form-control">
+                                        
                                 </div>
-                                <div class="mb-3">
-                                    <label for="Subject" class="form-label">Subject</label>
-                                    <select class="form-select" name="subject_id" required>
-                                        <option value="">Open this select menu</option>
-                                        @foreach ($subjects as $subject)
-                                            <option value="{{ $subject->id }}">
-                                                {{ $subject->subject }}
-                                                ({{ name('h:i A', strtoid($subject->subject_name)) }}
-                                                -
-                                
-                                            </option>
-                                        @endforeach
-                                    </select>
+                                <div class="form-group">
+                                    <label for="Class_id">Class Id</label>
+                                    <input type="text" name="class_id" required class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="Section_id">Section Id</label>
+                                    <input type="text" name="section_id" required class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="Doc">Doc</label>
+                                    <input type="file" name="doc" required class="form-control">
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Add Material</button>
+                            <button type="submit" class="btn btn-primary">Add Study Material</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-    </div>
 
-    <hr>
-    <div class="container">
-        <table class="table table-bordered" id="myTable">
-            <thead>
-                <tr>
-                    <th scope="col">SL</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Class</th>
-                    <th scope="col">Section</th>
-                    <th scope="col">Subject</th>
-                    <th scope="col">Study material</th>
-                    <th scope="col">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($studymaterials as $key => $data)
+        <div class="col-md-12">
+            <table class="table table-bordered">
+                <thead>
                     <tr>
-                        <th scope="row">{{ $key + 1 }}</th>
-                        <td>{{ $data->date }}</td>
-                        
-                        <td>
-                            {{ isset($data->studymaterialToSection->sectionToClass) ? $data->studymaterialToSection->sectionToClass->class_name : '--' }}
-                        </td>
-                        <td>{{ isset($data->studymaterialToSection) ? $data->studymaterialToSection->section : '--' }}</td>
-                        
-                        <td>
-                           
-                        </td>
+                        <th scope="col">SL</th>
+                        <th scope="col">Teacher ID</th>
+                        <th scope="col">Class ID</th>
+                        <th scope="col">Section ID</th>
+                        <th scope="col">Doc</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Action</th>
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach ($studymaterials as $key => $studymaterial)
+                        <tr>
+                            <th scope="row">{{ $key + 1 }}</th>
+                            <td>{{ $studymaterial->teacher_id }}</td>
+                            <td>{{ $studymaterial->class_id }}</td>
+                            <td>{{ $studymaterial->section_id }}</td>
+                            <td>{{ $studymaterial->doc }}</td>
+                            <td>{{ $studymaterial->status }}</td>
+                            <td>
+                                <button type="button" class="btn btn-warning" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#updateModat{{ $studymaterial->id }}">
+                                    Update
+                                </button>
+                                <a href="{{ route('delete_study_material', $studymaterial->id) }}" class="btn btn-danger">Delete</a>
+                            </td>
+                        </tr>
+
+                        <!-- update Modal -->
+                        <div class="modal fade" id="updateModat{{ $studymaterial->id }}" tabindex="-1"
+                            aria-labelledby="updateModatLabel{{ $studymaterial->id }}" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="updateModatLabel{{ $studymaterial->id }}">
+                                            Update {{ $studymaterial->studymaterial }}
+                                        </h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <form action="{{ route('study_material_update', $studymaterial->id) }}" method="post">
+                                        @csrf
+                                        <input type="hidden" name="studymaterial_id" value="{{ $studymmaterial->id }}">
+                                        <div class="modal-body">
+                                            <div class="container">
+                                                <div class="form-group">
+                                                    <label for="Teacher_id">Teacher Id</label>
+                                                    <input type="text" name="teacher_id" class="form-control"
+                                                        value="{{ $studymaterial->teacher_id }}" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="Class_id">Class Id </label>
+                                                    <input type="text" name="class_id" class="form-control"
+                                                        value="{{ $studymaterial->class_id }}" required>
+                                                </div>
+                                                div class="form-group">
+                                                    <label for="Section_id">Section Id </label>
+                                                    <input type="text" name="section_id" class="form-control"
+                                                        value="{{ $studymaterial->section_id }}" required>
+                                                </div>
+                                                div class="form-group">
+                                                    <label for="Doc">Doc </label>
+                                                    <input type="text" name="doc" class="form-control"
+                                                        value="{{ $studymaterial->doc }}" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
-@endsection
-@section('script')
-    <script>
-        $(document).ready(function() {
-            $('#myTable').DataTable();
-        });
-    </script>
 @endsection

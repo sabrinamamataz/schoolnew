@@ -10,6 +10,7 @@ use App\Http\controllers\TeacherController;
 use App\Http\controllers\ClassController;
 use App\Http\controllers\RoutineController;
 use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\StudymaterialController;
 
 /*
 |--------------------------------------------------------------------------
@@ -107,8 +108,10 @@ Route::group(['middleware' => 'auth'], function () {
     
     //teacher study material
     Route::get('/teacher-study-material', [TeacherController::class, 'studymaterialPage'])->name('teacher_study_material');
-    Route::post('/create-study-material', [StudymaterialController::class,  'createStudymaterial'])->name('create_study_material');
- 
+    Route::post('/study-material/store', [StudymaterialController::class, 'store'])->name('add_study_material');
+    Route::get('study-material//delete/{id}', [StudymaterialController::class, 'destroy'])->name('delete_study_material');
+    Route::post('/study-material/update', [StudymaterialController::class, 'update'])->name('study_material_update');
+    
 
     // Route::get('/dashboard', function () {
     //     return view('dashboard');
