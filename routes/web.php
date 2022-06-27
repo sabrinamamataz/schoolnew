@@ -111,6 +111,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/study-material/store', [StudymaterialController::class, 'store'])->name('add_study_material');
     Route::get('study-material//delete/{id}', [StudymaterialController::class, 'destroy'])->name('delete_study_material');
     Route::post('/study-material/update', [StudymaterialController::class, 'update'])->name('study_material_update');
+    Route::get('/teacher-download/{id}', [StudymaterialController::class,  'download'])->name('teacher_download');
+    
     
 
     // Route::get('/dashboard', function () {

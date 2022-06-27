@@ -89,6 +89,16 @@ class StudymaterialController extends Controller
         Studymaterial::find($id)->delete();
         return redirect()->back()->with('success', 'Successfully deleted.');
     }
+
+    
+    public function download($id)
+    {
+        $studymaterial = DB::table('study_material')->where('id',$id)->first();
+        $filepath = storage_path("app/{$studymaterial->path}");
+        return\Response::download($filepath); 
+
+        
+    }
     
 
 }

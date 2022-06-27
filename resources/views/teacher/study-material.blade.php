@@ -63,6 +63,9 @@
                     @foreach ($studymaterials as $key => $studymaterial)
                         <tr>
                             <th scope="row">{{ $key + 1 }}</th>
+                            <!-- <td>{{ ++$key}}</td> -->
+                            <!-- <td>{{$studymaterial->path}}</td> -->
+                            <a herf="{{'/teacher_download/'.$studymaterial->id}}">{{$studymaterial->file_name}}</a></td>
                             <td>{{ $studymaterial->teacher_id }}</td>
                             <td>{{ $studymaterial->class_id }}</td>
                             <td>{{ $studymaterial->section_id }}</td>
