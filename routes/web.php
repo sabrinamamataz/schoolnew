@@ -83,6 +83,7 @@ Route::group(['middleware' => 'auth'], function () {
     // admin study materials
     Route::get('/admin-study-materials', [StudymaterialController::class, 'adminStudyMaterials'])->name('admin_study_materials');
     Route::get('/admin-study-materials/approve/{id}', [StudymaterialController::class, 'approveStudyMaterials'])->name('approve_study_materials');
+    Route::get('admin-study-material//delete/{id}', [StudymaterialController::class, 'destroy'])->name('delete_admin_study_material');
     
     
     

@@ -36,13 +36,9 @@
                                 <a target="_blank" onclick="return confirm('Download this file?')"
                                     href="/files/{{ $studymaterial->doc }}" class="btn btn-success">Download</a>
                                 @if ($studymaterial->status == 0)
-                                    <a href="{{ route('approve_study_materials', $studymaterial->id) }}"
-                                        onclick="return confirm('are you sure, you want to approve this doc?')"
-                                        class="btn btn-primary">
-                                        Approve
-                                    </a>
+
                                 @endif
-                                <a href="" class="btn btn-danger">Delete</a>
+
                             </td>
                         </tr>
                     @endforeach

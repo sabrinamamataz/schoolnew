@@ -126,8 +126,6 @@ class StudymaterialController extends Controller
 
     public function download($id)
     {
-        $studymaterial = DB::table('study_material')->where('id', $id)->first();
-        $filepath = storage_path("app/{$studymaterial->path}");
 
         $headers = [
             'Content-Description' => 'File Transfer',
