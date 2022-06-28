@@ -1,13 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\StudyMaterial;
 
+use App\Models\Section;
+use App\Models\StudentAssignSection;
+use App\Models\StudyMaterial;
+use Facade\FlareClient\Http\Response;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class StudymaterialController extends Controller
 {
-     /**
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -25,12 +29,30 @@ class StudymaterialController extends Controller
      */
     public function store(Request $request)
     {
-        $newStudymaterial = StudyMaterial::create([
-            'teacher_id' => $request->teacher_id,
-            'class_id' => $request->class_id,
-            'section_id' => $request->section_id,
-            'doc' => $request->doc,
-            'status' => 1
+
+        $section = Section::find($request->section_id);
+
+        $file_name = '';
+        //check if $request has file
+        if ($request->hasFile('doc')) {
+            //check if file is valid or not
+            $file = $request->file('doc');
+            if ($file->isValid()) {
+                //generate unique file name
+                $file_name = date('Ymdhms') . '.' . $file->getClientOriginalExtension();
+
+                //store image in local directory
+                $file->storeAs('files', $file_name);
+            }
+        }
+
+        StudyMaterial::create([
+            'title' => $request->title,
+            'teacher_id' => auth()->id(),
+            'class_id' => $section->class_id,
+            'section_id' => $section->id,
+            'doc' => $file_name,
+            'status' => 0,
         ]);
         return redirect()->back()->with('success', 'Successfully added.');
     }
@@ -69,11 +91,22 @@ class StudymaterialController extends Controller
     public function update(Request $request)
     {
         $studymaterial = Studymaterial::find($request->class_id);
+
+        $validatedData = $request->validate([
+            'doc' => 'required|csv,txt,xlx,xls,pdf|max:2048',
+
+        ]);
+
+        $name = $request->file('doc')->getClientOriginalName();
+
+        $path = $request->file('doc')->store('public/files');
+
+
         $studymaterial->update([
             'teacher_id' => $request->teacher_id,
             'class_id' => $request->class_id,
             'section_id' => $request->section_id,
-            'doc' => $request->doc,
+            'doc' => $name,
         ]);
         return redirect()->back()->with('success', 'Successfully updated.');
     }
@@ -90,15 +123,39 @@ class StudymaterialController extends Controller
         return redirect()->back()->with('success', 'Successfully deleted.');
     }
 
-    
+
     public function download($id)
     {
-        $studymaterial = DB::table('study_material')->where('id',$id)->first();
+        $studymaterial = DB::table('study_material')->where('id', $id)->first();
         $filepath = storage_path("app/{$studymaterial->path}");
-        return\Response::download($filepath); 
 
-        
+        $headers = [
+            'Content-Description' => 'File Transfer',
+            'Content-Type' => 'application/pdf',
+        ];
+        // return \Response::download($filepath, 'new doc', $headers);
+
+        return response()->download($filepath, 'New File', $headers);
     }
-    
 
+
+    public function adminStudyMaterials()
+    {
+        $studymaterials = StudyMaterial::all();
+
+        return view('admin.study-material', compact('studymaterials'));
+    }
+
+    public function approveStudyMaterials($id)
+    {
+        StudyMaterial::find($id)->update(['status' => 1]);
+        return redirect()->back()->with('success', 'Study material approved successfully.');
+    }
+
+    public function studentStudyMaterials()
+    {
+        $stdSec = StudentAssignSection::where('user_id', auth()->id())->first()->section_id;
+        $studymaterials = StudyMaterial::where('section_id', $stdSec)->where('status', 1)->get();
+        return view('student.study-material', compact('studymaterials'));
+    }
 }

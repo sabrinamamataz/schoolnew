@@ -49,6 +49,11 @@
                     Attendence
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
+                <a class="nav-link" href="{{ route('student_study_materials') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                    Study Materials
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
                 <a class="nav-link" href='{{ route('updateprofile_student_dashboard') }}'>
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     Update profile

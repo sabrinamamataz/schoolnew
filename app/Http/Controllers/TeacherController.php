@@ -194,11 +194,25 @@ class TeacherController extends Controller
     }
 
     public function studymaterialPage()
+    {
+        $studymaterials = Studymaterial::where('teacher_id', auth()->id())->get();
+        $section_ids = Routine::where('period_1_t_id', auth()->id())
+            ->orWhere('period_1_t_id', auth()->id())
+            ->orWhere('period_2_t_id', auth()->id())
+            ->orWhere('period_3_t_id', auth()->id())
+            ->orWhere('period_4_t_id', auth()->id())
+            ->orWhere('period_5_t_id', auth()->id())
+            ->orWhere('period_6_t_id', auth()->id())
+            ->orWhere('period_7_t_id', auth()->id())
+            ->orWhere('period_8_t_id', auth()->id())
+            ->pluck('section_id');
 
-{
-    $studymaterials = Studymaterial::all();
-    return view('teacher.study-material', compact('studymaterials'));
-    
-}
+        if (count($section_ids) > 0) {
+            $sections = Section::whereIn('id', $section_ids)->get();
+        } else {
+            $sections = [];
+        }
 
+        return view('teacher.study-material', compact('studymaterials', 'sections'));
+    }
 }

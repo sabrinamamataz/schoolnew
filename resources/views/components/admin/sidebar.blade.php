@@ -51,11 +51,16 @@
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a> --}}
 
-                 <a class="nav-link collapsed" href="{{ route('attendance_admin') }}">
+                <a class="nav-link" href="{{ route('attendance_admin') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     Attendence
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                </a> 
+                </a>
+                <a class="nav-link" href="{{ route('admin_study_materials') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                    Study Materials
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
             </div>
         </div>
     </nav>

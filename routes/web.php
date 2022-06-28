@@ -53,15 +53,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/admin-dashboard', [SectionController::class, 'adminDashboard'])->name('admin_dashboard');
     Route::get('/student-list', [AdminController::class, 'studentList'])->name('student_list');
 
-    // subject
+    // admin subject
     Route::get('/subject', [SubjectController::class, 'subjectList'])->name('subject_list');
     Route::post('/section/add', [SubjectController::class, 'addSubject'])->name('add_subject');
-    // class
+    // admin class
     Route::get('/class-admin-dashboard', [ClassController::class, 'classDashboard'])->name('class_admin_dashboard');
     Route::post('/class/store', [ClassController::class, 'store'])->name('add_class');
     Route::get('/class/delete/{id}', [ClassController::class, 'destroy'])->name('delete_class');
     Route::post('/class/update', [ClassController::class, 'update'])->name('class_update');
-    // section
+    // admin section
     Route::get('/section-admin-dashboard', [SectionController::class, 'sectionDashboard'])->name('section_admin_dashboard');
     Route::post('/section/store', [SectionController::class, 'store'])->name('add_section');
     Route::get('/section/delete/{id}', [SectionController::class, 'destroy'])->name('delete_section');
@@ -70,23 +70,31 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/add-student-section/{std_ids}/{section_id}', [SectionController::class, 'addStudentToSection'])->name('add_student_to_section');
 
 
-    // period
+    // admin period
     Route::get('/class-period', [RoutineController::class, 'periodPage'])->name('period_page');
     Route::post('/class-period/add', [RoutineController::class, 'addPeriod'])->name('add_period');
 
-    //   routine
+    // admin  routine
     Route::get('/routine-admin-dashboard', [RoutineController::class, 'routineDashboard'])->name('routine_admin_dashboard');
     Route::post('/routine/store', [RoutineController::class, 'store'])->name('add_routine');
     Route::post('/routine/update', [RoutineController::class, 'update'])->name('routine_update');
     Route::post('/routine/update-week-day', [RoutineController::class, 'updateWeekDay'])->name('routine_update_week_day');
-
+    
+    // admin study materials
+    Route::get('/admin-study-materials', [StudymaterialController::class, 'adminStudyMaterials'])->name('admin_study_materials');
+    Route::get('/admin-study-materials/approve/{id}', [StudymaterialController::class, 'approveStudyMaterials'])->name('approve_study_materials');
+    
+    
+    
     // student
     Route::get('/student-dashboard', [StudentController::class, 'studentDashboard'])->name('student_dashboard');
     Route::get('/updateprofile-student-dashboard', [StudentController::class, 'updateprofileDashboard'])->name('updateprofile_student_dashboard');
     Route::post('/student-profile-update', [StudentController::class, 'updateStudentData'])->name('update_student_profile');
     Route::get('/routine-student-dashboard', [StudentController::class,  'routineDashboard'])->name('routine_student_dashboard');
     Route::get('/student-attendance', [StudentController::class,  'studentAttendance'])->name('student_attendance');
-
+    
+    // student study materials
+    Route::get('/student-study-materials', [StudymaterialController::class, 'studentStudyMaterials'])->name('student_study_materials');
 
     // teacher
     Route::get('/teacher-dashboard', [TeacherController::class, 'teacherDashboard'])->name('teacher_dashboard');
