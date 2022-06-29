@@ -119,8 +119,24 @@ class StudymaterialController extends Controller
      */
     public function destroy($id)
     {
-        Studymaterial::find($id)->delete();
-        return redirect()->back()->with('success', 'Successfully deleted.');
+
+        $studymaterial = Studymaterial::find($id)->delete();
+        $image='/storage/uploads/'.$studymaterial->image;
+        $path =str_replace('\\','/',public_path());
+        if(file_exists($path.$image)){
+            //return 'File Found';
+            unlink($path.$image);
+            return redirect()->back()->with('success', 'Successfully deleted.');
+            $studymaterial->delete();
+
+        }
+        else{
+            //return 'File Not Found';
+            $studymaterial->delete();
+          return redirect()->back()->with('success', 'Successfully deleted.');
+
+        }
+       
     }
 
 
@@ -156,4 +172,6 @@ class StudymaterialController extends Controller
         $studymaterials = StudyMaterial::where('section_id', $stdSec)->where('status', 1)->get();
         return view('student.study-material', compact('studymaterials'));
     }
+
+   
 }

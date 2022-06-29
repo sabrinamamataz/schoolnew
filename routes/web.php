@@ -92,10 +92,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/updateprofile-student-dashboard', [StudentController::class, 'updateprofileDashboard'])->name('updateprofile_student_dashboard');
     Route::post('/student-profile-update', [StudentController::class, 'updateStudentData'])->name('update_student_profile');
     Route::get('/routine-student-dashboard', [StudentController::class,  'routineDashboard'])->name('routine_student_dashboard');
-    Route::get('/student-attendance', [StudentController::class,  'studentAttendance'])->name('student_attendance');
     
     // student study materials
     Route::get('/student-study-materials', [StudymaterialController::class, 'studentStudyMaterials'])->name('student_study_materials');
+    Route::get('/student-download/{id}', [StudymaterialController::class,  'download'])->name('student_download');
+    
 
     // teacher
     Route::get('/teacher-dashboard', [TeacherController::class, 'teacherDashboard'])->name('teacher_dashboard');
@@ -120,8 +121,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/study-material/store', [StudymaterialController::class, 'store'])->name('add_study_material');
     Route::get('study-material//delete/{id}', [StudymaterialController::class, 'destroy'])->name('delete_study_material');
     Route::post('/study-material/update', [StudymaterialController::class, 'update'])->name('study_material_update');
-    Route::get('/teacher-download/{id}', [StudymaterialController::class,  'download'])->name('teacher_download');
-    
+   
     
 
     // Route::get('/dashboard', function () {
