@@ -63,6 +63,12 @@
                     Update profile
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
+                <a class="nav-link" href="{{ route('notice_teacher_dashboard') }}">
+                   
+                   <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                   Notice Board
+                   <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+               </a>
 
             </div>
         </div>

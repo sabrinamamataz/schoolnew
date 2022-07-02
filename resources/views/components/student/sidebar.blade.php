@@ -36,12 +36,8 @@
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a> --}}
 
-                {{-- <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts"
-                    aria-expanded="false" aria-controls="collapseLayouts">
-                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                    Notice Board
-                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                </a> --}}
+               
+               
 
 
                 <a class="nav-link" href="{{ route('student_attendance') }}">
@@ -59,6 +55,12 @@
                     Update profile
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
+                <a class="nav-link" href="{{ route('notice_student_dashboard') }}">
+                   
+                   <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                   Notice Board
+                   <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+               </a>
 
 
             </div>

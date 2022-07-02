@@ -11,6 +11,7 @@ use App\Http\controllers\ClassController;
 use App\Http\controllers\RoutineController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\StudymaterialController;
+use App\Http\Controllers\NoticeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -84,7 +85,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/admin-study-materials', [StudymaterialController::class, 'adminStudyMaterials'])->name('admin_study_materials');
     Route::get('/admin-study-materials/approve/{id}', [StudymaterialController::class, 'approveStudyMaterials'])->name('approve_study_materials');
     Route::get('admin-study-material//delete/{id}', [StudymaterialController::class, 'destroy'])->name('delete_admin_study_material');
-    
+
+    //admin notices
+    Route::get('/notice-admin-dashboard', [NoticeController::class, 'noticeDashboard'])->name('notice_admin_dashboard');
+    Route::post('/notice/store', [NoticeController::class, 'store'])->name('add_notice');
+    Route::get('notice//delete/{id}', [NoticeController::class, 'destroy'])->name('delete_notice');
+    Route::post('/notice/update', [NoticeController::class, 'update'])->name('notice_update');
     
     
     // student
@@ -112,6 +118,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/check-attendance/{attendance_id}', [AttendanceController::class,  'checkAttendance'])->name('check_attendance');
     Route::post('/update-attendance', [AttendanceController::class,  'updateAttendance'])->name('update_attendance');
 
+    //student attendance
+    Route::get('/student-attendance', [StudentController::class, 'studentAttendance'])->name('student_attendance');
+
     //admin attendance
     Route::get('/admin-attendance', [AdminController::class, 'attendancePage'])->name('attendance_admin');
     Route::get('/admin-check-attendance/{attendance_id}', [AdminController::class,  'checkAttendance'])->name('admin_check_attendance');
@@ -121,8 +130,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/study-material/store', [StudymaterialController::class, 'store'])->name('add_study_material');
     Route::get('study-material//delete/{id}', [StudymaterialController::class, 'destroy'])->name('delete_study_material');
     Route::post('/study-material/update', [StudymaterialController::class, 'update'])->name('study_material_update');
+
+    //student notice
    
-    
+    Route::get('/notice-student-dashboard', [NoticeController::class, 'studentNoticeDashboard'])->name('notice_student_dashboard');
+
+    //teacher notice
+
+    Route::get('/notice-teacher-dashboard', [NoticeController::class, 'teacherNoticeDashboard'])->name('notice_teacher_dashboard');
 
     // Route::get('/dashboard', function () {
     //     return view('dashboard');
