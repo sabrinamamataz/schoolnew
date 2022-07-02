@@ -80,7 +80,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/routine/store', [RoutineController::class, 'store'])->name('add_routine');
     Route::post('/routine/update', [RoutineController::class, 'update'])->name('routine_update');
     Route::post('/routine/update-week-day', [RoutineController::class, 'updateWeekDay'])->name('routine_update_week_day');
-    
+
     // admin study materials
     Route::get('/admin-study-materials', [StudymaterialController::class, 'adminStudyMaterials'])->name('admin_study_materials');
     Route::get('/admin-study-materials/approve/{id}', [StudymaterialController::class, 'approveStudyMaterials'])->name('approve_study_materials');
@@ -91,18 +91,18 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/notice/store', [NoticeController::class, 'store'])->name('add_notice');
     Route::get('notice//delete/{id}', [NoticeController::class, 'destroy'])->name('delete_notice');
     Route::post('/notice/update', [NoticeController::class, 'update'])->name('notice_update');
-    
-    
+
+
     // student
     Route::get('/student-dashboard', [StudentController::class, 'studentDashboard'])->name('student_dashboard');
     Route::get('/updateprofile-student-dashboard', [StudentController::class, 'updateprofileDashboard'])->name('updateprofile_student_dashboard');
     Route::post('/student-profile-update', [StudentController::class, 'updateStudentData'])->name('update_student_profile');
     Route::get('/routine-student-dashboard', [StudentController::class,  'routineDashboard'])->name('routine_student_dashboard');
-    
+    Route::get('/student-attendance', [StudentController::class,  'studentAttendance'])->name('student_attendance');
+
     // student study materials
     Route::get('/student-study-materials', [StudymaterialController::class, 'studentStudyMaterials'])->name('student_study_materials');
-    Route::get('/student-download/{id}', [StudymaterialController::class,  'download'])->name('student_download');
-    
+
 
     // teacher
     Route::get('/teacher-dashboard', [TeacherController::class, 'teacherDashboard'])->name('teacher_dashboard');
@@ -124,7 +124,7 @@ Route::group(['middleware' => 'auth'], function () {
     //admin attendance
     Route::get('/admin-attendance', [AdminController::class, 'attendancePage'])->name('attendance_admin');
     Route::get('/admin-check-attendance/{attendance_id}', [AdminController::class,  'checkAttendance'])->name('admin_check_attendance');
-    
+
     //teacher study material
     Route::get('/teacher-study-material', [TeacherController::class, 'studymaterialPage'])->name('teacher_study_material');
     Route::post('/study-material/store', [StudymaterialController::class, 'store'])->name('add_study_material');
@@ -132,7 +132,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/study-material/update', [StudymaterialController::class, 'update'])->name('study_material_update');
 
     //student notice
-   
+
     Route::get('/notice-student-dashboard', [NoticeController::class, 'studentNoticeDashboard'])->name('notice_student_dashboard');
 
     //teacher notice

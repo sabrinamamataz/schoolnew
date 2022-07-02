@@ -5,28 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Section;
 use App\Models\StudentAssignSection;
 use App\Models\StudyMaterial;
-use Facade\FlareClient\Http\Response;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class StudymaterialController extends Controller
 {
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
 
@@ -57,50 +39,13 @@ class StudymaterialController extends Controller
         return redirect()->back()->with('success', 'Successfully added.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Class  $studymaterial
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Studymaterial $studymaterial)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Studtmaterial  $studymaterial
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Studymaterial $studymaterial)
-    {
-        // $studymaterial = Studymaterial($id)
-        // returen view('studymaterial.edit' ,['studymaterial'=>$studymaterial])
-
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Studymaterial  $studymaterial
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request)
     {
         $studymaterial = Studymaterial::find($request->class_id);
 
-        $validatedData = $request->validate([
-            'doc' => 'required|csv,txt,xlx,xls,pdf|max:2048',
-
-        ]);
-
         $name = $request->file('doc')->getClientOriginalName();
 
         $path = $request->file('doc')->store('public/files');
-
 
         $studymaterial->update([
             'teacher_id' => $request->teacher_id,
@@ -111,47 +56,18 @@ class StudymaterialController extends Controller
         return redirect()->back()->with('success', 'Successfully updated.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Studymaterial  $studymaterial
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
+        $studymaterial = Studymaterial::find($id);
 
-        $studymaterial = Studymaterial::find($id)->delete();
-        $image='/storage/uploads/'.$studymaterial->image;
-        $path =str_replace('\\','/',public_path());
-        if(file_exists($path.$image)){
-            //return 'File Found';
-            unlink($path.$image);
-            return redirect()->back()->with('success', 'Successfully deleted.');
-            $studymaterial->delete();
+        $image_path = public_path() . '/files/' . $studymaterial->doc;
 
+        if (file_exists($image_path)) {
+            unlink($image_path);
         }
-        else{
-            //return 'File Not Found';
-            $studymaterial->delete();
-          return redirect()->back()->with('success', 'Successfully deleted.');
-
-        }
-       
+        $studymaterial->delete();
+        return redirect()->back()->with('success', 'Successfully deleted.');
     }
-
-
-    public function download($id)
-    {
-
-        $headers = [
-            'Content-Description' => 'File Transfer',
-            'Content-Type' => 'application/pdf',
-        ];
-        // return \Response::download($filepath, 'new doc', $headers);
-
-        return response()->download($filepath, 'New File', $headers);
-    }
-
 
     public function adminStudyMaterials()
     {
@@ -172,6 +88,4 @@ class StudymaterialController extends Controller
         $studymaterials = StudyMaterial::where('section_id', $stdSec)->where('status', 1)->get();
         return view('student.study-material', compact('studymaterials'));
     }
-
-   
 }

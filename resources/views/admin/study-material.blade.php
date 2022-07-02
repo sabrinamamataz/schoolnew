@@ -39,14 +39,15 @@
                                         class="btn btn-primary">
                                         Approve
                                         </button>
-                            
+
                                     </a>
                                 @endif
-                                <a href="{{ route('delete_admin_study_material', $studymaterial->id) }}" class="btn btn-danger">Delete</a>
+                                <a href="{{ route('delete_admin_study_material', $studymaterial->id) }}"
+                                    onclick="return confirm('are you sure you want to delete this material ?')"
+                                    class="btn btn-danger">Delete</a>
                                 <a target="_blank" onclick="return confirm('Download this file?')"
                                     href="/files/{{ $studymaterial->doc }}" class="btn btn-success">Download</a>
                                 @if ($studymaterial->status == 0)
-
                                 @endif
                             </td>
                         </tr>

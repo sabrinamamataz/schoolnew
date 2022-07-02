@@ -83,9 +83,9 @@
                                     Update
                                 </button>
                                 <a target="_blank" onclick="return confirm('Download this file?')"
-                                    href="/files/{{ $studymaterial->doc }}" 
-                                    class="btn btn-primary">Download</a>
+                                    href="/files/{{ $studymaterial->doc }}" class="btn btn-primary">Download</a>
                                 <a href="{{ route('delete_study_material', $studymaterial->id) }}"
+                                    onclick="return confirm('are you sure you want to delete this material ?')"
                                     class="btn btn-danger">Delete</a>
                             </td>
                         </tr>
