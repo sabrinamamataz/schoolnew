@@ -20,14 +20,12 @@
                         <div class="modal-body">
                             <div class="container">
                                 <div class="form-group">
-                                    <label for="Details"> Details</label>
+                                    <label for="Notice_id">Details</label>
                                     <input type="text" class="form-control" name="details" required>
-                                
-                                    
                                 </div>
                                 <div class="form-group">
-                                    <label for="Date">Date</label>
-                                    <input type="date" name="date" required class="form-control">
+                                <label for="Notice_id">Date</label>
+                                    <input type="date" class="form-control" name="date" required>
                                 </div>
                             </div>
                         </div>
@@ -45,7 +43,6 @@
                 <thead>
                     <tr>
                         <th scope="col">SL</th>
-
                         <th scope="col">Details</th>
                         <th scope="col">Date</th>
                         <th scope="col">Action</th>
@@ -57,7 +54,6 @@
                             <th scope="row">{{ $key + 1 }}</th>
                             <td>{{ $notice->details }}</td>
                             <td>{{ $notice->date }}</td>
-                            
                             <td>
                                 <button type="button" class="btn btn-warning" class="btn btn-primary"
                                     data-bs-toggle="modal" data-bs-target="#updateModat{{ $notice->id }}">
@@ -86,16 +82,16 @@
                                         <input type="hidden" name="notice_id" value="{{ $notice->id }}">
                                         <div class="modal-body">
                                             <div class="container">
-                                            <div class="form-group">
+                                                <div class="form-group">
                                                     <label for="Details">Details </label>
                                                     <input type="text" name="details" class="form-control"
                                                         value="{{ $notice->details }}" required>
-                                                      </div>
-                                                       <div class="form-group">
+                                                </div>
+                                                <div class="form-group">
                                                     <label for="Date">Date </label>
                                                     <input type="date" name="date" class="form-control"
                                                         value="{{ $notice->date }}" required>
-                                                    </div>
+                                                </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
                                                 data-bs-dismiss="modal">Close</button>
@@ -108,4 +104,5 @@
             </table>
         </div>
     </div>
+
 @endsection

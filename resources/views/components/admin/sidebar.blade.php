@@ -45,10 +45,6 @@
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a> --}}
 
-                 <a class="nav-link collapsed" href="{{ route('notice_admin_dashboard') }}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                    Notice Board
-                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a> 
 
                 <a class="nav-link" href="{{ route('attendance_admin') }}">
@@ -61,6 +57,12 @@
                     Study Materials
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
+                <a class="nav-link collapsed" href="{{ route('notice_admin_dashboard') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                    Notice Board
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a> 
+
             </div>
         </div>
     </nav>
