@@ -27,7 +27,7 @@
 
                                 <span class="updated" style="">{{ date('d-m-Y', strtotime($notice->date)) }},+06:00</span>
 
-                                <a class="btn btn-xs btn-success pt-right" href="#">
+                                <a class="btn btn-xs btn-success pt-right" href="{{ route('notice_read_more') }}">
                                     Read more...
                                 </a>
                             </div>

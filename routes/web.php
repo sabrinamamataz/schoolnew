@@ -138,6 +138,8 @@ Route::group(['middleware' => 'auth'], function () {
     //teacher notice
 
     Route::get('/notice-teacher-dashboard', [NoticeController::class, 'teacherNoticeDashboard'])->name('notice_teacher_dashboard');
+    Route::get('/notice-read-more', [NoticeController::class, 'noticeReadMore'])->name('notice_read_more');
+
 
     // Route::get('/dashboard', function () {
     //     return view('dashboard');

@@ -59,4 +59,10 @@ class NoticeController extends Controller
         $notices = Notice::all();
         return view('teacher.notice', compact('notices'));
     }
+
+        public function noticeReadMore()
+        {
+            return view('student.read-more');
+        }
+
 }
