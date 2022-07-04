@@ -56,13 +56,18 @@ class NoticeController extends Controller
 
     public function teacherNoticeDashboard()
     {
-        $notices = Notice::all();
+        $notices = Notice::orderBy('id', 'desc')->paginate(5);
         return view('teacher.notice', compact('notices'));
     }
 
-        public function noticeReadMore()
+        public function noticeReadMore($id)
         {
-            return view('student.read-more');
+            $notices = Notice::find($id);
+            return view('student.read-more',compact('notices'));
+        }
+        public function noticeTeacherReadMore()
+        {
+            return view('teacher.read-more');
         }
 
 }

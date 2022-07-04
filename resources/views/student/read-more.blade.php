@@ -1,5 +1,4 @@
 @extends('student.main')
-
 @section('content')
     
 

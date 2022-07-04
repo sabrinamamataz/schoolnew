@@ -134,11 +134,12 @@ Route::group(['middleware' => 'auth'], function () {
     //student notice
 
     Route::get('/notice-student-dashboard', [NoticeController::class, 'studentNoticeDashboard'])->name('notice_student_dashboard');
-
+    Route::get('/notice-read-more/{id}', [NoticeController::class, 'noticeReadMore'])->name('notice_read_more');
     //teacher notice
 
     Route::get('/notice-teacher-dashboard', [NoticeController::class, 'teacherNoticeDashboard'])->name('notice_teacher_dashboard');
-    Route::get('/notice-read-more', [NoticeController::class, 'noticeReadMore'])->name('notice_read_more');
+    Route::get('/notice-read-more-teacher', [NoticeController::class, 'noticeTeacherReadMore'])->name('notice_read_more_teacher');
+
 
 
     // Route::get('/dashboard', function () {

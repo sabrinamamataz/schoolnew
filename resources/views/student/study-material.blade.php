@@ -35,9 +35,6 @@
                             <td>
                                 <a target="_blank" onclick="return confirm('Download this file?')"
                                     href="/files/{{ $studymaterial->doc }}" class="btn btn-success">Download</a>
-                                @if ($studymaterial->status == 0)
-
-                                @endif
 
                             </td>
                         </tr>

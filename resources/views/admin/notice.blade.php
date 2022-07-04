@@ -24,7 +24,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="date">Date</label>
-                                    <input type="date" class="form-control" name="date" required>
+                                    <input type="datetime-local" class="form-control" name="date" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="details">Details</label>
@@ -34,7 +34,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Add Study Material</button>
+                            <button type="submit" class="btn btn-primary">Add Notice</button>
                         </div>
                     </form>
                 </div>
