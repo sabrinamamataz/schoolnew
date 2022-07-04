@@ -17,7 +17,7 @@
 
                             <div class="post-content" style="color: #009324">
                                 <h2 class="entry-title">
-                                    <a href="#" style="color: #009324">
+                                    <a href="{{ route('notice_read_more', $notice->id) }}" style="color: #009324">
                                         {{ $notice->title }}
                                     </a>
                                 </h2>
@@ -25,9 +25,13 @@
                                     {{ substr($notice->details, 0, 150) }}...
                                 </p>
 
-                                <span class="updated" style="">{{ date('d-m-Y', strtotime($notice->date)) }},+06:00</span>
+                                <span class="updated">
+                                    <i class="fas fa-history"></i> 
+                                    {{ date('d/m/Y - h:i a', strtotime($notice->date)) }},+06:00
+                                </span>
 
-                                <a class="btn btn-xs btn-success pt-right" href="{{ route('notice_read_more',$notice->id) }}">
+                                <a class="btn btn-xs btn-success pt-right"
+                                    href="{{ route('notice_read_more', $notice->id) }}">
                                     Read more...
                                 </a>
                             </div>

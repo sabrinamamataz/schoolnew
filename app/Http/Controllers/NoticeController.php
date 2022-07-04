@@ -60,14 +60,13 @@ class NoticeController extends Controller
         return view('teacher.notice', compact('notices'));
     }
 
-        public function noticeReadMore($id)
-        {
-            $notices = Notice::find($id);
-            return view('student.read-more',compact('notices'));
-        }
-        public function noticeTeacherReadMore()
-        {
-            return view('teacher.read-more');
-        }
-
+    public function noticeReadMore($id)
+    {
+        $notice = Notice::find($id);
+        return view('student.read-more', compact('notice'));
+    }
+    public function noticeTeacherReadMore()
+    {
+        return view('teacher.read-more');
+    }
 }
