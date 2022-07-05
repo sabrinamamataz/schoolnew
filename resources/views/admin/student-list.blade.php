@@ -2,6 +2,11 @@
 @section('style')
 @endsection
 @section('content')
+<div class="container">
+        <div class="col-12 d-flex justify-content-between m-2">
+
+            <button class="btn btn-info" onclick="window.print()">Print</button>
+        </div>
     <div class="">
         <h3>Student List</h3>
         <div class="col-md-12">

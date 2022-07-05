@@ -37,7 +37,7 @@ class ClassController extends Controller
     {
         $newStclass = Stclass::create([
             'class_name' => $request->class_name,
-            'capacity' => $request->capacity,
+            'capacity' => 0,
             'status' => 1
         ]);
         return redirect()->back()->with('success', 'Successfully added.');

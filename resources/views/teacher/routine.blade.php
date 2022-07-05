@@ -1,5 +1,10 @@
 @extends('teacher.main')
 @section('content')
+<div class="container">
+        <div class="col-12 d-flex justify-content-between m-2">
+
+            <button class="btn btn-info" onclick="window.print()">Print</button>
+        </div>
     <div class="container">
         <div class="table-responsive">
             <table class="table table-striped table-hover">

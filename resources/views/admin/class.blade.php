@@ -24,8 +24,12 @@
                                         placeholder="Class 5,6,7,etc">
                                 </div>
                                 <div class="form-group">
-                                    <label for="Capacity">Capacity</label>
-                                    <input type="number" name="capacity" required class="form-control" value="100">
+                                    <label for="Number of students">Number of students</label>
+                                    <input type="number" name="number of students" required class="form-control" value="100">
+                                </div>
+                                <div class="form-group">
+                                    <label for="Number of subjects">Number of subjects</label>
+                                    <input type="number" name="number of subjects" required class="form-control" value="100">
                                 </div>
                             </div>
                         </div>
@@ -44,8 +48,8 @@
                     <tr>
                         <th scope="col">SL</th>
                         <th scope="col">Class Name</th>
-                        <th scope="col">Capacity</th>
-                        <th scope="col">Status</th>
+                        <th scope="col">Number of students</th>
+                        <th scope="col">Number of subjects</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -54,8 +58,8 @@
                         <tr>
                             <th scope="row">{{ $key + 1 }}</th>
                             <td>{{ $class->class_name }}</td>
-                            <td>{{ $class->capacity }}</td>
-                            <td>{{ $class->status }}</td>
+                            <td>{{ $class->number_of_students }}</td>
+                            <td>{{ $class->number_of_subjects }}</td>
                             <td>
                                 <button type="button" class="btn btn-warning" class="btn btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#updateModat{{ $class->id }}">
@@ -88,9 +92,14 @@
                                                         value="{{ $class->class_name }}" required>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="Capacity">Capacity</label>
-                                                    <input type="number" name="capacity" class="form-control"
-                                                        value="{{ $class->capacity }}" required>
+                                                    <label for="Number_of_students">Number_of_students</label>
+                                                    <input type="number" name="number_of_students" class="form-control"
+                                                        value="{{ $class->number_of_students }}" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="Number_of_subjects">Number_of_subjects</label>
+                                                    <input type="number" name="number_of_students" class="form-control"
+                                                        value="{{ $class->number_of_subjects }}" required>
                                                 </div>
                                             </div>
                                         </div>
