@@ -1,4 +1,11 @@
 @extends('admin.main')
+@php
+use App\Models\Section;
+use App\Models\Subject;
+use App\Models\Routine;
+use App\Models\StudentAssignSection;
+
+@endphp
 @section('content')
     <div class="">
         <!-- Button trigger modal -->
@@ -24,12 +31,8 @@
                                         placeholder="Class 5,6,7,etc">
                                 </div>
                                 <div class="form-group">
-                                    <label for="Number of students">Number of students</label>
-                                    <input type="number" name="number of students" required class="form-control" value="100">
-                                </div>
-                                <div class="form-group">
                                     <label for="Number of subjects">Number of subjects</label>
-                                    <input type="number" name="number of subjects" required class="form-control" value="100">
+                                    <input type="number" name="capacity" required class="form-control" value="5">
                                 </div>
                             </div>
                         </div>
@@ -55,14 +58,18 @@
                 </thead>
                 <tbody>
                     @foreach ($stclasss as $key => $class)
+                        @php
+                            $section_ids = Section::where('class_id', $class->id)->pluck('id');
+                            $stdCount = StudentAssignSection::whereIn('section_id', $section_ids)->count();
+                        @endphp
                         <tr>
                             <th scope="row">{{ $key + 1 }}</th>
                             <td>{{ $class->class_name }}</td>
-                            <td>{{ $class->number_of_students }}</td>
-                            <td>{{ $class->number_of_subjects }}</td>
+                            <td>{{ $stdCount }}</td>
+                            <td>{{ $class->capacity }}</td>
                             <td>
-                                <button type="button" class="btn btn-warning" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#updateModat{{ $class->id }}">
+                                <button type="button" class="btn btn-warning" class="btn btn-primary"
+                                    data-bs-toggle="modal" data-bs-target="#updateModat{{ $class->id }}">
                                     Update
                                 </button>
                                 <a href="{{ route('delete_class', $class->id) }}" class="btn btn-danger">Delete</a>
@@ -92,14 +99,9 @@
                                                         value="{{ $class->class_name }}" required>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="Number_of_students">Number_of_students</label>
-                                                    <input type="number" name="number_of_students" class="form-control"
-                                                        value="{{ $class->number_of_students }}" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="Number_of_subjects">Number_of_subjects</label>
-                                                    <input type="number" name="number_of_students" class="form-control"
-                                                        value="{{ $class->number_of_subjects }}" required>
+                                                    <label for="Number_of_subjects">Number of subjects</label>
+                                                    <input type="number" name="capacity" class="form-control"
+                                                        value="{{ $class->capacity }}" required>
                                                 </div>
                                             </div>
                                         </div>

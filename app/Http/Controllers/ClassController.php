@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Routine;
 use App\Models\Stclass;
 use Illuminate\Http\Request;
 
@@ -37,7 +38,7 @@ class ClassController extends Controller
     {
         $newStclass = Stclass::create([
             'class_name' => $request->class_name,
-            'capacity' => 0,
+            'capacity' => $request->capacity,
             'status' => 1
         ]);
         return redirect()->back()->with('success', 'Successfully added.');
