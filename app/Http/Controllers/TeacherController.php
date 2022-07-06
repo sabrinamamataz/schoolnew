@@ -9,6 +9,7 @@ use App\Models\Teacher;
 use App\Models\Section;
 use App\Models\ClsPeriod;
 use App\Models\Routine;
+use App\Models\Stclass;
 use App\Models\StudyMaterial;
 use App\Models\Subject;
 
@@ -185,12 +186,19 @@ class TeacherController extends Controller
         return redirect()->back()->with('success', 'Updated successfully');
     }
 
-    public function attendancePage()
+    public function attendancePage($class_id)
     {
-
+        $classes = Stclass::all();
         $periods = ClsPeriod::all();
-        $attendances = Attendance::where('teacher_id', auth()->user()->id)->get();
-        return view('teacher.attendance', compact('periods', 'attendances'));
+        if ($class_id == 0) {
+            $attendances = Attendance::where('teacher_id', auth()->user()->id)->get();
+        } else {
+            $attendances = Attendance::join('sections', 'sections.id', 'attendances.section_id')
+                ->where('attendances.teacher_id', auth()->user()->id)
+                ->where('sections.class_id', $class_id)
+                ->get();
+        }
+        return view('teacher.attendance', compact('periods', 'attendances', 'classes', 'class_id'));
     }
 
     public function studyMaterialPage()

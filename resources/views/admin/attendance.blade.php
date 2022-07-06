@@ -2,8 +2,7 @@
 @section('style')
 @endsection
 @section('content')
- 
-<h4> Attendance</h4>
+    <h4> Attendance</h4>
     <hr>
 
     <div class="container">
@@ -11,7 +10,7 @@
             <thead>
                 <tr>
                     <th scope="col">SL</th>
-                    <th scope="col">Teacher name</th>
+                    <th scope="col">Teacher Name</th>
                     <th scope="col">Date</th>
                     <th scope="col">Week Day</th>
                     <th scope="col">Class</th>
@@ -24,7 +23,7 @@
                 @foreach ($attendances as $key => $data)
                     <tr>
                         <th scope="row">{{ $key + 1 }}</th>
-                        <td>{{ auth()->user()->name }}</td>
+                        <td>{{ isset($data->attendanceToTeacher) ? $data->attendanceToTeacher->name : '--' }}</td>
                         <td>{{ $data->date }}</td>
                         <td>{{ $data->week_day }}</td>
                         <td>
@@ -37,7 +36,6 @@
                                 <a href="{{ route('admin_check_attendance', $data->id) }}" class="btn btn-info">
                                     Inspect
                                 </a>
-                           
                             @endif
                         </td>
                     </tr>
@@ -52,7 +50,4 @@
             $('#myTable').DataTable();
         });
     </script>
-
-
 @endsection
-

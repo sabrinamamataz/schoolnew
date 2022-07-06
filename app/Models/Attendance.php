@@ -21,4 +21,11 @@ class Attendance extends Model
     {
         return $this->belongsTo(ClsPeriod::class, 'period_id', 'id');
     }
+
+    
+    // function to create relationship with attendance and teacher table
+    public function attendanceToTeacher()
+    {
+        return $this->belongsTo(User::class, 'teacher_id', 'id');
+    }
 }

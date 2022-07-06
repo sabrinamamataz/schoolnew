@@ -6,7 +6,7 @@
         <h4>Attendance of
             {{ $attendance->date . ' | ' . $attendance->week_day . ' | ' . $attendance->attendanceToSection->sectionToClass->class_name . ' | Section: ' . $attendance->attendanceToSection->section }}
         </h4>
-        <a href="{{ route('attendance_page') }}" class="btn btn-danger">Back</a>
+        <a href="{{ route('attendance_page', 0) }}" class="btn btn-danger">Back</a>
     </div>
     <hr>
     <div class="container">

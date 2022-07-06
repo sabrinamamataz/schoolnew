@@ -18,7 +18,7 @@
                     Section
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
-                <a class="nav-link collapsed" href="{{ route('student_list') }}">
+                <a class="nav-link collapsed" href="{{ route('student_list', 0) }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     Student list
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
@@ -45,7 +45,7 @@
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a> --}}
 
-                </a> 
+                </a>
 
                 <a class="nav-link" href="{{ route('attendance_admin') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
@@ -61,7 +61,7 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     Notice Board
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                </a> 
+                </a>
 
             </div>
         </div>

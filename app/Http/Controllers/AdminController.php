@@ -7,28 +7,37 @@ use App\Models\Attendance;
 use App\Models\AttendanceDetails;
 use App\Models\StudentAssignSection;
 use App\Models\ClsPeriod;
+use App\Models\Routine;
+use App\Models\Stclass;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    public function studentList()
+    public function studentList($class_id)
     {
-        $students = User::join('students', 'students.user_id', 'users.id')
-            ->select('students.*', 'users.name', 'users.name', 'users.email', 'users.role')
-            ->where('users.role', 'student')
-            ->get();
+        $classes = Stclass::all();
+        if ($class_id == 0) {
+            $students = User::join('students', 'students.user_id', 'users.id')
+                ->select('students.*', 'users.name', 'users.name', 'users.email', 'users.role')
+                ->where('users.role', 'student')
+                ->get();
+        } else {
+            $students = User::join('students', 'students.user_id', 'users.id')
+                ->select('students.*', 'users.name', 'users.name', 'users.email', 'users.role')
+                ->where('users.role', 'student')
+                ->where('students.class', $class_id)
+                ->get();
+        }
 
-            // dd($students);
-        return view('admin.student-list', compact('students'));
+        return view('admin.student-list', compact('students', 'classes', 'class_id'));
     }
-    
-    public function attendancePage()
-{
 
-    $periods = ClsPeriod::all();
-        $attendances = Attendance::where('teacher_id', auth()->user()->id)->get();
+    public function attendancePage()
+    {
+        $periods = ClsPeriod::all();
+        $attendances = Attendance::all();
         return view('admin.attendance', compact('periods', 'attendances'));
-}
+    }
 
 
     public function createAttendance(Request $request)
@@ -142,14 +151,12 @@ class AdminController extends Controller
 
         return redirect()->back()->with('success', 'Attendance sheet created.');
     }
+
     public function checkAttendance($id)
     {
         $attendance = Attendance::find($id);
         $attendanceDetails = AttendanceDetails::where('attendance_id', $id)->get();
 
-        return view('teacher.check-attendance', compact('attendanceDetails', 'attendance'));
+        return view('admin.check-attendance', compact('attendanceDetails', 'attendance'));
     }
-    
-
-    
 }
