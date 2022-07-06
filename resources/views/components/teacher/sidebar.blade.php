@@ -53,22 +53,21 @@
                     Attendence
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
-                <a class="nav-link collapsed" href="{{ route('teacher_study_material') }}" >
+                <a class="nav-link collapsed" href="{{ route('teacher_study_material') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     Study Material
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                </a> 
-                <a class="nav-link collapsed" href="{{ route('updateprofile_teacher_dashboard') }}">
+                </a>
+                <a class="nav-link collapsed" href="{{ route('teacher_profile') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     Update profile
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
                 <a class="nav-link" href="{{ route('notice_teacher_dashboard') }}">
-                   
-                   <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                   Notice Board
-                   <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-               </a>
+                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                    Notice Board
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
 
             </div>
         </div>

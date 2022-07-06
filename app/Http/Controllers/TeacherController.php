@@ -146,7 +146,7 @@ class TeacherController extends Controller
 
         return view('teacher.routine', compact('arr'));
     }
-    public function updateprofileDashboard()
+    public function teacherProfile()
     {
         $userDate = User::find(auth()->user()->id);
         $teacherData = Teacher::where('user_id', $userDate->id)->first();
@@ -193,7 +193,7 @@ class TeacherController extends Controller
         return view('teacher.attendance', compact('periods', 'attendances'));
     }
 
-    public function studymaterialPage()
+    public function studyMaterialPage()
     {
         $studymaterials = Studymaterial::where('teacher_id', auth()->id())->get();
         $section_ids = Routine::where('period_1_t_id', auth()->id())

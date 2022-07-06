@@ -7,7 +7,7 @@ use App\Models\StudentAssignSection;
 use App\Models\StudyMaterial;
 use Illuminate\Http\Request;
 
-class StudymaterialController extends Controller
+class StudyMaterialController extends Controller
 {
     public function store(Request $request)
     {

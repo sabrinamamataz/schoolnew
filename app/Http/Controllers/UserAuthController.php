@@ -41,7 +41,7 @@ class UserAuthController extends Controller
 
         return redirect()->route('login_page')->with('success', 'Logout Successful.');
     }
-    public function registion()
+    public function registration()
     {
         return view("register");
     }

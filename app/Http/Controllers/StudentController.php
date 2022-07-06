@@ -197,7 +197,7 @@ class StudentController extends Controller
         return redirect()->back()->with('success', 'Successfully added.');
     }
 
-    public function updateprofileDashboard()
+    public function studentProfile()
     {
         $userDate = User::find(auth()->user()->id);
         $studentData = Student::where('user_id', $userDate->id)->first();
