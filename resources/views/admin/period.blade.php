@@ -1,11 +1,11 @@
 @extends('admin.main')
 @section('content')
-    <div class="">
+    <div class="p-2">
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addNewSection">
             Add New Period
         </button>
-
+        <hr>
         <!-- Modal -->
         <div class="modal fade" id="addNewSection" tabindex="-1" aria-labelledby="addNewSectionLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -73,10 +73,56 @@
                             <td>{{ $period->end_time }}</td>
                             <td>{{ $period->status == 1 ? 'Active' : 'Inactive' }}</td>
                             <td>
-                                <a href="#" class="btn btn-warning">Edit</a>
-                                <a href="#" class="btn btn-danger">Delete</a>
+                                <button type="button" class="btn btn-info" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#updateModat{{ $period->id }}">
+                                    Edit
+                                </button>
                             </td>
                         </tr>
+
+                        <!-- update Modal -->
+                        <div class="modal fade" id="updateModat{{ $period->id }}" tabindex="-1"
+                            aria-labelledby="updateModatLabel{{ $period->id }}" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="updateModatLabel{{ $period->id }}">
+                                            Update {{ $period->period }} Period
+                                        </h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <form action="{{ route('update_period', $period->id) }}" method="post">
+                                        @csrf
+                                        <input type="hidden" name="period_id" value="{{ $period->id }}">
+                                        <div class="modal-body">
+                                            <div class="container">
+                                                <div class="form-group">
+                                                    <label for="">Period</label>
+                                                    <input type="text" name="Period" class="form-control"
+                                                        value="{{ $period->period }}" readonly>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="Start_time">Start Time</label>
+                                                    <input type="time" name="start_time" required class="form-control"
+                                                        value="{{ $period->start_time }}">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="End_time">End Time</label>
+                                                    <input type="time" name="end_time" required class="form-control"
+                                                        value="{{ $period->end_time }}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     @endforeach
                 </tbody>
             </table>

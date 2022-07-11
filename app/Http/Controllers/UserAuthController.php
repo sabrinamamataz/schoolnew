@@ -3,12 +3,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Suppoort\Requuest\password;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
 class UserAuthController extends Controller
 {
+    public function authCheckAndRedirect()
+    {
+        if (auth()->user()) {
+            if (auth()->user()->role == 'admin') {
+                return redirect()->route('admin_dashboard');
+            } elseif (auth()->user()->role == 'student') {
+                return redirect()->route('student_dashboard');
+            } elseif (auth()->user()->role == 'teacher') {
+                return redirect()->route('teacher_dashboard');
+            }
+        } else {
+            return redirect()->route('login_page');
+        }
+    }
     public function login()
     {
         return view("login");
@@ -16,7 +29,6 @@ class UserAuthController extends Controller
 
     public function loginAuth(Request $request)
     {
-        // dd($request->all());
         //authenticate
         $credentials = $request->only('email', 'password');
         // dd($credentials);
@@ -35,16 +47,19 @@ class UserAuthController extends Controller
             'email' => 'Invalid Credentials.',
         ]);
     }
+
     public function logout()
     {
         Auth::logout();
 
         return redirect()->route('login_page')->with('success', 'Logout Successful.');
     }
+
     public function registration()
     {
         return view("register");
     }
+
     public function registerAuth(Request $request)
     {
         // dd($request->all());

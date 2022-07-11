@@ -5,7 +5,7 @@
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addNewNotice">
             Add New Notice
         </button>
-
+        <hr>
         <!-- Modal -->
         <div class="modal fade" id="addNewNotice" tabindex="-1" aria-labelledby="addNewNotice" aria-hidden="true">
             <div class="modal-dialog">

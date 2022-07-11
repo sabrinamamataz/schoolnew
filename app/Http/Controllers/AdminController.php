@@ -159,4 +159,10 @@ class AdminController extends Controller
 
         return view('admin.check-attendance', compact('attendanceDetails', 'attendance'));
     }
+
+    public function teacherList()
+    {
+        $teachers = User::where('role', 'teacher')->get();
+        return view('admin.teacher-list', compact('teachers'));
+    }
 }

@@ -24,4 +24,15 @@ class SubjectController extends Controller
 
         return redirect()->back()->with('success', 'Successfully added.');
     }
+
+    public function updateSubject(Request $request)
+    {
+        Subject::find($request->subject_id)->update([
+            'subject_name' => $request->subject_name,
+            'credit' => $request->credit,
+            'passing_mark' => $request->passing_mark,
+        ]);
+
+        return redirect()->back()->with('success', 'Successfully updated.');
+    }
 }

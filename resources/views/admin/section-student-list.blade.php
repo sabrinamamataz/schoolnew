@@ -77,20 +77,20 @@
                             <td>{{ $student->status == 1 ? 'Active' : 'Inactive' }}</td>
                             <td>
                                 <button type="button" class="btn btn-success" class="btn btn-primary"
-                                    data-bs-toggle="modal" data-bs-target="#updateModat{{ $student->id }}">
+                                    data-bs-toggle="modal" data-bs-target="#inspectModat{{ $student->id }}">
                                     View
                                 </button>
                             </td>
                         </tr>
 
                         <!-- update Modal -->
-                        <div class="modal fade" id="updateModat{{ $student->id }}" tabindex="-1"
-                            aria-labelledby="updateModatLabel{{ $student->id }}" aria-hidden="true">
+                        <div class="modal fade" id="inspectModat{{ $student->id }}" tabindex="-1"
+                            aria-labelledby="inspectModatLabel{{ $student->id }}" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="updateModatLabel{{ $student->id }}">
-                                            Update {{ $student->name }}
+                                        <h5 class="modal-title" id="inspectModatLabel{{ $student->id }}">
+                                            {{ $student->name }}
                                         </h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>

@@ -1,10 +1,11 @@
 @extends('admin.main')
 @section('content')
-    <div class="">
+    <div class="p-2">
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addNewSection">
             Add New Section
         </button>
+        <hr>
 
         <!-- Modal -->
         <div class="modal fade" id="addNewSection" tabindex="-1" aria-labelledby="addNewSectionLabel" aria-hidden="true">
@@ -48,8 +49,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="Shift">Shift</label>
-                                    <input type="text" name="shift" required class="form-control"
-                                        placeholder="Day/Evening">
+                                    <input type="text" name="shift" required class="form-control" value="Morning"
+                                        placeholder="Morning/Evening">
                                 </div>
                             </div>
                         </div>
@@ -71,6 +72,7 @@
                         <th scope="col">Teacher Name</th>
                         <th scope="col">Section</th>
                         <th scope="col">Student Capacity</th>
+                        <th scope="col">Total Student</th>
                         <th scope="col">Shift</th>
                         <th scope="col">Student list</th>
                         <th scope="col">Status</th>
@@ -85,17 +87,22 @@
                             <td>{{ $section->sectionToUserTeacher->name }}</td>
                             <td>{{ $section->section }}</td>
                             <td>{{ $section->student_capacity }}</td>
+                            <td>
+                                @php
+                                    echo App\Models\StudentAssignSection::where('section_id', $section->id)->count();
+                                @endphp
+                            </td>
                             <td>{{ $section->shift }}</td>
                             <td>
-                                <a href="{{ route('section_student_list', $section->id) }}" class="btn btn-success">view list</a>
+                                <a href="{{ route('section_student_list', $section->id) }}" class="btn btn-success">view
+                                    list</a>
                             </td>
                             <td>{{ $section->status == 1 ? 'Active' : 'Inactive' }}</td>
                             <td>
-                                <button type="button" class="btn btn-warning" class="btn btn-primary"
+                                <button type="button" class="btn btn-info" class="btn btn-primary"
                                     data-bs-toggle="modal" data-bs-target="#updateModat{{ $section->id }}">
-                                    Update
+                                    Edit
                                 </button>
-                                <a href="{{ route('delete_section', $section->id) }}" class="btn btn-danger">Delete</a>
                             </td>
                         </tr>
 
@@ -118,15 +125,8 @@
                                             <div class="container">
                                                 <div class="form-group">
                                                     <label for="Class_id">Class</label>
-                                                    <select class="form-select" name="class_id" required>
-                                                        <option value="">Select Class</option>
-                                                        @foreach ($classes as $class)
-                                                            <option value="{{ $class->id }}"
-                                                                {{ $section->class_id == $class->id ? 'selected' : '' }}>
-                                                                {{ $class->class_name }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
+                                                    <input type="text" class="form-control" readonly
+                                                        value="{{ $section->class_id }}">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="Teacher_id">Teacher</label>

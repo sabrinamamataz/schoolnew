@@ -1,7 +1,6 @@
 @extends('admin.main')
 @section('content')
-    <div class="mt-2">
-
+    <div class="p-2">
         <div class="col-md-12">
             <table class="table table-bordered">
                 <thead>
@@ -39,7 +38,6 @@
                                         class="btn btn-primary">
                                         Approve
                                         </button>
-
                                     </a>
                                 @endif
                                 <a href="{{ route('delete_admin_study_material', $studymaterial->id) }}"

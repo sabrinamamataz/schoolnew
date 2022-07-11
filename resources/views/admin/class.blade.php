@@ -1,18 +1,15 @@
 @extends('admin.main')
 @php
 use App\Models\Section;
-use App\Models\Subject;
-use App\Models\Routine;
 use App\Models\StudentAssignSection;
-
 @endphp
 @section('content')
-    <div class="">
+    <div class="p-2">
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addNewClass">
             Add New Class
         </button>
-
+        <hr>
         <!-- Modal -->
         <div class="modal fade" id="addNewClass" tabindex="-1" aria-labelledby="addNewClassLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -68,11 +65,10 @@ use App\Models\StudentAssignSection;
                             <td>{{ $stdCount }}</td>
                             <td>{{ $class->capacity }}</td>
                             <td>
-                                <button type="button" class="btn btn-warning" class="btn btn-primary"
+                                <button type="button" class="btn btn-info" class="btn btn-primary"
                                     data-bs-toggle="modal" data-bs-target="#updateModat{{ $class->id }}">
-                                    Update
+                                    Edit
                                 </button>
-                                <a href="{{ route('delete_class', $class->id) }}" class="btn btn-danger">Delete</a>
                             </td>
                         </tr>
 

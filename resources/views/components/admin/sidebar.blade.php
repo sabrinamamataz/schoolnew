@@ -18,6 +18,11 @@
                     Section
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
+                <a class="nav-link collapsed" href="{{ route('teacher_list') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                    Teacher list
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
                 <a class="nav-link collapsed" href="{{ route('student_list', 0) }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     Student list

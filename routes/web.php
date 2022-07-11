@@ -34,9 +34,7 @@ use App\Http\Controllers\NoticeController;
 //     return view('.index');
 // })->name('welcome');
 
-Route::get('/', function () {
-    return redirect()->route('login_page');
-});
+Route::get('/', [UserAuthController::class, 'authCheckAndRedirect']);
 
 Route::get('/login', [UserAuthController::class, 'login'])->name('login_page');
 Route::get('/registration', [UserAuthController::class, 'registration'])->name('registration_page');
@@ -51,20 +49,22 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/admin-dashboard', [SectionController::class, 'adminDashboard'])->name('admin_dashboard');
         Route::get('/student-list/{class_id}', [AdminController::class, 'studentList'])->name('student_list');
 
+        // admin teacher
+        Route::get('/teachers', [AdminController::class, 'teacherList'])->name('teacher_list');
+
         // admin subject
         Route::get('/subject', [SubjectController::class, 'subjectList'])->name('subject_list');
         Route::post('/section/add', [SubjectController::class, 'addSubject'])->name('add_subject');
+        Route::post('/subject/update', [SubjectController::class, 'updateSubject'])->name('update_subject');
 
         // admin class
         Route::get('/class-admin-dashboard', [ClassController::class, 'classDashboard'])->name('class_admin_dashboard');
         Route::post('/class/store', [ClassController::class, 'store'])->name('add_class');
-        Route::get('/class/delete/{id}', [ClassController::class, 'destroy'])->name('delete_class');
         Route::post('/class/update', [ClassController::class, 'update'])->name('class_update');
 
         // admin section
         Route::get('/section-admin-dashboard', [SectionController::class, 'sectionDashboard'])->name('section_admin_dashboard');
         Route::post('/section/store', [SectionController::class, 'store'])->name('add_section');
-        Route::get('/section/delete/{id}', [SectionController::class, 'destroy'])->name('delete_section');
         Route::post('/section/update', [SectionController::class, 'update'])->name('section_update');
         Route::get('/section-admin-dashboard/{section_id}', [SectionController::class, 'sectionStudentList'])->name('section_student_list');
         Route::get('/add-student-section/{std_ids}/{section_id}', [SectionController::class, 'addStudentToSection'])->name('add_student_to_section');
@@ -72,12 +72,14 @@ Route::group(['middleware' => 'auth'], function () {
         // admin period
         Route::get('/class-period', [RoutineController::class, 'periodPage'])->name('period_page');
         Route::post('/class-period/add', [RoutineController::class, 'addPeriod'])->name('add_period');
+        Route::post('/class-period/update', [RoutineController::class, 'updatePeriod'])->name('update_period');
 
         // admin routine
         Route::get('/routine-admin-dashboard', [RoutineController::class, 'routineDashboard'])->name('routine_admin_dashboard');
         Route::post('/routine/store', [RoutineController::class, 'store'])->name('add_routine');
         Route::post('/routine/update', [RoutineController::class, 'update'])->name('routine_update');
         Route::post('/routine/update-week-day', [RoutineController::class, 'updateWeekDay'])->name('routine_update_week_day');
+        Route::post('/routine/update-teacher', [RoutineController::class, 'updateTeacher'])->name('routine_update_teacher');
 
         // admin study materials
         Route::get('/admin-study-materials', [StudyMaterialController::class, 'adminStudyMaterials'])->name('admin_study_materials');
