@@ -16,6 +16,7 @@
                     <th scope="col">SL</th>
                     <th scope="col">Name</th>
                     <th scope="col">Email</th>
+                    <th scope="col">Gender</th>
                     <th scope="col">Subject</th>
                     <th scope="col">Designation</th>
                     <th scope="col">Action</th>
@@ -27,6 +28,7 @@
                         <th scope="row">{{ $key + 1 }}</th>
                         <td>{{ $data->name }}</td>
                         <td>{{ $data->email }}</td>
+                        <td>{{ isset($data->gender) ? $data->gender : '--' }}</td>
                         <td>
                             {{ isset($data->userTeacherToSubject->subject_name) ? $data->userTeacherToSubject->subject_name : '--' }}
                         </td>

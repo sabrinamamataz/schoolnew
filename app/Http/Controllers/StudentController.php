@@ -199,11 +199,11 @@ class StudentController extends Controller
 
     public function studentProfile()
     {
-        $userDate = User::find(auth()->user()->id);
-        $studentData = Student::where('user_id', $userDate->id)->first();
+        $userData = User::find(auth()->user()->id);
+        $studentData = Student::where('user_id', $userData->id)->first();
         $classes = Stclass::all();
         // dd($studentData);
-        return view('student.updateprofile', compact('userDate', 'studentData', 'classes'));
+        return view('student.updateprofile', compact('userData', 'studentData', 'classes'));
     }
 
     public function updateStudentData(Request $request)
@@ -211,12 +211,13 @@ class StudentController extends Controller
         $request->validate([
             'email' => 'email|unique:users,email,' . auth()->user()->id,
         ]);
-        $userDate = User::find(auth()->user()->id);
-        $userDate->update([
+        $userData = User::find(auth()->user()->id);
+        $userData->update([
             'name' => $request->name,
             'email' => $request->email,
+            'gender' => $request->gender,
         ]);
-        $studentData = Student::where('user_id', $userDate->id)->first();
+        $studentData = Student::where('user_id', $userData->id)->first();
         if ($studentData) {
             $studentData->update([
                 'guardian_no' => $request->guardian_no,
@@ -230,10 +231,12 @@ class StudentController extends Controller
         } else {
             $newStudent = Student::create([
                 'status' => 1,
-                'user_id' => $userDate->id,
+                'user_id' => $userData->id,
                 'guardian_no' => $request->guardian_no,
                 'class' => $request->class,
                 'address' => $request->address,
+                'date_of_birth' => $request->date_of_birth,
+                'age' => $request->age,
                 'guardian_name' => $request->guardian_name,
                 'guardian_relation' => $request->guardian_relation,
             ]);

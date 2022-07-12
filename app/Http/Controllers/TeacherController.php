@@ -12,6 +12,7 @@ use App\Models\Routine;
 use App\Models\Stclass;
 use App\Models\StudyMaterial;
 use App\Models\Subject;
+use Faker\Factory as Faker;
 
 class TeacherController extends Controller
 {
@@ -148,11 +149,12 @@ class TeacherController extends Controller
     }
     public function teacherProfile()
     {
-        $userDate = User::find(auth()->user()->id);
-        $teacherData = Teacher::where('user_id', $userDate->id)->first();
+        $userData = User::find(auth()->user()->id);
+        $teacherData = Teacher::where('user_id', $userData->id)->first();
         $subjects = Subject::all();
-
-        return view('teacher.updateprofile', compact('userDate', 'teacherData', 'subjects'));
+        $faker = Faker::create();
+        
+        return view('teacher.updateprofile', compact('userData', 'teacherData', 'subjects'));
     }
 
     public function updateTeacherData(Request $request)
@@ -160,12 +162,13 @@ class TeacherController extends Controller
         $request->validate([
             'email' => 'email|unique:users,email,' . auth()->user()->id,
         ]);
-        $userDate = User::find(auth()->user()->id);
-        $userDate->update([
+        $userData = User::find(auth()->user()->id);
+        $userData->update([
             'name' => $request->name,
             'email' => $request->email,
+            'gender' => $request->gender,
         ]);
-        $teacherData = Teacher::where('user_id', $userDate->id)->first();
+        $teacherData = Teacher::where('user_id', $userData->id)->first();
         if ($teacherData) {
             $teacherData->update([
                 'contact_no' => $request->contact_no,
@@ -177,7 +180,7 @@ class TeacherController extends Controller
         } else {
             $newTeacher = Teacher::create([
                 'status' => 1,
-                'user_id' => $userDate->id,
+                'user_id' => $userData->id,
                 'contact_no' => $request->contact_no,
                 'address' => $request->address,
                 'designation' => $request->designation,

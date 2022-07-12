@@ -18,7 +18,6 @@ class TeacherSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
-
         $subjects = Subject::all()->pluck('id')->toArray();
 
         for ($i = 1; $i <= 30; $i++) {
@@ -26,7 +25,8 @@ class TeacherSeeder extends Seeder
                 'name' => $faker->name(),
                 'email' => $faker->unique()->safeEmail(),
                 'password' => bcrypt('password'),
-                'role' => 'teacher'
+                'role' => 'teacher',
+                'gender' => $faker->randomElement(['Male', 'Female'])
             ]);
 
             shuffle($subjects);

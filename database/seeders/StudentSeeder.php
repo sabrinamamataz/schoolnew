@@ -18,7 +18,6 @@ class StudentSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
-
         $classes = Stclass::all()->pluck('id')->toArray();
 
         for ($i = 1; $i <= 500; $i++) {
@@ -26,9 +25,9 @@ class StudentSeeder extends Seeder
                 'name' => $faker->name(),
                 'email' => $faker->unique()->safeEmail(),
                 'password' => bcrypt('password'),
-                'role' => 'student'
+                'role' => 'student',
+                'gender' => $faker->randomElement(['Male', 'Female'])
             ]);
-
             shuffle($classes);
             Student::create([
                 'user_id' => $newUser->id,

@@ -1,11 +1,11 @@
 @extends('teacher.main')
 @section('content')
-    <div class="">
+    <div class="p-2">
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addNewStudymaterial">
             Add New Study Material
         </button>
-
+        <hr>
         <!-- Modal -->
         <div class="modal fade" id="addNewStudymaterial" tabindex="-1" aria-labelledby="addNewStudymaterialLabel"
             aria-hidden="true">

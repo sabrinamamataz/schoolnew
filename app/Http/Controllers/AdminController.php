@@ -18,12 +18,12 @@ class AdminController extends Controller
         $classes = Stclass::all();
         if ($class_id == 0) {
             $students = User::join('students', 'students.user_id', 'users.id')
-                ->select('students.*', 'users.name', 'users.name', 'users.email', 'users.role')
+                ->select('students.*', 'users.name', 'users.name', 'users.email', 'users.gender', 'users.role')
                 ->where('users.role', 'student')
                 ->get();
         } else {
             $students = User::join('students', 'students.user_id', 'users.id')
-                ->select('students.*', 'users.name', 'users.name', 'users.email', 'users.role')
+                ->select('students.*', 'users.name', 'users.name', 'users.email', 'users.gender', 'users.role')
                 ->where('users.role', 'student')
                 ->where('students.class', $class_id)
                 ->get();

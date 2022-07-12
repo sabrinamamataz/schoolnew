@@ -5,18 +5,33 @@
         <div class="form-group">
             <div class="mb-3">
                 <label for="formGroupExampleInput">Name</label>
-                <input type="text" name="name" required class="form-control" class="Enter Name"
-                    value="{{ $userDate->name }}">
+                <input type="text" name="name" readonly class="form-control" class="Enter Name"
+                    value="{{ $userData->name }}">
             </div>
             <div class="mb-3">
                 <label for="formGroupExampleInput">Email</label>
                 <input type="email" name="email" readonly class="form-control" placeholder="Enter email"
-                    value="{{ $userDate->email }}">
+                    value="{{ $userData->email }}">
             </div>
             <div class="mb-3">
                 <label for="formGroupExampleInput">Date of birth</label>
                 <input type="date" name="date_of_birth" required class="form-control" placeholder="Enter date of birth"
                     value="{{ isset($teacherData->date_of_birth) ? $teacherData->date_of_birth : '' }}">
+            </div>
+            <div class="mb-3">
+                <label for="formGroupExampleInput">Gender</label>
+                <select class="form-select" name="gender" aria-label="Gender Selaction" requiredD>
+                    <option value="">Select Gender</option>
+                    <option value="Male" {{ $userData->gender == 'Male' ? 'selected' : '' }}>
+                        Male
+                    </option>
+                    <option value="Female" {{ $userData->gender == 'Female' ? 'selected' : '' }}>
+                        Female
+                    </option>
+                    <option value="Other" {{ $userData->gender == 'Other' ? 'selected' : '' }}>
+                        Other
+                    </option>
+                </select>
             </div>
             <div class="mb-3">
                 <div class="form-group">

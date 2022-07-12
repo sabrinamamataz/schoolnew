@@ -42,12 +42,12 @@ class StudentData extends Command
     {
         $classes = Stclass::all()->pluck('id')->toArray();
         $user = User::where('role', 'student')->get();
-        foreach ($user as $userDate) {
+        foreach ($user as $userData) {
             shuffle($classes);
-            $studentData = Student::where('user_id', $userDate->id)->first();
+            $studentData = Student::where('user_id', $userData->id)->first();
             if (!$studentData) {
                 $newStudent = Student::create([
-                    'user_id' => $userDate->id,
+                    'user_id' => $userData->id,
                     'class' => $classes[0],
                 ]);
             }

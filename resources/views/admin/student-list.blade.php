@@ -28,6 +28,7 @@
                             <th scope="col">SL</th>
                             <th scope="col">Name</th>
                             <th scope="col">Email</th>
+                            <th scope="col">Gender</th>
                             <th scope="col">Class</th>
                             <th scope="col">Guardian</th>
                             <th scope="col">Contact</th>
@@ -41,6 +42,7 @@
                                 <th scope="row">{{ $key + 1 }}</th>
                                 <td>{{ $student->name }}</td>
                                 <td>{{ $student->email }}</td>
+                                <td>{{ isset($student->gender) ? $student->gender : '--' }}</td>
                                 <td>{{ isset($student->userToClass) ? $student->userToClass->class_name : '--' }}</td>
                                 <td>{{ $student->guardian_name }}</td>
                                 <td>{{ $student->guardian_contact }}</td>
