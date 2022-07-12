@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Section;
 use App\Models\Stclass;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;

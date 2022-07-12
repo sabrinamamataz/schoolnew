@@ -19,4 +19,9 @@ class Teacher extends Model
         }
         return $name;
     }
+
+    public function teacherToSubject()
+    {
+        return $this->belongsTo(Subject::class, 'subject_id', 'id');
+    }
 };

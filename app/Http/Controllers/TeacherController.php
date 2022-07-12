@@ -143,7 +143,6 @@ class TeacherController extends Controller
         $columns = array_column($arr, 'day_no');
         $columns2 = array_column($arr, 'period');
         array_multisort($columns, SORT_ASC, $columns2, SORT_ASC,  $arr);
-        // dd($arr);
 
         return view('teacher.routine', compact('arr'));
     }
@@ -151,8 +150,9 @@ class TeacherController extends Controller
     {
         $userDate = User::find(auth()->user()->id);
         $teacherData = Teacher::where('user_id', $userDate->id)->first();
-        // dd($teacherData);
-        return view('teacher.updateprofile', compact('userDate', 'teacherData'));
+        $subjects = Subject::all();
+
+        return view('teacher.updateprofile', compact('userDate', 'teacherData', 'subjects'));
     }
 
     public function updateTeacherData(Request $request)
@@ -171,7 +171,8 @@ class TeacherController extends Controller
                 'contact_no' => $request->contact_no,
                 'address' => $request->address,
                 'designation' => $request->designation,
-
+                'subject_id' => $request->subject_id,
+                'date_of_birth' => $request->date_of_birth,
             ]);
         } else {
             $newTeacher = Teacher::create([
@@ -180,9 +181,11 @@ class TeacherController extends Controller
                 'contact_no' => $request->contact_no,
                 'address' => $request->address,
                 'designation' => $request->designation,
+                'subject_id' => $request->subject_id,
+                'date_of_birth' => $request->date_of_birth,
             ]);
         }
-        // dd($request->all());
+
         return redirect()->back()->with('success', 'Updated successfully');
     }
 

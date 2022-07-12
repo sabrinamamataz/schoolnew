@@ -162,7 +162,10 @@ class AdminController extends Controller
 
     public function teacherList()
     {
-        $teachers = User::where('role', 'teacher')->get();
+        $teachers = User::join('teachers', 'teachers.user_id', 'users.id')
+            ->where('users.role', 'teacher')
+            ->get();
+
         return view('admin.teacher-list', compact('teachers'));
     }
 }

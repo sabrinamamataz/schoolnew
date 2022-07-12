@@ -56,4 +56,10 @@ class User extends Authenticatable
     {
         return $this->hasOne(StudentAssignSection::class, 'user_id', 'id');
     }
+
+    
+    public function userTeacherToSubject()
+    {
+        return $this->belongsTo(Subject::class, 'subject_id', 'id');
+    }
 }

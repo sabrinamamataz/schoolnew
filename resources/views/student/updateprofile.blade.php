@@ -57,7 +57,7 @@
             </div>
             <div class="mb-3">
                 <label for="formGroupExampleInput">Guardian No</label>
-                <input type="number" name="guardian_no" required class="form-control"
+                <input type="tel" name="guardian_no" required class="form-control"
                     placeholder="Enter guardian contact number"
                     value="{{ isset($studentData->guardian_no) ? $studentData->guardian_no : '' }}">
             </div>
