@@ -10,25 +10,28 @@ use App\Models\ClsPeriod;
 use App\Models\Stclass;
 use App\Models\Routine;
 use App\Models\Section;
-use App\Models\Subject;
 use App\Models\Student;
 use App\Models\StudentAssignSection;
-use App\Models\Teacher;
 use Carbon\Carbon;
 
 class StudentController extends Controller
 {
     public function studentDashboard()
     {
-
         return view('student.dashboard');
     }
+
     public function routineDashboard()
     {
         $periods = ClsPeriod::all();
 
         $clsSec = StudentAssignSection::where('user_id', auth()->user()->id)->first();
-        $section = Section::find($clsSec->section_id);
+
+        if ($clsSec) {
+            $section = Section::find($clsSec->section_id);
+        } else {
+            $section = '';
+        }
 
         if (isset($section->class_id)) {
             $routine = $section->class_id;
@@ -36,41 +39,18 @@ class StudentController extends Controller
             $routine = 0;
         }
         $routine = 1;
-        // dd($routine);
+
         return view('student.routine', compact('routine', 'periods', 'section'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-
-        // $newRoutine = Routine::create([
-        //     'section_id' => $request->section_id,
-        //     'week_day' => $request->week_day,
-        //     'subject_id' => $request->subject_id,
-        //     'period_id' => $request->period_id,
-        // ]);
         $check = Routine::where('section_id', $request->section_id)->first();
         if ($check) {
             return redirect()->back()->with('error', 'Already exists.');
         }
         $weeks = ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"];
-        // dd(($weeks));
+
         for ($i = 0; $i < 6; $i++) {
             $newRoutine = Routine::create([
                 'section_id' => $request->section_id,
@@ -80,37 +60,6 @@ class StudentController extends Controller
         return redirect()->back()->with('success', 'Successfully added.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Routine  $routine
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Routine $routine)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Routine  $routine
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Routine $routine)
-    {
-        // $routine = Routine($id)
-        // returen view('routine.edit' ,['routine'=>$routine])
-
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Routine  $routine
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request)
     {
         $routine = Routine::find($request->routine_id);
@@ -150,6 +99,7 @@ class StudentController extends Controller
         ]);
         return redirect()->back()->with('success', 'Successfully added.');
     }
+    
     public function addClass(Request $request)
     {
         $check = Student::where('class', $request->class)->first();
@@ -158,8 +108,8 @@ class StudentController extends Controller
         }
         $newRoutine = Student::create([
             'class' => $request->class,
-
         ]);
+
         return redirect()->back()->with('success', 'Successfully added.');
     }
 
@@ -194,6 +144,7 @@ class StudentController extends Controller
             "period_8_sub_id" => $request->period_8_sub_id,
             "period_8_t_id" => $request->period_8_t_id
         ]);
+
         return redirect()->back()->with('success', 'Successfully added.');
     }
 
@@ -202,7 +153,7 @@ class StudentController extends Controller
         $userData = User::find(auth()->user()->id);
         $studentData = Student::where('user_id', $userData->id)->first();
         $classes = Stclass::all();
-        // dd($studentData);
+
         return view('student.updateprofile', compact('userData', 'studentData', 'classes'));
     }
 
@@ -241,7 +192,7 @@ class StudentController extends Controller
                 'guardian_relation' => $request->guardian_relation,
             ]);
         }
-        // dd($request->all());
+
         return redirect()->back()->with('success', 'Updated successfully');
     }
 
@@ -266,18 +217,20 @@ class StudentController extends Controller
                 'absent' => $absent
             ]);
         } else {
-            $newAttendanceRecord = AttendanceRecord::create([
-                's_user_id' => auth()->user()->id,
-                'class_id' => auth()->user()->userToSecAssign->assignSectionToSection->class_id,
-                'section_id' => auth()->user()->userToSecAssign->section_id,
-                'month' => date('m'),
-                'year' => date('Y'),
-                'first_class' => Carbon::now()->startOfMonth(),
-                'last_class' => Carbon::now()->endOfMonth(),
-                'total_class' => $total,
-                'present' => $present,
-                'absent' => $absent
-            ]);
+            if (auth()->user()->userToSecAssign) {
+                $newAttendanceRecord = AttendanceRecord::create([
+                    's_user_id' => auth()->user()->id,
+                    'class_id' => auth()->user()->userToSecAssign->assignSectionToSection->class_id,
+                    'section_id' => auth()->user()->userToSecAssign->section_id,
+                    'month' => date('m'),
+                    'year' => date('Y'),
+                    'first_class' => Carbon::now()->startOfMonth(),
+                    'last_class' => Carbon::now()->endOfMonth(),
+                    'total_class' => $total,
+                    'present' => $present,
+                    'absent' => $absent
+                ]);
+            }
         }
 
         $getRecord = AttendanceRecord::where('s_user_id', auth()->user()->id)->get();

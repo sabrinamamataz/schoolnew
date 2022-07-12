@@ -99,8 +99,8 @@
                             </td>
                             <td>{{ $section->status == 1 ? 'Active' : 'Inactive' }}</td>
                             <td>
-                                <button type="button" class="btn btn-info" class="btn btn-primary"
-                                    data-bs-toggle="modal" data-bs-target="#updateModat{{ $section->id }}">
+                                <button type="button" class="btn btn-info" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#updateModat{{ $section->id }}">
                                     Edit
                                 </button>
                             </td>

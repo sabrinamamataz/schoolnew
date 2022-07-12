@@ -1,18 +1,21 @@
 @php
 use App\Models\Subject;
 use App\Models\Teacher;
+use App\Models\Routine;
 
-$routineDetails = App\Models\Routine::where('section_id', $routine)->first();
+$routineDetails = Routine::where('section_id', $routine)->first();
 @endphp
 @extends('student.main')
 @section('content')
     <div class="container">
         <div class="col-12 d-flex justify-content-between m-2">
-            <h4>
-                Routine of: {{ $section->sectionToClass->class_name . ' - Section: ' . $section->section }}
-                ||
-                Student Name: {{ auth()->user()->name }}
-            </h4>
+            @if ($section)
+                <h4>
+                    Routine of: {{ $section->sectionToClass->class_name . ' - Section: ' . $section->section }}
+                    ||
+                    Student Name: {{ auth()->user()->name }}
+                </h4>
+            @endif
             <button class="btn btn-info" onclick="window.print()">Print</button>
         </div>
         @if ($routine != 0 && isset($routineDetails))

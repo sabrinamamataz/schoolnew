@@ -1,7 +1,8 @@
 @extends('student.main')
 @section('content')
-    <div class="mt-2">
-
+    <div class="p-2">
+        <h4>Study Materials</h4>
+        <hr>
         <div class="col-md-12">
             <table class="table table-bordered">
                 <thead>

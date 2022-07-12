@@ -6,7 +6,6 @@ use App\Models\ClsPeriod;
 use App\Models\Routine;
 use App\Models\Section;
 use App\Models\Subject;
-use App\Models\Teacher;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -15,9 +14,6 @@ class RoutineController extends Controller
     public function routineDashboard()
     {
         $routines = Routine::groupBy('section_id')->pluck('section_id', 'section_id');
-
-        // dd($routines);
-
         $sections = Section::all();
         $periods = ClsPeriod::all();
         $subjects = Subject::where('status', 1)->get();
@@ -33,7 +29,7 @@ class RoutineController extends Controller
             return redirect()->back()->with('error', 'Already exists.');
         }
         $weeks = ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"];
-        // dd(($weeks));
+
         for ($i = 0; $i < 6; $i++) {
             $newRoutine = Routine::create([
                 'section_id' => $request->section_id,
@@ -94,28 +90,20 @@ class RoutineController extends Controller
         }
         $routine->update([
             "period_1_sub_id" => $request->period_1_sub_id,
-            // "period_1_t_id" => $request->period_1_t_id,
 
             "period_2_sub_id" => $request->period_2_sub_id,
-            // "period_2_t_id" => $request->period_2_t_id,
 
             "period_3_sub_id" => $request->period_3_sub_id,
-            // "period_3_t_id" => $request->period_3_t_id,
 
             "period_4_sub_id" => $request->period_4_sub_id,
-            // "period_4_t_id" => $request->period_4_t_id,
 
             "period_5_sub_id" => $request->period_5_sub_id,
-            // "period_5_t_id" => $request->period_5_t_id,
 
             "period_6_sub_id" => $request->period_6_sub_id,
-            // "period_6_t_id" => $request->period_6_t_id,
 
             "period_7_sub_id" => $request->period_7_sub_id,
-            "period_7_t_id" => $request->period_7_t_id,
 
             "period_8_sub_id" => $request->period_8_sub_id,
-            "period_8_t_id" => $request->period_8_t_id
         ]);
         return redirect()->back()->with('success', 'Successfully added.');
     }

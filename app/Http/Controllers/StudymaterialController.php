@@ -11,7 +11,6 @@ class StudyMaterialController extends Controller
 {
     public function store(Request $request)
     {
-
         $section = Section::find($request->section_id);
 
         $file_name = '';
@@ -84,8 +83,12 @@ class StudyMaterialController extends Controller
 
     public function studentStudyMaterials()
     {
-        $stdSec = StudentAssignSection::where('user_id', auth()->id())->first()->section_id;
-        $studymaterials = StudyMaterial::where('section_id', $stdSec)->where('status', 1)->get();
+        $stdSec = StudentAssignSection::where('user_id', auth()->id())->first();
+        if ($stdSec) {
+            $studymaterials = StudyMaterial::where('section_id', $stdSec->section_id)->where('status', 1)->get();
+        } else {
+            $studymaterials = collect();
+        }
         return view('student.study-material', compact('studymaterials'));
     }
 }
