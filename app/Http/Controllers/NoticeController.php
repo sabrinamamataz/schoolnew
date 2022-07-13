@@ -65,8 +65,9 @@ class NoticeController extends Controller
         $notice = Notice::find($id);
         return view('student.read-more', compact('notice'));
     }
-    public function noticeTeacherReadMore()
+    public function noticeTeacherReadMore($id)
     {
-        return view('teacher.read-more');
+        $notice = Notice::find($id);
+        return view('teacher.read-more', compact('notice'));
     }
 }
