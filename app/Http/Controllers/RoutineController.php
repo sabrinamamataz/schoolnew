@@ -180,7 +180,7 @@ class RoutineController extends Controller
             return redirect()->back()->with('error', 'Something went wrong...');
         }
 
-        return redirect()->back()->with('success', 'Successfully updated.');
+        return redirect()->route('routine_admin_dashboard')->with('success', 'Successfully updated.');
 
         end:
         return redirect()->back()->with('error', 'Class conflict.');

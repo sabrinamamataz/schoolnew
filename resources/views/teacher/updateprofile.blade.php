@@ -36,7 +36,7 @@
             <div class="mb-3">
                 <div class="form-group">
                     <label for="formGroupExampleInput">Subject</label>
-                    <select class="form-select" name="subject_id" {{ isset($teacherData->subject_id) ? 'disabled' : '' }}>
+                    <select class="form-select" name="subject_id">
                         <option value="">Select Subject</option>
                         @foreach ($subjects as $subject)
                             <option

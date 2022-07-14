@@ -11,6 +11,7 @@
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet" />
     {{-- datatable --}}
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
     @yield('style')

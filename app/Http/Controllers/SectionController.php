@@ -25,21 +25,27 @@ class SectionController extends Controller
     {
         $sections = Section::all();
         $classes = Stclass::where('status', 1)->get();
-        $teachers = User::where('role', 'teacher')->get();
+        $t_ids = Section::all()->pluck('teacher_id')->toArray();
+        $teachers = User::where('role', 'teacher')->whereNotIn('id', $t_ids)->get();
         return view('admin.section', compact('sections', 'classes', 'teachers'));
     }
 
     public function store(Request $request)
     {
-        $newSection = Section::create([
-            'class_id' => $request->class_id,
-            'section' => $request->section,
-            'student_capacity' => $request->student_capacity,
-            'shift' => $request->shift,
-            'teacher_id' => $request->teacher_id,
-            'status' => 1
-        ]);
-        return redirect()->back()->with('success', 'Successfully added.');
+        $check = Section::where('teacher_id', $request->teacher_id)->get();
+        if ($check->count() > 0) {
+            return redirect()->back()->with('error', 'Teacher is sUpervisor in another section, select another teacher.');
+        } else {
+            $newSection = Section::create([
+                'class_id' => $request->class_id,
+                'section' => $request->section,
+                'student_capacity' => $request->student_capacity,
+                'shift' => $request->shift,
+                'teacher_id' => $request->teacher_id,
+                'status' => 1
+            ]);
+            return redirect()->back()->with('success', 'Successfully added.');
+        }
     }
 
     public function update(Request $request)

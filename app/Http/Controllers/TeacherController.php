@@ -12,14 +12,33 @@ use App\Models\Routine;
 use App\Models\Stclass;
 use App\Models\StudyMaterial;
 use App\Models\Subject;
+use Carbon\Carbon;
 use Faker\Factory as Faker;
 
 class TeacherController extends Controller
 {
     public function teacherDashboard()
     {
+        $arr = $this->generateTeacherRoutine();
 
-        return view('teacher.dashboard');
+        $new_arr = array_filter($arr, function ($var) {
+            $weekMap = [
+                0 => 'Sunday',
+                1 => 'Monday',
+                2 => 'Tuesday',
+                3 => 'Wednesday',
+                4 => 'Thursday',
+                5 => 'Friday',
+                6 => 'Saturday',
+            ];
+            $dayOfTheWeek = Carbon::now()->dayOfWeek;
+            $weekday = $weekMap[$dayOfTheWeek];
+
+            return ($var['week_day'] == $weekday);
+        });
+
+        $section_info = Section::where('teacher_id', auth()->user()->id)->first();
+        return view('teacher.dashboard', compact('section_info', 'new_arr'));
     }
 
     public function weekDay($week_name)
@@ -41,7 +60,7 @@ class TeacherController extends Controller
         return $week_day;
     }
 
-    public function routineDashboard()
+    public function generateTeacherRoutine()
     {
         $arr = [];
         $i = 0;
@@ -145,6 +164,12 @@ class TeacherController extends Controller
         $columns2 = array_column($arr, 'period');
         array_multisort($columns, SORT_ASC, $columns2, SORT_ASC,  $arr);
 
+        return $arr;
+    }
+
+    public function routineDashboard()
+    {
+        $arr = $this->generateTeacherRoutine();
         return view('teacher.routine', compact('arr'));
     }
     public function teacherProfile()
@@ -153,7 +178,7 @@ class TeacherController extends Controller
         $teacherData = Teacher::where('user_id', $userData->id)->first();
         $subjects = Subject::all();
         $faker = Faker::create();
-        
+
         return view('teacher.updateprofile', compact('userData', 'teacherData', 'subjects'));
     }
 

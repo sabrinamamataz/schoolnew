@@ -25,13 +25,13 @@ use App\Models\Teacher;
                     <p>
                         <label>Roll:</label>
                         <b>
-                            {{ isset(auth()->user()->userToStudent) ? auth()->user()->userToStudent->student_id : '--' }}
+                            {{ isset(auth()->user()->userToStudent->student_id) ? auth()->user()->userToStudent->student_id : '--' }}
                         </b>
                     </p>
                     <p>
                         <label>Class</label>
                         <b>
-                            {{ isset(auth()->user()->userToStudent) ? auth()->user()->userToStudent->class : '--' }}
+                            {{ isset(auth()->user()->userToStudent->class) ? auth()->user()->userToStudent->class : '--' }}
                         </b>
                     </p>
                     <p>
@@ -46,7 +46,7 @@ use App\Models\Teacher;
                     <p>
                         <label>Address:</label>
                         <b>
-                            {{ isset(auth()->user()->userToStudent) ? auth()->user()->userToStudent->address : '--' }}
+                            {{ isset(auth()->user()->userToStudent->address) ? auth()->user()->userToStudent->address : '--' }}
                         </b>
                     </p>
                 </div>

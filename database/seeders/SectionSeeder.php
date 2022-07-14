@@ -17,9 +17,11 @@ class SectionSeeder extends Seeder
     public function run()
     {
         $classes = Stclass::all();
-        $teachers = Teacher::all()->pluck('user_id')->toArray();
 
         foreach ($classes as $class) {
+            $t_ids = Section::all()->pluck('teacher_id');
+            $teachers = Teacher::whereNotIn('user_id', $t_ids)->pluck('user_id')->toArray();
+
             shuffle($teachers);
 
             Section::create([
