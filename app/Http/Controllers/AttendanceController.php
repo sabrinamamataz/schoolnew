@@ -111,10 +111,16 @@ class AttendanceController extends Controller
             ]);
 
             $students = StudentAssignSection::where('section_id', $routine->section_id)->get();
-            foreach ($students as $data) {
-                $attendanceDetails = AttendanceDetails::create([
-                    'attendance_id' => $attendance->id,
-                    's_user_id' => $data->user_id,
+            if ($students->count() > 0) {
+                foreach ($students as $data) {
+                    $attendanceDetails = AttendanceDetails::create([
+                        'attendance_id' => $attendance->id,
+                        's_user_id' => $data->user_id,
+                    ]);
+                }
+            } else {
+                $attendance->update([
+                    'status' => 1
                 ]);
             }
         }

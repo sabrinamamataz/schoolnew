@@ -71,9 +71,13 @@ const monthNames = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
 ];
 
+const options = { weekday: 'long' };
+var weekDay = new Intl.DateTimeFormat('en-US', options).format(today);
+
 mm = monthNames[today.getMonth()];
 
 today = dd + '-' + mm + ', ' + yyyy;
 
 document.getElementById("myDateDisplay").innerHTML = today;
+document.getElementById("myWeekDay").innerHTML = weekDay;
 

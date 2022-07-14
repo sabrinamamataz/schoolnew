@@ -33,7 +33,7 @@ use App\Models\Subject;
                         </b>
                     </p>
                     <p>
-                        <label>Supervisor of Class </label>
+                        <label>Supervisor of, </label>
                         <b>
                             {{ isset($section_info->sectionToClass->class_name) ? $section_info->sectionToClass->class_name : '--' }}
                             (Section:
