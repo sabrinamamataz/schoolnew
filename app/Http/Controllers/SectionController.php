@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Section;
 use App\Models\Stclass;
 use App\Models\StudentAssignSection;
+use App\Models\Subject;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,11 @@ class SectionController extends Controller
 
     public function adminDashboard()
     {
-        return view('admin.dashboard');
+        $students = User::where('role', 'student')->count();
+        $teachers = User::where('role', 'teacher')->count();
+        $subjects = Subject::all()->count();
+        $classes = Stclass::all()->count();
+        return view('admin.dashboard', compact('students', 'teachers', 'subjects', 'classes'));
     }
 
     public function sectionDashboard()
