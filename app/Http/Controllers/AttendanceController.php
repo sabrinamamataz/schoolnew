@@ -147,7 +147,7 @@ class AttendanceController extends Controller
             $check = AttendanceDetails::find($request->$id);
             $attendanceCheck = Attendance::find($check->attendance_id);
             if ($attendanceCheck->status == 1) {
-                return redirect()->route('attendance_page')->with('error', 'Already taken attendance..');
+                return redirect()->route('attendance_page', 0)->with('error', 'Already taken attendance..');
             }
             if ($check) {
                 $check->update([
@@ -160,6 +160,6 @@ class AttendanceController extends Controller
             'status' => 1
         ]);
 
-        return redirect()->route('attendance_page')->with('success', 'Successfully taken...');
+        return redirect()->route('attendance_page', 0)->with('success', 'Successfully taken...');
     }
 }
