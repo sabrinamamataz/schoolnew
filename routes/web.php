@@ -48,6 +48,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['middleware' => 'admin-auth'], function () {
         Route::get('/admin-dashboard', [SectionController::class, 'adminDashboard'])->name('admin_dashboard');
         Route::get('/student-list/{class_id}', [AdminController::class, 'studentList'])->name('student_list');
+        Route::get('/admin-check-teacher_list/{teacherlist_id}', [AdminController::class,  'checkTeacherList'])->name('admin_check_teacher_list');
 
         // admin teacher
         Route::get('/teachers', [AdminController::class, 'teacherList'])->name('teacher_list');
