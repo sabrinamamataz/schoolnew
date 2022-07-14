@@ -45,21 +45,23 @@ class User extends Authenticatable
     ];
 
 
-    // function to create relationship with user and class table
     public function userToClass()
     {
         return $this->belongsTo(Stclass::class, 'class', 'id');
     }
 
-    // function to create relationship with user and class table
     public function userToSecAssign()
     {
         return $this->hasOne(StudentAssignSection::class, 'user_id', 'id');
     }
 
-    
     public function userTeacherToSubject()
     {
         return $this->belongsTo(Subject::class, 'subject_id', 'id');
+    }
+
+    public function userToStudent()
+    {
+        return $this->hasOne(Student::class, 'user_id', 'id');
     }
 }

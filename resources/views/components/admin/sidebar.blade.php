@@ -3,6 +3,11 @@
         <div class="sb-sidenav-menu">
             <div class="nav">
                 <div class="sb-sidenav-menu-heading"></div>
+                <a class="nav-link collapsed" href="{{ route('admin_dashboard') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                    Dashboard
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
                 <a class="nav-link collapsed" href="{{ route('subject_list') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     Subject
@@ -38,20 +43,6 @@
                     Routine
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
-                {{-- <a class="nav-link collapsed" href="#">
-                    <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                    Fee
-                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                </a> --}}
-
-                {{-- <a class="nav-link collapsed" href="#">
-                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                    Result
-                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                </a> --}}
-
-                </a>
-
                 <a class="nav-link" href="{{ route('attendance_admin') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     Attendence
@@ -67,7 +58,6 @@
                     Notice Board
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
-
             </div>
         </div>
     </nav>

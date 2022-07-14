@@ -15,10 +15,29 @@ use App\Models\StudentAssignSection;
 use Carbon\Carbon;
 
 class StudentController extends Controller
-{
+{ 
     public function studentDashboard()
     {
-        return view('student.dashboard');
+        if (auth()->user()->userToSecAssign) {
+            $section_id = auth()->user()->userToSecAssign->assignSectionToSection->id;
+            $weekMap = [
+                0 => 'Sunday',
+                1 => 'Monday',
+                2 => 'Tuesday',
+                3 => 'Wednesday',
+                4 => 'Thursday',
+                5 => 'Friday',
+                6 => 'Saturday',
+            ];
+            $dayOfTheWeek = Carbon::now()->dayOfWeek;
+            $weekday = $weekMap[$dayOfTheWeek];
+
+            $routine = Routine::where('section_id', $section_id)->where('week_day', $weekday)->first();
+
+        } else {
+            $routine = null;
+        }
+        return view('student.dashboard', compact('routine'));
     }
 
     public function routineDashboard()
@@ -99,7 +118,7 @@ class StudentController extends Controller
         ]);
         return redirect()->back()->with('success', 'Successfully added.');
     }
-    
+
     public function addClass(Request $request)
     {
         $check = Student::where('class', $request->class)->first();

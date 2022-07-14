@@ -24,7 +24,7 @@ class PeriodSeeder extends Seeder
             ['period' => '5th', 'start_time' => "10:31", 'end_time' => "11:00", 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
             ['period' => '6th', 'start_time' => "11:01", 'end_time' => "11:30", 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
             ['period' => '7th', 'start_time' => "11:31", 'end_time' => "12:00", 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
-            ['period' => '8th', 'start_time' => "12F:01", 'end_time' => "12:30", 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
+            ['period' => '8th', 'start_time' => "12:01", 'end_time' => "12:30", 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()],
         ];
         ClsPeriod::insert($period);
     }
