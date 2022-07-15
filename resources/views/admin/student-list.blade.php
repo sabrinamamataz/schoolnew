@@ -67,31 +67,28 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>
-                                        {{-- <form action="{{ route('section_update', $student->id) }}" method="post">
+                                         <form action="{{ route('update_student_list', $student->id) }}" method="post">
                                         @csrf
-                                        <input type="hidden" name="section_id" value="{{ $student->id }}">
+                                        <input type="hidden" name="student_id" value="{{ $student->id }}">
                                         <div class="modal-body">
                                             <div class="container">
                                                 <div class="form-group">
+                                                    <label for="Name">Name</label>
+                                                    <input type="text" name="name" class="form-control"
+                                                        value="{{ $student->name }}" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="Email">Email</label>
+                                                    <input type="text" name="email" class="form-control"
+                                                        value="{{ $student->email }}" required>
+                                                </div>
                                                     <label for="Class_id">Class</label>
                                                     <select class="form-select" name="class_id" required>
                                                         <option value="">Select Class</option>
                                                         @foreach ($classes as $class)
                                                             <option value="{{ $class->id }}"
-                                                                {{ $section->class_id == $class->id ? 'selected' : '' }}>
+                                                                {{ $student->class_id == $class->id ? 'selected' : '' }}>
                                                                 {{ $class->class_name }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="Teacher_id">Teacher</label>
-                                                    <select class="form-select" name="teacher_id" required>
-                                                        <option value="">Select Teacher</option>
-                                                        @foreach ($teachers as $teacher)
-                                                            <option value="{{ $teacher->id }}"
-                                                                {{ $section->teacher_id == $teacher->id ? 'selected' : '' }}>
-                                                                {{ $teacher->name }}
                                                             </option>
                                                         @endforeach
                                                     </select>
@@ -99,17 +96,32 @@
                                                 <div class="form-group">
                                                     <label for="Section">Section</label>
                                                     <input type="text" name="section" class="form-control"
-                                                        value="{{ $section->section }}" required>
+                                                        value="{{ $student->section }}" required>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="Student_capacity">Student Capacity</label>
-                                                    <input type="number" name="student_capacity" class="form-control"
-                                                        value="{{ $section->student_capacity }}" required>
+                                                    <label for="Date Of Birth">date Of Birth</label>
+                                                    <input type="date" name="date_of_birth" class="form-control"
+                                                        value="{{ $student->date_of_birth }}" required>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="Shift">Shift</label>
-                                                    <input type="text" name="shift" class="form-control"
-                                                        value="{{ $section->shift }}" required>
+                                                    <label for="Age">Age</label>
+                                                    <input type="number" name="age" class="form-control"
+                                                        value="{{ $student->age }}" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="Address">Adresss</label>
+                                                    <input type="text" name="address" class="form-control"
+                                                        value="{{ $student->address }}" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="Contact">Contact</label>
+                                                    <input type="tel" name="contact" class="form-control"
+                                                        value="{{ $student->contact }}" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="Guardian No">Guardian No</label>
+                                                    <input type="tel" name="guardian_no" class="form-control"
+                                                        value="{{ $student->guardian_no }}" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -118,7 +130,7 @@
                                                 data-bs-dismiss="modal">Close</button>
                                             <button type="submit" class="btn btn-primary">Save changes</button>
                                         </div>
-                                    </form> --}}
+                                    </form> 
                                     </div>
                                 </div>
                             </div>

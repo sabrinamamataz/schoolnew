@@ -31,6 +31,27 @@ class AdminController extends Controller
 
         return view('admin.student-list', compact('students', 'classes', 'class_id'));
     }
+    public function updateStudentList(Request $request)
+    {
+        $request->validate([
+            'email' => 'email|unique:users,email,' . auth()->user()->id,
+        ]);
+        $userData = User::find(auth()->user()->id);
+        $userData->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            
+        ]);
+        $student = User::find($request->user_id);
+        $student->update([
+                'guardian_no' => $request->guardian_no,
+                'class' => $request->class,
+                'address' => $request->address,
+                'date_of_birth' => $request->date_of_birth,
+                'age' => $request->age,
+        ]);
+        return redirect()->back()->with('success', 'Successfully updated.');
+    }
 
     public function attendancePage()
     {
