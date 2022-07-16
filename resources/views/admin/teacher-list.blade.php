@@ -36,7 +36,9 @@
                             {{ isset($data->designation) ? $data->designation : '--' }}
                         </td>
                         <td>
-                            <a href="{{ route('admin_check_teacher_list', $data->id) }}" class="btn btn-success">Inspect</a>
+                            <a href="{{ route('admin_check_teacher_list', $data->user_id) }}" class="btn btn-success">
+                                Inspect
+                            </a>
                         </td>
                     </tr>
                 @endforeach
