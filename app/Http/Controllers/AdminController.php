@@ -9,6 +9,7 @@ use App\Models\StudentAssignSection;
 use App\Models\ClsPeriod;
 use App\Models\Routine;
 use App\Models\Stclass;
+use App\Models\UserDetails;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -189,5 +190,14 @@ class AdminController extends Controller
 
         return view('admin.teacher-list', compact('teachers'));
     }
+    
+    public function checkTeacherList($id)
+    {
+        $teacher = User::find($id);
+        $teacherDetails = UserDetails::where('user_id', $id)->get();
+
+        return view('admin.check-teacher-list', compact('teacherDetails', 'teacher'));
+    }
+
    
 }

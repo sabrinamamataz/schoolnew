@@ -53,6 +53,7 @@ Route::group(['middleware' => 'auth'], function () {
        
         // admin teacher
         Route::get('/teachers', [AdminController::class, 'teacherList'])->name('teacher_list');
+        Route::get('/admin-check-teacher-list/{user_id}', [AdminController::class,  'checkTeacherList'])->name('admin_check_teacher_list');
 
         // admin subject
         Route::get('/subject', [SubjectController::class, 'subjectList'])->name('subject_list');
