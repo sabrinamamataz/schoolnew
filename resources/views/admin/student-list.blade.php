@@ -54,7 +54,6 @@
                                     </button>
                                 </td>
                             </tr>
-
                             <!-- update Modal -->
                             <div class="modal fade" id="updateModat{{ $student->id }}" tabindex="-1"
                                 aria-labelledby="updateModatLabel{{ $student->id }}" aria-hidden="true">
@@ -67,11 +66,10 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>
-                                         <form action="{{ route('update_student_list', $student->id) }}" method="post">
-                                        @csrf
-                                        <input type="hidden" name="student_id" value="{{ $student->id }}">
-                                        <div class="modal-body">
-                                            <div class="container">
+                                        <form action="{{ route('update_student_list') }}" method="post">
+                                            @csrf
+                                            <input type="hidden" name="user_id" value="{{ $student->user_id }}">
+                                            <div class="modal-body">
                                                 <div class="form-group">
                                                     <label for="Name">Name</label>
                                                     <input type="text" name="name" class="form-control"
@@ -82,55 +80,70 @@
                                                     <input type="text" name="email" class="form-control"
                                                         value="{{ $student->email }}" required>
                                                 </div>
+                                                <div class="form-group">
                                                     <label for="Class_id">Class</label>
                                                     <select class="form-select" name="class_id" required>
                                                         <option value="">Select Class</option>
                                                         @foreach ($classes as $class)
                                                             <option value="{{ $class->id }}"
-                                                                {{ $student->class_id == $class->id ? 'selected' : '' }}>
+                                                                {{ $student->class == $class->id ? 'selected' : '' }}>
                                                                 {{ $class->class_name }}
                                                             </option>
                                                         @endforeach
                                                     </select>
                                                 </div>
+                                                @php
+                                                    $clsSec = App\Models\StudentAssignSection::where('user_id', $student->user_id)
+                                                        ->latest()
+                                                        ->first();
+                                                    if ($clsSec) {
+                                                        $section = App\Models\Section::find($clsSec->section_id);
+                                                    } else {
+                                                        $section = '';
+                                                    }
+                                                @endphp
                                                 <div class="form-group">
                                                     <label for="Section">Section</label>
-                                                    <input type="text" name="section" class="form-control"
-                                                        value="{{ $student->section }}" required>
+                                                    <input type="text" name="" class="form-control"
+                                                        value="{{ $section ? $section->section : '' }}" readonly>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="Date Of Birth">date Of Birth</label>
                                                     <input type="date" name="date_of_birth" class="form-control"
-                                                        value="{{ $student->date_of_birth }}" required>
+                                                        value="{{ $student->date_of_birth }}">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="Age">Age</label>
                                                     <input type="number" name="age" class="form-control"
-                                                        value="{{ $student->age }}" required>
+                                                        value="{{ $student->age }}">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="Address">Adresss</label>
                                                     <input type="text" name="address" class="form-control"
-                                                        value="{{ $student->address }}" required>
+                                                        value="{{ $student->address }}">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="Contact">Contact</label>
-                                                    <input type="tel" name="contact" class="form-control"
-                                                        value="{{ $student->contact }}" required>
+                                                    <label for="Contact">Guardian Name</label>
+                                                    <input type="tel" name="guardian_name" class="form-control"
+                                                        value="{{ $student->guardian_name }}">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="Guardian No">Guardian No</label>
                                                     <input type="tel" name="guardian_no" class="form-control"
-                                                        value="{{ $student->guardian_no }}" required>
+                                                        value="{{ $student->guardian_no }}">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="Guardian No">Guardian Relation</label>
+                                                    <input type="tel" name="guardian_relation" class="form-control"
+                                                        value="{{ $student->guardian_relation }}">
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-bs-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-primary">Save changes</button>
-                                        </div>
-                                    </form> 
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary">Save changes</button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

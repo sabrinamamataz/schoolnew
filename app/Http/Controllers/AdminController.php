@@ -9,6 +9,8 @@ use App\Models\StudentAssignSection;
 use App\Models\ClsPeriod;
 use App\Models\Routine;
 use App\Models\Stclass;
+use App\Models\Student;
+use App\Models\Teacher;
 use App\Models\UserDetails;
 use Illuminate\Http\Request;
 
@@ -32,24 +34,26 @@ class AdminController extends Controller
 
         return view('admin.student-list', compact('students', 'classes', 'class_id'));
     }
+
     public function updateStudentList(Request $request)
     {
         $request->validate([
-            'email' => 'email|unique:users,email,' . auth()->user()->id,
+            'email' => 'email|unique:users,email,' . $request->user_id,
         ]);
-        $userData = User::find(auth()->user()->id);
+
+        $userData = User::find($request->user_id);
         $userData->update([
             'name' => $request->name,
-            'email' => $request->email,
-            
+            'email' => $request->email
         ]);
-        $student = User::find($request->user_id);
+
+        $student = Student::where('user_id', $request->user_id)->first();
         $student->update([
-                'guardian_no' => $request->guardian_no,
-                'class' => $request->class,
-                'address' => $request->address,
-                'date_of_birth' => $request->date_of_birth,
-                'age' => $request->age,
+            'guardian_no' => $request->guardian_no,
+            'class' => $request->class_id,
+            'address' => $request->address,
+            'date_of_birth' => $request->date_of_birth,
+            'age' => $request->age,
         ]);
         return redirect()->back()->with('success', 'Successfully updated.');
     }
@@ -190,14 +194,12 @@ class AdminController extends Controller
 
         return view('admin.teacher-list', compact('teachers'));
     }
-    
+
     public function checkTeacherList($id)
     {
         $teacher = User::find($id);
-        $teacherDetails = UserDetails::where('user_id', $id)->get();
+        $teacherDetails = Teacher::where('user_id', $id)->first();
 
         return view('admin.check-teacher-list', compact('teacherDetails', 'teacher'));
     }
-
-   
 }

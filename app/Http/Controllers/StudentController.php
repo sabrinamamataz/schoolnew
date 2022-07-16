@@ -44,8 +44,7 @@ class StudentController extends Controller
     {
         $periods = ClsPeriod::all();
 
-        $clsSec = StudentAssignSection::where('user_id', auth()->user()->id)->first();
-
+        $clsSec = StudentAssignSection::where('user_id', auth()->user()->id)->latest()->first();
         if ($clsSec) {
             $section = Section::find($clsSec->section_id);
         } else {
