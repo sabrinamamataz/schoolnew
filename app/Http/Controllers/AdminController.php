@@ -197,9 +197,9 @@ class AdminController extends Controller
 
     public function checkTeacherList($id)
     {
-        $teacher = User::find($id);
+        $teachers = User::find($id);
         $teacherDetails = Teacher::where('user_id', $id)->first();
 
-        return view('admin.check-teacher-list', compact('teacherDetails', 'teacher'));
+        return view('admin.check-teacher-list', compact('teacherDetails', 'teachers'));
     }
 }
