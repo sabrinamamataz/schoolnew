@@ -8,8 +8,10 @@ use App\Models\AttendanceDetails;
 use App\Models\StudentAssignSection;
 use App\Models\ClsPeriod;
 use App\Models\Routine;
+use App\Models\Section;
 use App\Models\Stclass;
 use App\Models\Student;
+use App\Models\StudyMaterial;
 use App\Models\Teacher;
 use App\Models\UserDetails;
 use Illuminate\Http\Request;
@@ -197,9 +199,14 @@ class AdminController extends Controller
 
     public function checkTeacherList($id)
     {
-        $teachers = User::find($id);
+        $teacher = User::find($id);
         $teacherDetails = Teacher::where('user_id', $id)->first();
+        $clsTeacher = Section::where('teacher_id', $id)->first();
 
-        return view('admin.check-teacher-list', compact('teacherDetails', 'teachers'));
+        $teacherController = new TeacherController();
+        $arr = $teacherController->generateTeacherRoutine($id);
+        $studyMaterials = StudyMaterial::where('teacher_id', $id)->get();
+
+        return view('admin.check-teacher-list', compact('teacherDetails', 'teacher', 'clsTeacher', 'arr', 'studyMaterials'));
     }
 }

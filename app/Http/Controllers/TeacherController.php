@@ -19,7 +19,7 @@ class TeacherController extends Controller
 {
     public function teacherDashboard()
     {
-        $arr = $this->generateTeacherRoutine();
+        $arr = $this->generateTeacherRoutine(auth()->user()->id);
 
         $new_arr = array_filter($arr, function ($var) {
             $weekMap = [
@@ -60,11 +60,11 @@ class TeacherController extends Controller
         return $week_day;
     }
 
-    public function generateTeacherRoutine()
+    public function generateTeacherRoutine($teacher_id)
     {
         $arr = [];
         $i = 0;
-        $p1R = Routine::where('period_1_t_id', auth()->user()->id)->get();
+        $p1R = Routine::where('period_1_t_id', $teacher_id)->get();
         foreach ($p1R as $data) {
             $arr[$i]['day_no'] = $this->weekDay($data->week_day);
             $arr[$i]['week_day'] = $data->week_day;
@@ -76,7 +76,7 @@ class TeacherController extends Controller
             $i++;
         }
 
-        $p2R = Routine::where('period_2_t_id', auth()->user()->id)->get();
+        $p2R = Routine::where('period_2_t_id', $teacher_id)->get();
         foreach ($p2R as $data) {
             $arr[$i]['day_no'] = $this->weekDay($data->week_day);
             $arr[$i]['week_day'] = $data->week_day;
@@ -88,7 +88,7 @@ class TeacherController extends Controller
             $i++;
         }
 
-        $p3R = Routine::where('period_3_t_id', auth()->user()->id)->get();
+        $p3R = Routine::where('period_3_t_id', $teacher_id)->get();
         foreach ($p3R as $data) {
             $arr[$i]['day_no'] = $this->weekDay($data->week_day);
             $arr[$i]['week_day'] = $data->week_day;
@@ -100,7 +100,7 @@ class TeacherController extends Controller
             $i++;
         }
 
-        $p4R = Routine::where('period_4_t_id', auth()->user()->id)->get();
+        $p4R = Routine::where('period_4_t_id', $teacher_id)->get();
         foreach ($p4R as $data) {
             $arr[$i]['day_no'] = $this->weekDay($data->week_day);
             $arr[$i]['week_day'] = $data->week_day;
@@ -112,7 +112,7 @@ class TeacherController extends Controller
             $i++;
         }
 
-        $p5R = Routine::where('period_5_t_id', auth()->user()->id)->get();
+        $p5R = Routine::where('period_5_t_id', $teacher_id)->get();
         foreach ($p5R as $data) {
             $arr[$i]['day_no'] = $this->weekDay($data->week_day);
             $arr[$i]['week_day'] = $data->week_day;
@@ -124,7 +124,7 @@ class TeacherController extends Controller
             $i++;
         }
 
-        $p6R = Routine::where('period_6_t_id', auth()->user()->id)->get();
+        $p6R = Routine::where('period_6_t_id', $teacher_id)->get();
         foreach ($p6R as $data) {
             $arr[$i]['day_no'] = $this->weekDay($data->week_day);
             $arr[$i]['week_day'] = $data->week_day;
@@ -136,7 +136,7 @@ class TeacherController extends Controller
             $i++;
         }
 
-        $p7R = Routine::where('period_7_t_id', auth()->user()->id)->get();
+        $p7R = Routine::where('period_7_t_id', $teacher_id)->get();
         foreach ($p7R as $data) {
             $arr[$i]['day_no'] = $this->weekDay($data->week_day);
             $arr[$i]['week_day'] = $data->week_day;
@@ -148,8 +148,8 @@ class TeacherController extends Controller
             $i++;
         }
 
-        $p8R = Routine::where('period_8_t_id', auth()->user()->id)->get();
-        foreach ($p1R as $data) {
+        $p8R = Routine::where('period_8_t_id', $teacher_id)->get();
+        foreach ($p8R as $data) {
             $arr[$i]['day_no'] = $this->weekDay($data->week_day);
             $arr[$i]['week_day'] = $data->week_day;
             $arr[$i]['period'] = ClsPeriod::getStartEndTime(8)['period'];
@@ -169,7 +169,7 @@ class TeacherController extends Controller
 
     public function routineDashboard()
     {
-        $arr = $this->generateTeacherRoutine();
+        $arr = $this->generateTeacherRoutine(auth()->user()->id);
         return view('teacher.routine', compact('arr'));
     }
     public function teacherProfile()
