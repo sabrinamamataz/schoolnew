@@ -201,6 +201,7 @@ class TeacherController extends Controller
                 'designation' => $request->designation,
                 'subject_id' => $request->subject_id,
                 'date_of_birth' => $request->date_of_birth,
+                'joining' => $request->joining,
             ]);
         } else {
             $newTeacher = Teacher::create([
@@ -211,6 +212,7 @@ class TeacherController extends Controller
                 'designation' => $request->designation,
                 'subject_id' => $request->subject_id,
                 'date_of_birth' => $request->date_of_birth,
+                'joining' => $request->joining,
             ]);
         }
 

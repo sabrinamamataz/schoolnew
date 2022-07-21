@@ -27,6 +27,7 @@ class CreateStudentsTable extends Migration
             $table->integer('status')->default(0);
             $table->string('admit_no')->nullable();
             $table->string('pro_pic')->nullable();
+            $table->string('roll')->nullable();
             $table->timestamps();
         });
     }

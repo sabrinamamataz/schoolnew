@@ -191,6 +191,7 @@ class StudentController extends Controller
             $studentData->update([
                 'guardian_no' => $request->guardian_no,
                 'class' => $request->class,
+                'roll' => $request->roll,
                 'address' => $request->address,
                 'date_of_birth' => $request->date_of_birth,
                 'age' => $request->age,
@@ -203,6 +204,7 @@ class StudentController extends Controller
                 'user_id' => $userData->id,
                 'guardian_no' => $request->guardian_no,
                 'class' => $request->class,
+                'roll' => $request->roll,
                 'address' => $request->address,
                 'date_of_birth' => $request->date_of_birth,
                 'age' => $request->age,

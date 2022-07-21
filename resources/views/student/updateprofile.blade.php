@@ -27,6 +27,10 @@
                         @endforeach
                     </select>
                 </div>
+                <div class="mb-3">
+                <label for="formGroupExampleInput">Roll</label>
+                <input type="number" name="roll" required class="form-control" placeholder="Enter roll"
+                    value="{{ isset($studentData->roll) ? $studentData->roll : '' }}">
             </div>
             @if (auth()->user()->userToSecAssign)
                 <div class="mb-3">
@@ -77,9 +81,17 @@
                     value="{{ isset($studentData->guardian_no) ? $studentData->guardian_no : '' }}">
             </div>
             <div class="mb-3">
-                <label for="formGroupExampleInput">Guardian Relation</label>
-                <input type="text" name="guardian_relation" required class="form-control" placeholder="Enter Relation"
-                    value="{{ isset($studentData->guardian_relation) ? $studentData->guardian_relation : '' }}">
+            <label for="formGroupExampleInput">Guardian Relation</label>
+                <select class="form-select" name="guardian_relation" aria-label="Guardian Relation Selaction" requiredD>
+                    <option value="">Select Guardian Relation</option>
+                    <option value="Father" {{ $userData->guardian_relation == 'Father' ? 'selected' : '' }}>
+                        Father
+                    </option>
+                    <option value="Mother" {{ $userData->guardian_relation == 'Mather' ? 'selected' : '' }}>
+                        Mather
+                    </option>
+                    
+</select>
             </div>
         </div>
         <button type="submit" class="btn btn-primary w-100">Update</button>

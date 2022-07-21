@@ -64,6 +64,11 @@
                 <input type="tel" name="contact_no" required class="form-control" placeholder="Enter  contact number"
                     value="{{ isset($teacherData->contact_no) ? $teacherData->contact_no : '' }}">
             </div>
+            <div class="mb-3">
+                <label for="formGroupExampleInput">Joining</label>
+                <input type="date" name="joining" required class="form-control" placeholder="Enter  joining"
+                    value="{{ isset($teacherData->joining) ? $teacherData->joining : '' }}">
+            </div>
             <button type="submit" class="btn btn-primary w-100">Update</button>
         </div>
     </form>
