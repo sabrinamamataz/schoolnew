@@ -30,7 +30,8 @@
                             <th scope="col">Email</th>
                             <th scope="col">Gender</th>
                             <th scope="col">Class</th>
-                            <th scope="col">Guardian</th>
+                            <th scope="col">Father Name</th>
+                            <th scope="col">Mother Name</th>
                             <th scope="col">Contact</th>
                             <th scope="col">Status</th>
                             <th scope="col">Action</th>
@@ -45,6 +46,7 @@
                                 <td>{{ isset($student->gender) ? $student->gender : '--' }}</td>
                                 <td>{{ isset($student->userToClass) ? $student->userToClass->class_name : '--' }}</td>
                                 <td>{{ $student->guardian_name }}</td>
+                                <td>{{ $student->guardian_relation }}</td>
                                 <td>{{ $student->guardian_contact }}</td>
                                 <td>{{ $student->status == 1 ? 'Active' : 'Inactive' }}</td>
                                 <td>

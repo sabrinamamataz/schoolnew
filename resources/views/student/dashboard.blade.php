@@ -23,12 +23,6 @@ use App\Models\Teacher;
 
                 <div class="col-8">
                     <p>
-                        <label>Roll:</label>
-                        <b>
-                            {{ isset(auth()->user()->userToStudent->student_id) ? auth()->user()->userToStudent->student_id : '--' }}
-                        </b>
-                    </p>
-                    <p>
                         <label>Class</label>
                         <b>
                             {{ isset(auth()->user()->userToStudent->class) ? auth()->user()->userToStudent->class : '--' }}
@@ -38,6 +32,12 @@ use App\Models\Teacher;
                         <label>Section:</label>
                         <b>
                             {{ isset(auth()->user()->userToSecAssign->assignSectionToSection) ? auth()->user()->userToSecAssign->assignSectionToSection->section : '--' }}
+                        </b>
+                    </p>
+                    <p>
+                        <label>Roll No:</label>
+                        <b>
+                            {{ isset(auth()->user()->userToSecAssign->student_id) ? auth()->user()->userToSecAssign->student_id : '--' }}
                         </b>
                     </p>
                     <p>

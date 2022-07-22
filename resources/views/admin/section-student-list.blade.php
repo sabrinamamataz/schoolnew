@@ -57,32 +57,45 @@
                 <table class="table table-bordered" id="myTable">
                     <thead>
                         <tr>
-                            <th scope="col">SL</th>
+                            <th scope="col">Roll</th>
                             <th scope="col">Name</th>
                             <th scope="col">Email</th>
-                            <th scope="col">Class</th>
-                            <th scope="col">Guardian</th>
+                            <th scope="col">Father Name</th>
+                            <th scope="col">Mother Name</th>
                             <th scope="col">Contact</th>
                             <th scope="col">Status</th>
-                            <th scope="col">Action</th>
+                            {{-- <th scope="col">Action</th> --}}
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($students as $key => $student)
                             <tr>
-                                <th scope="row">{{ $key + 1 }}</th>
+                                <th scope="row">
+                                    @php
+                                        $assignedSec = App\Models\StudentAssignSection::where('user_id', $student->user_id)
+                                            ->where('section_id', $section->id)
+                                            ->where('status', date('Y'))
+                                            ->first();
+                                        
+                                        if ($assignedSec) {
+                                            echo $assignedSec->student_id;
+                                        } else {
+                                            echo '--';
+                                        }
+                                    @endphp
+                                </th>
                                 <td>{{ $student->name }}</td>
                                 <td>{{ $student->email }}</td>
-                                <td>{{ isset($student->userToClass) ? $student->userToClass->class_name : '--' }}</td>
                                 <td>{{ $student->guardian_name }}</td>
+                                <td>{{ $student->guardian_relation }}</td>
                                 <td>{{ $student->guardian_contact }}</td>
                                 <td>{{ $student->status == 1 ? 'Active' : 'Inactive' }}</td>
-                                <td>
+                                {{-- <td>
                                     <button type="button" class="btn btn-success" class="btn btn-primary"
                                         data-bs-toggle="modal" data-bs-target="#inspectModat{{ $student->id }}">
                                         View
                                     </button>
-                                </td>
+                                </td> --}}
                             </tr>
 
                             <!-- update Modal -->

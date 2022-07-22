@@ -90,23 +90,25 @@ class SectionController extends Controller
     public function addStudentToSection($ids, $section_id)
     {
         $section = Section::find($section_id);
-        $studentCount = StudentAssignSection::where('section_id', $section_id)->get()->count();
+        $studentCount = StudentAssignSection::where('section_id', $section_id)->where('status', date('Y'))->get()->count();
 
         $ids = explode(",", $ids);
 
         foreach ($ids as $id) {
-            $check = StudentAssignSection::where('user_id', $id)->first();
+            $check = StudentAssignSection::where('user_id', $id)->where('status', date('Y'))->first();
             if (isset($check)) {
                 continue;
             } else {
                 if ($studentCount >= $section->student_capacity) {
                     return false;
                 }
-                StudentAssignSection::create([
-                    'user_id' => $id,
-                    'section_id' => $section_id
-                ]);
                 $studentCount++;
+                StudentAssignSection::create([
+                    'student_id' => $studentCount,
+                    'user_id' => $id,
+                    'section_id' => $section_id,
+                    'status' => date('Y')
+                ]);
             }
         }
         return true;
