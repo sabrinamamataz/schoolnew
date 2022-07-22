@@ -27,11 +27,7 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="mb-3">
-                <label for="formGroupExampleInput">Roll</label>
-                <input type="number" name="roll" required class="form-control" placeholder="Enter roll"
-                    value="{{ isset($studentData->roll) ? $studentData->roll : '' }}">
-            </div>
+                
             @if (auth()->user()->userToSecAssign)
                 <div class="mb-3">
                     <label for="formGroupExampleInput">Section</label>
@@ -70,28 +66,20 @@
                     value="{{ isset($studentData->address) ? $studentData->address : '' }}">
             </div>
             <div class="mb-3">
-                <label for="formGroupExampleInput">Guardian Name</label>
-                <input type="text" name="guardian_name" required class="form-control" placeholder="Enter guardian name"
+                <label for="formGroupExampleInput">Father Name</label>
+                <input type="text" name="guardian_name" required class="form-control" placeholder="Enter fother name"
                     value="{{ isset($studentData->guardian_name) ? $studentData->guardian_name : '' }}">
             </div>
             <div class="mb-3">
-                <label for="formGroupExampleInput">Guardian No</label>
+            <label for="formGroupExampleInput">Mother Name</label>                
+                <input type="text" name="guardian_relation" required class="form-control" placeholder="Enter mother name"
+                    value="{{ isset($studentData->guardian_relation) ? $studentData->guardian_relation : '' }}">                   
+            </div>
+            <div class="mb-3">
+                <label for="formGroupExampleInput">Emergency Contact No</label>
                 <input type="tel" name="guardian_no" required class="form-control"
                     placeholder="Enter guardian contact number"
                     value="{{ isset($studentData->guardian_no) ? $studentData->guardian_no : '' }}">
-            </div>
-            <div class="mb-3">
-            <label for="formGroupExampleInput">Guardian Relation</label>
-                <select class="form-select" name="guardian_relation" aria-label="Guardian Relation Selaction" requiredD>
-                    <option value="">Select Guardian Relation</option>
-                    <option value="Father" {{ $userData->guardian_relation == 'Father' ? 'selected' : '' }}>
-                        Father
-                    </option>
-                    <option value="Mother" {{ $userData->guardian_relation == 'Mather' ? 'selected' : '' }}>
-                        Mather
-                    </option>
-                    
-</select>
             </div>
         </div>
         <button type="submit" class="btn btn-primary w-100">Update</button>
