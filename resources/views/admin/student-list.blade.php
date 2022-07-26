@@ -33,7 +33,6 @@
                             <th scope="col">Father Name</th>
                             <th scope="col">Mother Name</th>
                             <th scope="col">Contact</th>
-                            <th scope="col">Status</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
@@ -48,7 +47,6 @@
                                 <td>{{ $student->guardian_name }}</td>
                                 <td>{{ $student->guardian_relation }}</td>
                                 <td>{{ $student->guardian_contact }}</td>
-                                <td>{{ $student->status == 1 ? 'Active' : 'Inactive' }}</td>
                                 <td>
                                     <button type="button" class="btn btn-warning" class="btn btn-primary"
                                         data-bs-toggle="modal" data-bs-target="#updateModat{{ $student->id }}">
@@ -125,19 +123,19 @@
                                                         value="{{ $student->address }}">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="Contact">Guardian Name</label>
-                                                    <input type="tel" name="guardian_name" class="form-control"
-                                                        value="{{ $student->guardian_name }}">
+                                                    <label for="Contact">Father Name</label>
+                                                    <input type="tex" name="father_name" class="form-control"
+                                                        value="{{ $student->father_name }}">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="Mother Name">Mother Name</label>
+                                                    <input type="tex" name="mother_name" class="form-control"
+                                                        value="{{ $student->mother_name }}">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="Guardian No">Guardian No</label>
                                                     <input type="tel" name="guardian_no" class="form-control"
                                                         value="{{ $student->guardian_no }}">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="Guardian No">Guardian Relation</label>
-                                                    <input type="tel" name="guardian_relation" class="form-control"
-                                                        value="{{ $student->guardian_relation }}">
                                                 </div>
                                             </div>
                                             <div class="modal-footer">

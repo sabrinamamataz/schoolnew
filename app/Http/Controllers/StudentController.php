@@ -190,7 +190,6 @@ class StudentController extends Controller
         if ($studentData) {
             $studentData->update([
                 'guardian_no' => $request->guardian_no,
-                'class' => $request->class,
                 'address' => $request->address,
                 'date_of_birth' => $request->date_of_birth,
                 'age' => $request->age,
@@ -202,7 +201,6 @@ class StudentController extends Controller
                 'status' => 1,
                 'user_id' => $userData->id,
                 'guardian_no' => $request->guardian_no,
-                'class' => $request->class,
                 'address' => $request->address,
                 'date_of_birth' => $request->date_of_birth,
                 'age' => $request->age,

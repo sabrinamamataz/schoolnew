@@ -197,6 +197,26 @@ class AdminController extends Controller
         return view('admin.teacher-list', compact('teachers'));
     }
 
+    public function updateTeacherList(Request $request)
+    {
+        $request->validate([
+            'email' => 'email|unique:users,email,' . $request->user_id,
+        ]);
+
+        $userData = User::find($request->user_id);
+        $userData->update([
+            'name' => $request->name,
+            'email' => $request->email
+        ]);
+
+        $teacher = Teacher::where('user_id', $request->user_id)->first();
+        $teacher->update([
+            'designation' => $request->designation,
+           
+        ]);
+        return redirect()->back()->with('success', 'Successfully updated.');
+    }
+
     public function checkTeacherList($id)
     {
         $teacher = User::find($id);

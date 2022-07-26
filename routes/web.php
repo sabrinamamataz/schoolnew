@@ -49,6 +49,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/admin-dashboard', [SectionController::class, 'adminDashboard'])->name('admin_dashboard');
         Route::get('/student-list/{class_id}', [AdminController::class, 'studentList'])->name('student_list');
         Route::post('/student-list/update', [AdminController::class, 'updateStudentList'])->name('update_student_list');
+        Route::post('/teacher-list/update', [AdminController::class, 'updateTeacherList'])->name('update_teacher_list');
+
+
 
 
         // admin teacher

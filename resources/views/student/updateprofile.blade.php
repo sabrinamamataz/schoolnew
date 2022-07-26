@@ -72,19 +72,17 @@
                 </div>
                 <div class="mb-3">
                     <label for="formGroupExampleInput">Father Name</label>
-                    <input type="text" name="guardian_name" required class="form-control" placeholder="Enter fother name"
+                    <input type="text" name="guardian_name" required class="form-control" placeholder="Enter father name"
                         value="{{ isset($studentData->guardian_name) ? $studentData->guardian_name : '' }}">
                 </div>
                 <div class="mb-3">
                     <label for="formGroupExampleInput">Mother Name</label>
-                    <input type="text" name="guardian_relation" required class="form-control"
-                        placeholder="Enter mother name"
+                    <input type="text" name="guardian_relation" required class="form-control" placeholder="Enter mother name"
                         value="{{ isset($studentData->guardian_relation) ? $studentData->guardian_relation : '' }}">
                 </div>
                 <div class="mb-3">
                     <label for="formGroupExampleInput">Emergency Contact No</label>
-                    <input type="tel" name="guardian_no" required class="form-control"
-                        placeholder="Enter guardian contact number"
+                    <input type="tel" name="guardian_no" required class="form-control" placeholder="Enter guardian contact number"
                         value="{{ isset($studentData->guardian_no) ? $studentData->guardian_no : '' }}">
                 </div>
             </div>
