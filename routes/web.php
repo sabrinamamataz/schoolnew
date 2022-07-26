@@ -47,16 +47,14 @@ Route::group(['middleware' => 'auth'], function () {
     // admin panel
     Route::group(['middleware' => 'admin-auth'], function () {
         Route::get('/admin-dashboard', [SectionController::class, 'adminDashboard'])->name('admin_dashboard');
+        // admin students
         Route::get('/student-list/{class_id}', [AdminController::class, 'studentList'])->name('student_list');
         Route::post('/student-list/update', [AdminController::class, 'updateStudentList'])->name('update_student_list');
-        Route::post('/teacher-list/update', [AdminController::class, 'updateTeacherList'])->name('update_teacher_list');
-
-
-
 
         // admin teacher
         Route::get('/teachers', [AdminController::class, 'teacherList'])->name('teacher_list');
-        Route::get('/admin-check-teacher-list/{user_id}', [AdminController::class,  'checkTeacherList'])->name('admin_check_teacher_list');
+        Route::get('/admin-check-teacher/{user_id}', [AdminController::class,  'checkTeacherList'])->name('admin_check_teacher_list');
+        Route::post('/teacher-list/update', [AdminController::class, 'updateTeacherList'])->name('update_teacher_list');
 
         // admin subject
         Route::get('/subject', [SubjectController::class, 'subjectList'])->name('subject_list');

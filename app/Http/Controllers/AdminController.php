@@ -43,6 +43,45 @@ class AdminController extends Controller
             'email' => 'email|unique:users,email,' . $request->user_id,
         ]);
 
+        $clsSec = StudentAssignSection::where('user_id', $request->user_id)
+            ->where('status', date('Y'))
+            ->latest()
+            ->first();
+
+        if ($clsSec) {
+            $oldSection = $clsSec->section_id;
+            $clsSec->delete();
+
+            $oldRolls = StudentAssignSection::where('section_id', $oldSection)
+                ->where('status', date('Y'))
+                ->get();
+
+            $j = 1;
+            foreach ($oldRolls as $da) {
+                $da->update([
+                    'student_id' => $j++
+                ]);
+            }
+
+            StudentAssignSection::create([
+                'user_id' => $request->user_id,
+                'section_id' => $request->section_id,
+                'status' => date('Y')
+            ]);
+
+            $getRolls = StudentAssignSection::where('section_id', $request->section_id)
+                ->where('status', date('Y'))
+                ->get();
+
+            $i = 1;
+            foreach ($getRolls as $data) {
+                $data->update([
+                    'student_id' => $i++
+                ]);
+            }
+        }
+
+
         $userData = User::find($request->user_id);
         $userData->update([
             'name' => $request->name,
@@ -50,7 +89,10 @@ class AdminController extends Controller
         ]);
 
         $student = Student::where('user_id', $request->user_id)->first();
+
         $student->update([
+            'guardian_name' => $request->guardian_name,
+            'guardian_relation' => $request->guardian_relation,
             'guardian_no' => $request->guardian_no,
             'class' => $request->class_id,
             'address' => $request->address,
@@ -212,7 +254,6 @@ class AdminController extends Controller
         $teacher = Teacher::where('user_id', $request->user_id)->first();
         $teacher->update([
             'designation' => $request->designation,
-           
         ]);
         return redirect()->back()->with('success', 'Successfully updated.');
     }

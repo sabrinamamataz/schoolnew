@@ -79,9 +79,11 @@ class SectionController extends Controller
 
         $existing_ids = StudentAssignSection::where('section_id', $section->id)->get()->pluck('user_id');
         $students = User::join('students', 'students.user_id', 'users.id')
-            ->select('students.*', 'users.name', 'users.name', 'users.email', 'users.role')
+            ->leftjoin('student_assign_sections', 'student_assign_sections.user_id', 'users.id')
+            ->select('students.*', 'users.name', 'users.name', 'users.email', 'users.role', 'student_assign_sections.student_id')
             ->where('users.role', 'student')
             ->whereIn('users.id', $existing_ids)
+            ->orderBy('student_assign_sections.student_id', 'ASC')
             ->get();
 
         return view('admin.section-student-list', compact('students', 'section', 'stdSelect'));

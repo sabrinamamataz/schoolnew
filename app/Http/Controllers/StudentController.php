@@ -15,7 +15,7 @@ use App\Models\StudentAssignSection;
 use Carbon\Carbon;
 
 class StudentController extends Controller
-{ 
+{
     public function studentDashboard()
     {
         if (auth()->user()->userToSecAssign) {
@@ -33,7 +33,6 @@ class StudentController extends Controller
             $weekday = $weekMap[$dayOfTheWeek];
 
             $routine = Routine::where('section_id', $section_id)->where('week_day', $weekday)->first();
-
         } else {
             $routine = null;
         }
@@ -196,6 +195,11 @@ class StudentController extends Controller
                 'guardian_name' => $request->guardian_name,
                 'guardian_relation' => $request->guardian_relation,
             ]);
+            if ($request->class) {
+                $studentData->update([
+                    'class' => $request->class,
+                ]);
+            }
         } else {
             $newStudent = Student::create([
                 'status' => 1,
@@ -204,6 +208,7 @@ class StudentController extends Controller
                 'address' => $request->address,
                 'date_of_birth' => $request->date_of_birth,
                 'age' => $request->age,
+                'class' => $request->class,
                 'guardian_name' => $request->guardian_name,
                 'guardian_relation' => $request->guardian_relation,
             ]);

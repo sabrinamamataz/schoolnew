@@ -46,7 +46,7 @@
                                 <td>{{ isset($student->userToClass) ? $student->userToClass->class_name : '--' }}</td>
                                 <td>{{ $student->guardian_name }}</td>
                                 <td>{{ $student->guardian_relation }}</td>
-                                <td>{{ $student->guardian_contact }}</td>
+                                <td>{{ $student->guardian_no }}</td>
                                 <td>
                                     <button type="button" class="btn btn-warning" class="btn btn-primary"
                                         data-bs-toggle="modal" data-bs-target="#updateModat{{ $student->id }}">
@@ -101,14 +101,24 @@
                                                     } else {
                                                         $section = '';
                                                     }
+                                                    $sectionList = App\Models\Section::where('class_id', $student->class)->get();
                                                 @endphp
                                                 <div class="form-group">
                                                     <label for="Section">Section</label>
-                                                    <input type="text" name="" class="form-control"
-                                                        value="{{ $section ? $section->section : '' }}" readonly>
+                                                    {{-- <input type="text" name="" class="form-control"
+                                                        value="{{ $section ? $section->section : '' }}"> --}}
+                                                    <select class="form-select" name="section_id">
+                                                        <option value="">Select Section</option>
+                                                        @foreach ($sectionList as $sec)
+                                                            <option value="{{ $sec->id }}"
+                                                                {{ $section ? ($section->id == $sec->id ? 'selected' : '') : '' }}>
+                                                                {{ $sec->section }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="Date Of Birth">date Of Birth</label>
+                                                    <label for="Date Of Birth">Date Of Birth</label>
                                                     <input type="date" name="date_of_birth" class="form-control"
                                                         value="{{ $student->date_of_birth }}">
                                                 </div>
@@ -124,13 +134,13 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="Contact">Father Name</label>
-                                                    <input type="tex" name="father_name" class="form-control"
-                                                        value="{{ $student->father_name }}">
+                                                    <input type="tex" name="guardian_name" class="form-control"
+                                                        value="{{ $student->guardian_name }}">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="Mother Name">Mother Name</label>
-                                                    <input type="tex" name="mother_name" class="form-control"
-                                                        value="{{ $student->mother_name }}">
+                                                    <input type="tex" name="guardian_relation" class="form-control"
+                                                        value="{{ $student->guardian_relation }}">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="Guardian No">Guardian No</label>

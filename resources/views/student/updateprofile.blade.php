@@ -19,8 +19,7 @@
                     <select class="form-select" name="class" {{ isset($studentData->class) ? 'disabled' : '' }}>
                         <option value="">Select Class</option>
                         @foreach ($classes as $class)
-                            <option
-                                {{ isset($studentData->class) && $studentData->class == $class->id ? 'selected' : '' }}
+                            <option {{ isset($studentData->class) && $studentData->class == $class->id ? 'selected' : '' }}
                                 value="{{ $class->id }}">
                                 {{ $class->class_name }}
                             </option>
@@ -77,12 +76,14 @@
                 </div>
                 <div class="mb-3">
                     <label for="formGroupExampleInput">Mother Name</label>
-                    <input type="text" name="guardian_relation" required class="form-control" placeholder="Enter mother name"
+                    <input type="text" name="guardian_relation" required class="form-control"
+                        placeholder="Enter mother name"
                         value="{{ isset($studentData->guardian_relation) ? $studentData->guardian_relation : '' }}">
                 </div>
                 <div class="mb-3">
                     <label for="formGroupExampleInput">Emergency Contact No</label>
-                    <input type="tel" name="guardian_no" required class="form-control" placeholder="Enter guardian contact number"
+                    <input type="tel" name="guardian_no" required class="form-control"
+                        placeholder="Enter guardian contact number"
                         value="{{ isset($studentData->guardian_no) ? $studentData->guardian_no : '' }}">
                 </div>
             </div>
