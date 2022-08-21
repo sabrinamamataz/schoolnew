@@ -87,7 +87,7 @@
                                 <td>{{ $student->email }}</td>
                                 <td>{{ $student->guardian_name }}</td>
                                 <td>{{ $student->guardian_relation }}</td>
-                                <td>{{ $student->contact }}</td>
+                                <td>{{ $student->guardian_no }}</td>
                                 {{-- <td>
                                     <button type="button" class="btn btn-success" class="btn btn-primary"
                                         data-bs-toggle="modal" data-bs-target="#inspectModat{{ $student->id }}">
