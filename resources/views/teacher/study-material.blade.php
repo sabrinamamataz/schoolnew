@@ -58,7 +58,6 @@
                         <th scope="col">Section</th>
                         <th scope="col">Title</th>
                         <th scope="col">Doc</th>
-                        <th scope="col">Status</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -70,13 +69,6 @@
                             <td>{{ $studymaterial->materialToSection->section }}</td>
                             <td>{{ $studymaterial->title }}</td>
                             <td>{{ $studymaterial->doc }}</td>
-                            <td>
-                                @if ($studymaterial->status == 1)
-                                    <span class="text-success">Online</span>
-                                @else
-                                    <span class="text-danger">Offline</span>
-                                @endif
-                            </td>
                             <td>
                                 <button type="button" class="btn btn-warning" class="btn btn-primary"
                                     data-bs-toggle="modal" data-bs-target="#updateModat{{ $studymaterial->id }}">

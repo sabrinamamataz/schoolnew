@@ -63,7 +63,6 @@
                             <th scope="col">Father Name</th>
                             <th scope="col">Mother Name</th>
                             <th scope="col">Contact</th>
-                            <th scope="col">Status</th>
                             {{-- <th scope="col">Action</th> --}}
                         </tr>
                     </thead>
@@ -88,8 +87,7 @@
                                 <td>{{ $student->email }}</td>
                                 <td>{{ $student->guardian_name }}</td>
                                 <td>{{ $student->guardian_relation }}</td>
-                                <td>{{ $student->guardian_contact }}</td>
-                                <td>{{ $student->status == 1 ? 'Active' : 'Inactive' }}</td>
+                                <td>{{ $student->contact }}</td>
                                 {{-- <td>
                                     <button type="button" class="btn btn-success" class="btn btn-primary"
                                         data-bs-toggle="modal" data-bs-target="#inspectModat{{ $student->id }}">

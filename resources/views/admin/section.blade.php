@@ -75,7 +75,6 @@
                         <th scope="col">Total Student</th>
                         <th scope="col">Shift</th>
                         <th scope="col">Student list</th>
-                        <th scope="col">Status</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -97,7 +96,6 @@
                                 <a href="{{ route('section_student_list', $section->id) }}" class="btn btn-success">view
                                     list</a>
                             </td>
-                            <td>{{ $section->status == 1 ? 'Active' : 'Inactive' }}</td>
                             <td>
                                 <button type="button" class="btn btn-info" class="btn btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#updateModat{{ $section->id }}">

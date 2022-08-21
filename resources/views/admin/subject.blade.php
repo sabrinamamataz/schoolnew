@@ -49,7 +49,6 @@
                         <th scope="col">Subject Name</th>
                         <th scope="col">Credit</th>
                         <th scope="col">Passing Mark</th>
-                        <th scope="col">Status</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -60,7 +59,6 @@
                             <td>{{ $subject->subject_name }}</td>
                             <td>{{ $subject->credit }}</td>
                             <td>{{ $subject->passing_mark }}</td>
-                            <td>{{ $subject->status == 1 ? 'Active' : 'Inactive' }}</td>
                             <td>
                                 <button type="button" class="btn btn-info" class="btn btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#updateModat{{ $subject->id }}">

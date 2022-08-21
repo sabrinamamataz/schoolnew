@@ -11,7 +11,6 @@
                         <th scope="col">Section</th>
                         <th scope="col">Doc Title</th>
                         <th scope="col">Doc</th>
-                        <th scope="col">Status</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -24,13 +23,6 @@
                             <td>{{ $studymaterial->materialToSection->section }}</td>
                             <td>{{ $studymaterial->title }}</td>
                             <td>{{ $studymaterial->doc }}</td>
-                            <td>
-                                @if ($studymaterial->status == 1)
-                                    <span class="text-success">Online</span>
-                                @else
-                                    <span class="text-danger">Offline</span>
-                                @endif
-                            </td>
                             <td>
                                 @if ($studymaterial->status == 0)
                                     <a href="{{ route('approve_study_materials', $studymaterial->id) }}"
